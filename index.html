@@ -3,13 +3,35 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<title>UMovie</title>
 
+	<link href="css/jkit.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/app.css" rel="stylesheet">
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+	<script src="lib/jquery.js"></script>
+	<script src="lib/bootstrap.js"></script>
+	<script src="lib/jquery.jkit.1.1.10.js"></script>
+	<script src="lib/jquery.easing.1.3.js"></script>
+	<script type="text/javascript">
+		$("[data-rel=tooltip]").tooltip();
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('body').jKit();
+		});
+	</script>
+
+	<!--Our personal script -->
 	<script src="js/testScript.js"></script>
+	<!--Our personal script -->
+
 </head>
 <body>
 
+	<button class="btn btn-primary" type="button"><i class="icon-search"></i></button>
 	<button onclick="test()">TEST IT</button>
 
 </body>
