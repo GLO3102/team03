@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>UMovie</title>
+
+	<link href="lib/css/jkit.css" rel="stylesheet">
+	<link href="lib/css/bootstrap.css" rel="stylesheet">
+	<link href="lib/css/animate.css" rel="stylesheet">
+	<link href="lib/css/app.css" rel="stylesheet">
+	<link href="lib/css/font-awesome.css" rel="stylesheet">
+	<link href="lib/css/bootstrap-responsive.css" rel="stylesheet">
+
+	<script src="lib/js/jquery.js"></script>
+	<script src="lib/js/bootstrap.js"></script>
+	<script src="lib/js/jquery.jkit.1.1.10.js"></script>
+	<script src="lib/js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript">
+		$("[data-rel=tooltip]").tooltip();
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('body').jKit();
+		});
+	</script>
+
+	<!--Our personal script -->
+	<script src="js/testScript.js"></script>
+	<!--Our personal script -->
+
+</head>
+<body class="animated fadeInDown">
+	<div class="navbar navbar-static-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a href="tvshow.html"> <h1>UMovie</h1></a>
+				<div class="nav-collapse collapse">
+					<form class="navbar-form pull-left">
+						<div class="input-append">
+							<input class="span3" id="appendedInputButtons" type="text">
+							<button class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+						</div>
+					</form>
+					<ul class="nav pull-right">
+						<li><a href="home.html">Home</a></li>
+						<li class="active"><a href="tvshow.html">Watchlists</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Current User <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="sign-in.html">Disconnect</a></li>
+								<li class="divider"></li>
+								<li><a href="settings.html">Settings</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
