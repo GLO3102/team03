@@ -1,12 +1,31 @@
-.tv-show-information {
+.span12{
+    position: relative;
+    margin: 15px 0;
+    padding: 39px 19px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.tv-show-basic-informations {
     list-style: none;
     margin-left: 0;
 }
 
-.tv-show-information .divider {
+.tv-show-basic-informations .divider {
     height: 1px;
     margin: 9px 1px;
     overflow: hidden;
     background-color: #e5e5e5;
     border-bottom: 1px solid #ffffff;
+}
+
+.tv-show-description {
+    text-align: justify;
+}
+
+.video-preview{
+
 }
