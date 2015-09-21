@@ -1,4 +1,4 @@
-.span12{
+.span12 {
     position: relative;
     margin: 15px 0;
     padding: 39px 19px 14px;
@@ -7,6 +7,16 @@
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+}
+
+@media (max-width: 979px) and (min-width: 768px) {
+    .span6 {
+        display: block;
+        width: 95%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
 }
 
 .tv-show-basic-informations {
@@ -22,10 +32,17 @@
     border-bottom: 1px solid #ffffff;
 }
 
+.tv-show-basic-informations li iframe {
+    width: 100%;
+}
+
+.tv-show-basic-informations li .itune-badge {
+    margin-top: 20px;
+}
+
 .tv-show-description {
     text-align: justify;
 }
 
-.video-preview{
 
-}
+
