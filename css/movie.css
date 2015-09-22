@@ -1,0 +1,46 @@
+.span12 {
+    position: relative;
+    margin: 15px 0;
+    padding: 39px 19px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+@media (max-width: 979px) and (min-width: 768px) {
+    .span6 {
+        display: block;
+        width: 95%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        image-rendering: auto;
+    }
+}
+
+.movie-basic-informations {
+    list-style: none;
+    margin-left: 0;
+}
+
+.movie-basic-informations .divider {
+    height: 1px;
+    margin: 9px 1px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    border-bottom: 1px solid #ffffff;
+}
+
+.movie-basic-informations li iframe {
+    width: 100%;
+}
+
+.movie-basic-informations li .itune-badge {
+    margin-top: 20px;
+}
+
+.movie-description {
+    text-align: justify;
+}
