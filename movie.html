@@ -2,9 +2,116 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>UMovie</title>
+
+	<link href="lib/css/jkit.css" rel="stylesheet">
+	<link href="lib/css/bootstrap.css" rel="stylesheet">
+	<link href="lib/css/animate.css" rel="stylesheet">
+	<link href="lib/css/app.css" rel="stylesheet">
+	<link href="lib/css/font-awesome.css" rel="stylesheet">
+	<link href="lib/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/movie.css" rel="stylesheet">
+
+	<script src="lib/js/jquery.js"></script>
+	<script src="lib/js/bootstrap.js"></script>
+	<script src="lib/js/jquery.jkit.1.1.10.js"></script>
+	<script src="lib/js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript">
+		$("[data-rel=tooltip]").tooltip();
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('body').jKit();
+		});
+	</script>
 </head>
-<body>
+
+<body class="animated fadeInDown">
+	<div class="navbar navbar-static-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a href="movie.html"><h1>UMovie</h1></a>
+
+				<div class="nav-collapse collapse">
+					<form class="navbar-form pull-left">
+						<div class="input-append">
+							<input class="span3" id="appendedInputButtons" type="text">
+							<button class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+						</div>
+					</form>
+					<ul class="nav pull-left">
+						<li><a href="home.html">Home</a></li>
+						<li class="active"><a href="movie.html">Watchlists</a></li>
+					</ul>
+					<ul class="nav pull-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Current User
+								<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="sign-in.html">Disconnect</a></li>
+								<li class="divider"></li>
+								<li><a href="settings.html">Settings</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="page-header">
+			<h3>Straight Outta Compton</h3>
+		</div>
+
+		<div class="row">
+			<div class="span12">
+				<div class="span5">
+					<ul class="movie-basic-informations">
+						<li>
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/oyoew4T74_w" frameborder="0" allowfullscreen></iframe>
+						</li>
+						<li>
+							<span class="label">Release date </span>
+							<span class="item">August 14, 2015</span>
+						</li>
+						<li>
+							<span class="label">Genre </span>
+							<span class="item">Drama</span>
+						</li>
+						<li>
+							<span class="label">Rating </span>
+							<span class="item">R (nudity, violence, and drug use)</span>
+						</li>
+						<li>
+						</li>
+						<li>
+							<a href="https://geo.itunes.apple.com/us/movie/straight-outta-compton-2015/id1025190592?mt=6" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+						</li>
+					</ul>
+				</div>
+				<div class="span6">
+					<img src="http://a3.mzstatic.com/us/r30/Video1/v4/a3/e2/f5/a3e2f5ba-a7cd-6967-c9ab-7886ee4dc236/poster227x227.jpeg">
+					<p class="movie-description">In 1987, five young men, using brutally honest rhymes and hardcore
+						beats, put their frustration and anger about life in the most dangerous place in America into
+						the most powerful weapon they had: their music.
+						Taking us back to where it all began, Straight Outta Compton tells the true story of how these
+						cultural rebels-armed only with their lyrics, swagger, bravado and raw talent-stood up to the
+						authorities that meant to keep them down and formed the world's most dangerous group, N.W.A.
+						And as they spoke the truth that no one had before and exposed life in the hood,
+						their voice ignited a social revolution that is still reverberating today.
+						Straight Outta Compton stars O’Shea Jackson Jr., Corey Hawkins and Jason Mitchell as Ice Cube,
+						Dr. Dre and Eazy-E, and is directed by F. Gary Gray.</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
