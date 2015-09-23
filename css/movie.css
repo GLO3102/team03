@@ -20,6 +20,16 @@
     }
 }
 
+@media (max-width: 1200px) and (min-width: 980px) {
+    .navbar-title {
+        float: left;
+        margin-right: 15px;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+}
+
 .movie-basic-informations {
     list-style: none;
     margin-left: 0;
@@ -43,4 +53,9 @@
 
 .movie-description {
     text-align: justify;
+}
+
+.text-wrap{
+    float: left;
+    margin: 10px;
 }
