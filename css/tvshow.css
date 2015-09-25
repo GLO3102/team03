@@ -1,0 +1,80 @@
+.span12 {
+    position: relative;
+    min-height: 650px;
+    margin: 15px 0;
+    padding: 39px 19px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.tv-show-basic-informations {
+    list-style: none;
+    margin: 15px;
+    float: left;
+}
+
+.tv-show-basic-informations .divider {
+    height: 1px;
+    margin: 9px 1px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    border-bottom: 1px solid #ffffff;
+}
+
+.tv-show-basic-informations li iframe {
+    width: 100%;
+}
+
+.tv-show-basic-informations li .itune-badge {
+    margin-top: 20px;
+}
+
+.tv-show-description {
+    text-align: justify;
+}
+
+}
+
+@media (max-width: 1200px) and (min-width: 980px) {
+    .navbar-title {
+        float: left;
+        margin-right: 15px;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+
+}
+
+@media (max-width: 980px) and (min-width: 768px) {
+    .span6 {
+        display: block;
+        max-width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+}
+
+.cover-image{
+    margin: 10px;
+    min-height: 100px;
+    min-width: 200px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.preview{
+    margin: 10px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+
+
+
+
