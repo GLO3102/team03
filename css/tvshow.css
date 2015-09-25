@@ -32,6 +32,9 @@
     margin-top: 20px;
 }
 
+.tv-show-episodes {
+    list-style: none;
+}
 .tv-show-description {
     text-align: justify;
 }
