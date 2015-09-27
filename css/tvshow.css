@@ -33,8 +33,10 @@
 }
 
 .tv-show-episodes {
-    list-style: none;
+    list-style: Decimal;
+
 }
+
 .tv-show-description {
     text-align: justify;
 }
@@ -63,7 +65,13 @@
 
 }
 
-.cover-image{
+@media (max-width: 768px) {
+
+    .span2{
+        display: list-item;
+    }
+}
+.cover-image {
     margin: 10px;
     min-height: 100px;
     min-width: 200px;
@@ -71,13 +79,20 @@
     max-width: 100%;
 }
 
-.preview{
+.preview {
     margin-bottom: 10px;
     margin-top: 10px;
     max-height: 100%;
     max-width: 100%;
 }
 
+.episode-cover{
+    margin: 10px;
+    min-height: 100px;
+    min-width: 200px;
+    max-height: 100%;
+    max-width: 100%;
+}
 
 
 
