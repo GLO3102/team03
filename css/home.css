@@ -13,6 +13,7 @@
     background-color: red;
     width: 300px;
     height: 400px;
+    display: block;
     margin-left: auto;
     margin-right: auto;
     background-position: center;
@@ -67,6 +68,32 @@
     .season-cover-box {
         width: 94px;
         height: 125px;
+        margin: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .navbar-title {
+        float: left;
+        margin-right: 15px;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+
+    .span6 {
+        display: block;
+        width: 95%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .season-cover-box {
+        min-width: 94px;
+        min-height: 10px;
+        max-width: 100%;
         margin: 0px;
     }
 }
