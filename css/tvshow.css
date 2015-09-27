@@ -39,6 +39,7 @@
 
 .tv-show-description {
     text-align: justify;
+    max-width: 75%;
 }
 
 }
