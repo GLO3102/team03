@@ -85,3 +85,9 @@
     padding-top: 15px;
     border-top: 1px solid #eeeeee;
 }
+
+.buttonSubscribe
+{
+    float: right;
+    display: block;
+}
