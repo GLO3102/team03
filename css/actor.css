@@ -22,6 +22,10 @@
     margin-left: 0;
 }
 
+.actor-basic-informations li:first-child {
+    margin-bottom: 5px;
+}
+
 .actor-basic-informations .divider {
     height: 1px;
     margin: 9px 1px;
