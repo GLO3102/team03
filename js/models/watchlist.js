@@ -4,13 +4,14 @@ var app = app || {};
     'use strict';
     app.Watchlist = Backbone.Model.extend({
         defaults: {
-            movies: new app.Movies(),
+            movies: app.Movies,
             owner: new app.Owner,
             id: ''
         },
         parse: function (response) {
+            this.movies = response.movies;
+            this.owner = response.owner;
             this.id = response.id;
-            this.task = response.task;
             return response;
         }
     });
