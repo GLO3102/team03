@@ -10,10 +10,6 @@ var app = app || {};
         collection: app.Watchlists,
         watchlistTemplate: _.template($('#watchlist-template').html()),
 
-        events: {
-            'click #showWatchlists' : 'get'
-        },
-
         initialize: function () {
             _.bindAll(this, 'render');
             var that = this;
@@ -25,14 +21,13 @@ var app = app || {};
         render: function () {
             var that = this;
             that.$el.html(that.watchlistTemplate({
-                watchlists: that.collection
+                watchlists: that.collection.models
             }));
         },
         get: function () {
             var that = this;
             that.collection.fetch({
                success: function(data){
-                   that.collection = data.models;
                    that.render();
                }
             });

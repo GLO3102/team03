@@ -5,7 +5,8 @@ var app = app || {};
 
     var UMovieRouter = Backbone.Router.extend({
         routes: {
-            '': 'home'
+            '': 'home',
+            'watchlists': 'watchlists'
         }
     });
 
@@ -13,6 +14,9 @@ var app = app || {};
 
     app.UMovieRouter.on('route:home', function () {
         app.NavBarView.render();
+    });
+    app.UMovieRouter.on('route:watchlists', function () {
+        app.WatchlistView.get();
     });
 
     Backbone.history.start();
