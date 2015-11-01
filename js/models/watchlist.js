@@ -3,6 +3,7 @@ var app = app || {};
 (function () {
     'use strict';
     app.Watchlist = Backbone.Model.extend({
+        urlRoot: 'http://umovie.herokuapp.com/unsecure/watchlists',
         defaults: {
             name : '',
             movies: app.Movies,

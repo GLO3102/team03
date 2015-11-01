@@ -6,7 +6,8 @@ var app = app || {};
     var UMovieRouter = Backbone.Router.extend({
         routes: {
             '': 'home',
-            'watchlists': 'watchlists'
+            'watchlists': 'watchlists',
+            'watchlist/:id/movies': 'watchlistMovies'
         }
     });
 
@@ -17,6 +18,10 @@ var app = app || {};
     });
     app.UMovieRouter.on('route:watchlists', function () {
         app.WatchlistView.get();
+    });
+
+    app.UMovieRouter.on('route:watchlistMovies', function (watchlistID) {
+        app.WatchlistMoviesView.get({watchlistID : watchlistID});
     });
 
     Backbone.history.start();

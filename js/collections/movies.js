@@ -4,7 +4,7 @@ var app = app || {};
     'use strict';
 
     var Movies = Backbone.Collection.extend({
-        model: app.Movie,
+        model: app.Movie
     });
 
     app.Movies = new Movies();
