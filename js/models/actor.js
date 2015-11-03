@@ -4,7 +4,6 @@ var app = app || {};
     'use strict';
     app.Actor = Backbone.Model.extend({
         urlRoot: 'http://umovie.herokuapp.com/unsecure/actors',
-
         defaults: {
             wrapperType: '',
             artistType: '',
@@ -16,13 +15,9 @@ var app = app || {};
             primaryGenreId: 0,
             radioStationUrl: ''
         },
-        url : function(){
-            var url = this.urlRoot + "/" + this.artistId;
-            return url;
-        },
         parse: function (response) {
-            this.wrapperType = response.wrapperType;
-            this.artistType = response.artistType;
+            this.wrapperType = response.result.wrapperType;
+            this.artistType = response.result.artistType;
             this.artistName = response.artistName;
             this.artistLinkUrl = response.artistLinkUrl;
             this.artistId = response.artistId;

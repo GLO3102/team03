@@ -7,7 +7,7 @@ var app = app || {};
         model: app.Actor,
         url: 'http://umovie.herokuapp.com/unsecure/search/actors',
         parse: function(response){
-            return response.results;
+            return response;
         }
     });
 

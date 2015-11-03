@@ -25,8 +25,7 @@ var app = app || {};
 
         render: function (actorID) {
             var that = this;
-            var number = parseInt(actorID);
-            that.actor = new app.Actor({artistId: number});
+            that.actor = new app.Actor({id: actorID});
             console.log(that.actor.artistId);
             that.actor.fetch({
                 success: function (data) {
