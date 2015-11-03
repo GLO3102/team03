@@ -7,7 +7,7 @@ var app = app || {};
 
         el: '.watchlist',
 
-        collection: app.Watchlists,
+        collection: new app.Watchlists(),
         watchlistTemplate: _.template($('#watchlist-template').html()),
 
         events: {
@@ -30,10 +30,10 @@ var app = app || {};
             }));
         },
 
-        get: function (data) {
+        get: function () {
             var that = this;
            that.collection.fetch({
-                success: function (data) {
+                success: function () {
                     that.render();
                 }
             });
@@ -66,5 +66,6 @@ var app = app || {};
             })
         }
     });
+
     app.WatchlistView = new WatchlistView();
 })(jQuery);

@@ -6,15 +6,18 @@ var app = app || {};
         urlRoot: 'http://umovie.herokuapp.com/unsecure/watchlists',
         defaults: {
             name : '',
-            movies: app.Movies,
-            owner: app.Owner,
+            movies: new app.Movies(),
+            owner: new app.Owner(),
             id: ''
         },
         parse: function (response) {
-            this.name = response.name;
-            this.movies = response.movies;
-            this.owner = response.owner;
-            this.id = response.id;
+            response.movies = new app.Movies(response.movies);
+            if(response.movies.models.length > 0){
+                for(var i = 0; i < response.movies.models.length; i++){
+                    response.movies.models[i].id = response.movies.models[i].attributes.trackId.toString();
+                    response.movies.models[i].urlRoot = response.movies.models[i].urlRoot.replace(':id', response.id);
+                }
+            }
             return response;
         }
     });

@@ -42,10 +42,10 @@
 						</div>
 					</form>
 					<ul class="nav pull-left">
-						<li><a href="Liv1Html/home.html">Home</a></li>
-						<li><a href="Liv1Html/tvshow.html">Tv Show</a></li>
-						<li><a href="Liv1Html/movie.html">Movie</a></li>
-						<li><a href="Liv1Html/actor.html">Actor</a></li>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">Tv Show</a></li>
+						<li><a href="#">Movie</a></li>
+						<li><a href="#">Actor</a></li>
 						<li><a href="#/watchlists">Watchlists</a></li>
 					</ul>
 					<ul class="nav pull-right">
@@ -67,7 +67,7 @@
 	<script type="text/template" id="watchlist-template">
 
 		<div class="span12">
-			<button id="create-watchlist" class="btn-success" type="button">Create Watchlist</button>
+			<button id="create-watchlist" class="btn btn-success" type="button">Create Watchlist</button>
 			<label>Name: <input id="watchlist-create-name" type="text"/></label>
 			<table class="table striped">
 				<thead>
@@ -80,11 +80,11 @@
 				<tbody>
 				<% _.each(watchlists, function (watchlist) { %>
 				<tr>
-					<td><%= watchlist.name %></td>
-					<td><%= watchlist.movies.length %></td>
+					<td><%= watchlist.attributes.name %></td>
+					<td><%= watchlist.attributes.movies.length %></td>
 					<td>
-						<a href="#/watchlist/<%= watchlist.id %>/movies">Show movies</a>
-						<button class="delete-watchlist btn-danger" data-watchlist-id="<%= watchlist.id%>">Delete Watchlist</button>
+						<a href="#/watchlist/<%= watchlist.attributes.id %>/movies">Show movies</a>
+						<button class="delete-watchlist btn btn-danger" data-watchlist-id="<%= watchlist.attributes.id%>">Delete Watchlist</button>
 					</td>
 				</tr>
 				<% }); %>
@@ -97,17 +97,17 @@
 		<div class="span12">
 			<h1><%= watchlist.name %></h1>
 			<ul class="thumbnails">
-				<% _.each(watchlist.movies, function (movie) { %>
+				<% _.each(movies, function (movie) { %>
 				<li class="span2">
 					<div class="thumbnail">
-						<div class="cover-box" style="background-image: url('<%= movie.artworkUrl100 %>')"></div>
+						<div class="cover-box" style="background-image: url('<%= movie.attributes.artworkUrl100 %>')"></div>
 					</div>
 					<div class="caption">
 						<h6>
-							<a href="#"><%= movie.trackName %></a>
+							<a href="#"><%= movie.attributes.trackName %></a>
 						</h6>
 					</div>
-					<button id="movieRemove" class="btn btn-danger" data-movie-id="<%= movie.trackId%>">Remove from
+					<button id="movieRemove" class="btn btn-danger" data-movie-id="<%= movie.attributes.trackId %>">Remove from
 						watchlist
 					</button>
 				</li>
@@ -126,9 +126,8 @@
 
 	<script src="js/models/owner.js"></script>
 	<script src="js/models/movie.js"></script>
-	<script src="js/models/watchlist.js"></script>
-
 	<script src="js/collections/movies.js"></script>
+	<script src="js/models/watchlist.js"></script>
 	<script src="js/collections/watchlists.js"></script>
 
 	<script src="js/views/watchlist-movies-view.js"></script>

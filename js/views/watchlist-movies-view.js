@@ -3,7 +3,7 @@ var app = app || {};
 (function ($) {
     'use strict';
 
-    var WatchlistMoviesView = Backbone.View.extend({
+     var WatchlistMoviesView = Backbone.View.extend({
 
         el: '.watchlist-movies',
         watchlist: null,
@@ -15,10 +15,27 @@ var app = app || {};
         },
 
         removeMovie: function (e) {
+            var that = this;
             var movieID = $(e.currentTarget).data("movie-id");
-            var movieModel = this.watchlist.movies.get(movieID);
-            movieModel.destroy();
+            var movieModel = new app.Movie({id: movieID});
+            movieModel.urlRoot = movieModel.urlRoot.replace(':id', this.watchlist.id);
+            movieModel.destroy({
+                success: function (model, response){
+                    that.watchlist = new app.Watchlist(response);
+                    that.refreshWatchList();
+                },
+                error: function (error){
+                    console.log("Something wrong happened!" + error);
+                }
+            });
         },
+
+         refreshWatchList: function (){
+             this.$el.html(this.watchlistMoviesTemplate({
+                 watchlist: this.watchlist.attributes,
+                 movies: this.watchlist.attributes.movies.models
+             }));
+         },
 
         initialize: function () {
             _.bindAll(this, 'render');
@@ -36,7 +53,8 @@ var app = app || {};
             that.watchlist.fetch({
                 success: function (data) {
                     that.$el.html(that.watchlistMoviesTemplate({
-                        watchlist: data
+                        watchlist: data.attributes,
+                        movies: data.attributes.movies.models
                     }));
                 }
             });
@@ -49,6 +67,6 @@ var app = app || {};
 
         }
     });
-    app.WatchlistMoviesView = new WatchlistMoviesView();
 
+    app.WatchlistMoviesView = new WatchlistMoviesView();
 })(jQuery);
