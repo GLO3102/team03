@@ -3,3 +3,9 @@
     display: block;
     margin-right: 10px;
 }
+
+.delete-watchlist {
+    float: right;
+    display: block;
+    margin-right: 10px;
+}

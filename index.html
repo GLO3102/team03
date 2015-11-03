@@ -82,7 +82,10 @@
 				<tr>
 					<td><%= watchlist.name %></td>
 					<td><%= watchlist.movies.length %></td>
-					<td><a href="#/watchlist/<%= watchlist.id %>/movies">Show movies</a></td>
+					<td>
+						<a href="#/watchlist/<%= watchlist.id %>/movies">Show movies</a>
+						<button class="delete-watchlist btn-danger" data-watchlist-id="<%= watchlist.id%>">Delete Watchlist</button>
+					</td>
 				</tr>
 				<% }); %>
 				</tbody>

@@ -11,7 +11,8 @@ var app = app || {};
         watchlistTemplate: _.template($('#watchlist-template').html()),
 
         events: {
-            'click #create-watchlist': 'addWatchlist'
+            'click #create-watchlist': 'addWatchlist',
+            'click .delete-watchlist': 'removeWatchlist'
         },
 
         initialize: function () {
@@ -49,6 +50,12 @@ var app = app || {};
                     contentType: 'application/json'
                 })
             }
+        },
+        removeWatchlist: function (event){
+            this.collection.fetch({
+                type: 'DELETE',
+                url: 'http://umovie.herokuapp.com/unsecure/watchlists/'+ $(event.currentTarget).data("watchlist-id")
+            })
         }
     });
     app.WatchlistView = new WatchlistView();
