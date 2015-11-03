@@ -57,13 +57,16 @@ var app = app || {};
         },
         removeWatchlist: function (event){
             var that = this;
-            that.collection.fetch({
-                type: 'DELETE',
-                url: 'http://umovie.herokuapp.com/unsecure/watchlists/'+ $(event.currentTarget).data("watchlist-id"),
-                success: function () {
+            var watchlistID = $(event.currentTarget).data("watchlist-id");
+            var WatchlistModel = new app.Watchlist({id: watchlistID});
+            WatchlistModel.destroy({
+                success: function (model, response){
                     that.get();
+                },
+                error: function (error){
+                    console.log("Something wrong happened!" + error);
                 }
-            })
+            });
         }
     });
 
