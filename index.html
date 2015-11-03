@@ -12,6 +12,7 @@
 	<link href="lib/css/font-awesome.css" rel="stylesheet">
 	<link href="lib/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/index.css" rel="stylesheet">
+	<link href="css/watchlist.css" rel="stylesheet">
 
 </head>
 <body class="animated fadeInDown">
@@ -64,7 +65,10 @@
 	</script>
 
 	<script type="text/template" id="watchlist-template">
+
 		<div class="span12">
+			<button id="create-watchlist" class="btn-success" type="button">Create Watchlist</button>
+			<label>Name: <input id="watchlist-create-name" type="text"/></label>
 			<table class="table striped">
 				<thead>
 				<tr>
@@ -100,7 +104,9 @@
 							<a href="#"><%= movie.trackName %></a>
 						</h6>
 					</div>
-					<button id="movieRemove" class="btn btn-danger" data-movie-id="<%= movie.trackId%>">Remove from watchlist</button>
+					<button id="movieRemove" class="btn btn-danger" data-movie-id="<%= movie.trackId%>">Remove from
+						watchlist
+					</button>
 				</li>
 				<% }); %>
 			</ul>
