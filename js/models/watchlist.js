@@ -11,13 +11,6 @@ var app = app || {};
             id: ''
         },
         parse: function (response) {
-            response.movies = new app.Movies(response.movies);
-            if(response.movies.models.length > 0){
-                for(var i = 0; i < response.movies.models.length; i++){
-                    response.movies.models[i].id = response.movies.models[i].attributes.trackId.toString();
-                    response.movies.models[i].urlRoot = response.movies.models[i].urlRoot.replace(':id', response.id);
-                }
-            }
             return response;
         }
     });

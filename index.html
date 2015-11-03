@@ -97,17 +97,17 @@
 		<div class="span12">
 			<h1><%= watchlist.name %></h1>
 			<ul class="thumbnails">
-				<% _.each(movies, function (movie) { %>
+				<% _.each(watchlist.movies, function (movie) { %>
 				<li class="span2">
 					<div class="thumbnail">
-						<div class="cover-box" style="background-image: url('<%= movie.attributes.artworkUrl100 %>')"></div>
+						<div class="cover-box" style="background-image: url('<%= movie.artworkUrl100 %>')"></div>
 					</div>
 					<div class="caption">
 						<h6>
-							<a href="#"><%= movie.attributes.trackName %></a>
+							<a href="#"><%= movie.trackName %></a>
 						</h6>
 					</div>
-					<button id="movieRemove" class="btn btn-danger" data-movie-id="<%= movie.attributes.trackId %>">Remove from
+					<button class="movie-remove btn btn-danger" data-movie-id="<%= movie.trackId %>">Remove from
 						watchlist
 					</button>
 				</li>
