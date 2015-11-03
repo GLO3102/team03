@@ -19,7 +19,7 @@ var app = app || {};
             _.bindAll(this, 'render');
             var that = this;
             that.collection.bind("change add remove", function () {
-                that.get();
+                that.render();
             });
         },
 
@@ -30,9 +30,9 @@ var app = app || {};
             }));
         },
 
-        get: function () {
+        get: function (data) {
             var that = this;
-            that.collection.fetch({
+           that.collection.fetch({
                 success: function (data) {
                     that.render();
                 }
@@ -40,21 +40,29 @@ var app = app || {};
         },
 
         addWatchlist: function (){
+            var that = this;
             if($('#watchlist-create-name').val().trim()===''){
                 alert("Please enter a name for your new Watchlist")
             }
             else{
-                this.collection.fetch({
+                that.collection.fetch({
                     type: 'POST',
                     data: JSON.stringify({name: $('#watchlist-create-name').val()}),
-                    contentType: 'application/json'
+                    contentType: 'application/json',
+                    success: function () {
+                        that.get();
+                    }
                 })
             }
         },
         removeWatchlist: function (event){
-            this.collection.fetch({
+            var that = this;
+            that.collection.fetch({
                 type: 'DELETE',
-                url: 'http://umovie.herokuapp.com/unsecure/watchlists/'+ $(event.currentTarget).data("watchlist-id")
+                url: 'http://umovie.herokuapp.com/unsecure/watchlists/'+ $(event.currentTarget).data("watchlist-id"),
+                success: function () {
+                    that.get();
+                }
             })
         }
     });

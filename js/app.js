@@ -22,7 +22,7 @@ var app = app || {};
         app.NavBarView.render();
     });
     app.UMovieRouter.on('route:watchlists', function () {
-        clearViews();
+        //clearViews();
         app.WatchlistView.get();
     });
 
