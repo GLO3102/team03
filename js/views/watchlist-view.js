@@ -3,7 +3,7 @@ var app = app || {};
 (function ($) {
     'use strict';
 
-    var WatchlistView= Backbone.View.extend({
+    var WatchlistView = Backbone.View.extend({
 
         el: '.watchlist',
 
@@ -27,14 +27,11 @@ var app = app || {};
         get: function () {
             var that = this;
             that.collection.fetch({
-               success: function(data){
-                   that.render();
-               }
+                success: function (data) {
+                    that.render();
+                }
             });
         }
-
-
-
     });
     app.WatchlistView = new WatchlistView();
 })(jQuery);

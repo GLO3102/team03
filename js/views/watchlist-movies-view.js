@@ -23,7 +23,7 @@ var app = app || {};
         initialize: function () {
             _.bindAll(this, 'render');
             var that = this;
-            if(that.watchlist){
+            if (that.watchlist) {
                 that.watchlist.bind("change", function () {
                     that.render(that.watchlist.id);
                 });
@@ -48,8 +48,6 @@ var app = app || {};
             }
 
         }
-
-
     });
     app.WatchlistMoviesView = new WatchlistMoviesView();
 

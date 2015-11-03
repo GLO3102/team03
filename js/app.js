@@ -11,17 +11,23 @@ var app = app || {};
         }
     });
 
+    function clearViews() {
+        $(".watchlist").empty();
+        $(".watchlist-movies").empty();
+    }
+
     app.UMovieRouter = new UMovieRouter();
 
     app.UMovieRouter.on('route:home', function () {
         app.NavBarView.render();
     });
     app.UMovieRouter.on('route:watchlists', function () {
+        clearViews();
         app.WatchlistView.get();
     });
 
     app.UMovieRouter.on('route:watchlistMovies', function (watchlistID) {
-        app.WatchlistMoviesView.get({watchlistID : watchlistID});
+        app.WatchlistMoviesView.get({watchlistID: watchlistID});
     });
 
     Backbone.history.start();
