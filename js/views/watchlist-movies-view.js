@@ -33,6 +33,7 @@ var app = app || {};
         render: function (watchlistID) {
             var that = this;
             that.watchlist = new app.Watchlist({id: watchlistID});
+            console.log(that.watchlist.id);
             that.watchlist.fetch({
                 success: function (data) {
                     that.$el.html(that.watchlistMoviesTemplate({

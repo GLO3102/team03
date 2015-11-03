@@ -7,7 +7,9 @@ var app = app || {};
         routes: {
             '': 'home',
             'watchlists': 'watchlists',
-            'watchlist/:id/movies': 'watchlistMovies'
+            'actors': 'actors',
+            'watchlist/:id/movies': 'watchlistMovies',
+            'actors/:id': 'singleActor'
         }
     });
 
@@ -19,7 +21,12 @@ var app = app || {};
     app.UMovieRouter.on('route:watchlists', function () {
         app.WatchlistView.get();
     });
-
+    app.UMovieRouter.on('route:actors', function () {
+        app.ActorsView.get();
+    });
+    app.UMovieRouter.on('route:singleActor', function (actorID) {
+        app.SingleActorView.get({actorID : actorID});
+    });
     app.UMovieRouter.on('route:watchlistMovies', function (watchlistID) {
         app.WatchlistMoviesView.get({watchlistID : watchlistID});
     });

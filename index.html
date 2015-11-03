@@ -18,6 +18,8 @@
 
 	<div class="navbar navbar-static-top"></div>
 	<div class="container">
+		<div class="actors"></div>
+		<div class="single-actor"></div>
 		<div class="watchlist"></div>
 		<div class="watchlist-movies"></div>
 	</div>
@@ -44,7 +46,7 @@
 						<li><a href="Liv1Html/home.html">Home</a></li>
 						<li><a href="Liv1Html/tvshow.html">Tv Show</a></li>
 						<li><a href="Liv1Html/movie.html">Movie</a></li>
-						<li><a href="Liv1Html/actor.html">Actor</a></li>
+						<li><a href="#actors" data-toogle="tab">Actor</a></li>
 						<li><a href="#/watchlists">Watchlists</a></li>
 					</ul>
 					<ul class="nav pull-right">
@@ -60,6 +62,69 @@
 					</ul>
 				</div>
 			</div>
+		</div>
+	</script>
+
+	<script type="text/template" id="actors-template">
+		<div class="span12">
+			<h3>Actor search</h3>
+			<div class="input-append">
+				<input class="span3" id="actor-search-text" type="text">
+				<button id="actor-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+			</div>
+			<table class="table striped">
+				<tbody>
+				<% _.each(actors, function (actor) { %>
+				<tr>
+					<td><a href="#/actors/<%= actor.artistId %>"><%= actor.artistName %></a></td>
+				</tr>
+				<% }); %>
+				</tbody>
+			</table>
+		</div>
+	</script>
+
+	<script type="text/template" id="single-actor-template">
+		<div class="span12">
+			<h3><%= actor.artistName %>"</h3>
+		</div>
+		<div class="span5">
+			<ul class="actor-basic-informations">
+				<li>
+					<div>
+						<img src="http://ia.media-imdb.com/images/M/MV5BMjA5ODgxOTY4N15BMl5BanBnXkFtZTgwMTA4NzExMDE@._V1_UY317_CR6,0,214,317_AL_.jpg"/>
+					</div>
+				</li>
+				<li>
+					<span class="label">Genre</span>
+					<span class="item">Drama</span>
+				</li>
+				<li>
+					<a class="itune-badge" href="https://itunes.apple.com/en/artist/neil-brown-jr./id671114278" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+				</li>
+			</ul>
+		</div>
+		<div class="span6">
+			<p class="actor-description">
+				Born in a rough neighborhood to strict, but loving parents.
+				Neil Brown, Jr, who was a gifted martial artist and self proclaimed "knucklehead ",
+				received his first role in film purely by chance,
+				when a producer Patty Thomas Robinson walked into his karate Dojo looking for a kid to be in the
+				TV series WMAC masters,
+				which was being shot in Orlando, FL.
+				After catching "the acting bug" during filming, Neil claims he never looked back, and has been
+				acting ever since.
+				He appears alongside Denzel Washington in Out of Time (2003) and Colin Farrell in Tigerland
+				(2000).
+				He plays the smart-mouthed Marine, Lcpl. Richard "Motown" Guerrero, in the action film Battle:
+				Los Angeles.
+				The movie reunited him with Fast & Furious castmate Michelle Rodriguez.
+				He has since performed guest appearances in the TV shows Harry's Law, Castle, the season 8
+				premiere of Weeds,
+				the first-season finale of USA's Suits, and the new independent sketch comedy King Bachelor's
+				Pad.
+			</p>
+		</div>
 		</div>
 	</script>
 
@@ -118,12 +183,16 @@
 	<script src="js/models/owner.js"></script>
 	<script src="js/models/movie.js"></script>
 	<script src="js/models/watchlist.js"></script>
+	<script src="js/models/actor.js"></script>
 
 	<script src="js/collections/movies.js"></script>
 	<script src="js/collections/watchlists.js"></script>
+	<script src="js/collections/actors.js"></script>
 
 	<script src="js/views/watchlist-movies-view.js"></script>
 	<script src="js/views/watchlist-view.js"></script>
+	<script src="js/views/actors-view.js"></script>
+	<script src="js/views/single-actor-view.js"></script>
 	<script src="js/views/nav-bar-view.js"></script>
 	<script src="js/app.js"></script>
 
