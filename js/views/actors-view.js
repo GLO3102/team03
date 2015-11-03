@@ -36,7 +36,7 @@ var app = app || {};
                                 limit: 20
                              }),
                 success: function(data){
-                    //console.log(data);
+
                 }
             });
             this.render();
