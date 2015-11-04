@@ -15,6 +15,7 @@ var app = app || {};
     function clearViews() {
         $(".watchlist").empty();
         $(".watchlist-movies").empty();
+        $(".watchlist-add-movie").empty();
     }
 
     app.UMovieRouter = new UMovieRouter();

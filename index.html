@@ -13,6 +13,7 @@
 	<link href="lib/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/index.css" rel="stylesheet">
 	<link href="css/watchlist.css" rel="stylesheet">
+	<link href="css/addMovies.css" rel="stylesheet">
 
 </head>
 <body class="animated fadeInDown">
@@ -21,6 +22,7 @@
 	<div class="container">
 		<div class="watchlist"></div>
 		<div class="watchlist-movies"></div>
+		<div class="watchlist-add-movie"></div>
 	</div>
 
 
@@ -98,12 +100,12 @@
 	<script type="text/template" id="watchlist-movies-template">
 		<div class="span12">
 			<h1><%= watchlist.name %></h1>
-			<a href="#/watchlist/<%= watchlist.id %>/addMovies" role="button" class="btn btn-success">Add movies to this watchlist</a>
+			<a href="#/watchlist/<%= watchlist.id %>/addMovies" role="button" class="add-movie btn btn-success">Add movies to this watchlist</a>
 			<ul class="thumbnails">
 				<% _.each(watchlist.movies, function (movie) { %>
 				<li class="span2">
 					<div class="thumbnail">
-						<div class="cover-box" style="background-image: url('<%= movie.artworkUrl100 %>')"></div>
+						<div class="cover-box" style="background-image: url('<%= movie.artworkUrl100.replace('100x100','300x300') %>')"></div>
 					</div>
 					<div class="caption">
 						<h6>
@@ -120,7 +122,9 @@
 	</script>
 
 	<script type="text/template" id="add-movie-template">
-		<button class="add-movie btn btn-success">Add movie to watchlist</button>
+		<div class="span12">
+			<button class="add-movie btn btn-success">Add movie to watchlist</button>
+		</div>
 	</script>
 
 

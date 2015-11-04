@@ -5,7 +5,7 @@ var app = app || {};
 
     var AddMovieView = Backbone.View.extend({
 
-        el: '.watchlist',
+        el: '.watchlist-add-movie',
         currentWatchList: {},
         movieToAdd: {},
         movies: {},
