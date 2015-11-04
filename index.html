@@ -88,23 +88,28 @@
 	</script>
 
 	<script type="text/template" id="single-actor-template">
-		<div class="span12">
+		<div class="movie-total-wrap">
 			<h3><%= actor.artistName %></h3>
 			<a class="itune-badge" href="<%= actor.artistLinkUrl %>" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
 			</br>
 			<span class="label">Genre</span>
 			<span class="item"><%= actor.primaryGenreName %></span>
 		</div>
-		<div class="span12">
+		<div class="movie-total-wrap">
 			<h4>Movies</h4>
 			<% _.each(movies, function (movie) { %>
 				<div class="movie clearfix">
-					<h5><a href="<%= movie.attributes.trackViewUrl %>"><%= movie.attributes.trackName %></a></h5>
-				</div>
-				<div class="movie-box" style="background-image: url('http://a3.mzstatic.com/us/r30/Video1/v4/a3/e2/f5/a3e2f5ba-a7cd-6967-c9ab-7886ee4dc236/poster227x227.jpeg')"></div>
-				<div class="movie-info">
-					<span class="label">Release date </span>
-					<span class="item"><%= movie.attributes.releaseDate %></span>
+					<div class="movie-wrap-5">
+						<h5><a href="<%= movie.attributes.trackViewUrl %>"><%= movie.attributes.trackName %></a></h5>
+						<div class="movie-box" style="background-image: url('<%= movie.attributes.artworkUrl100 %>')"></div>
+						<div class="movie-info">
+							<span class="label">Release date </span>
+							<span class="item"><%= movie.attributes.releaseDate %></span>
+						</div>
+					</div>
+					<div class="movie-wrap-6">
+						<embed src="<%= movie.attributes.previewUrl %>" type="video/mp4" width="450" height="315" controller="true" controls="true" autostart="false"/>
+					</div>
 				</div>
 			<% }); %>
 		</div>

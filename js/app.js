@@ -15,6 +15,8 @@ var app = app || {};
     });
 
     function clearViews() {
+        $(".actors").empty();
+        $(".single-actor").empty();
         $(".watchlist").empty();
         $(".watchlist-movies").empty();
         $(".watchlist-add-movie").empty();
@@ -30,9 +32,11 @@ var app = app || {};
         app.WatchlistView.get();
     });
     app.UMovieRouter.on('route:actors', function () {
+        clearViews();
         app.ActorsView.get();
     });
     app.UMovieRouter.on('route:singleActor', function (actorID) {
+        clearViews();
         app.SingleActorView.get({actorID : actorID});
     });
     app.UMovieRouter.on('route:watchlistMovies', function (watchlistID) {
