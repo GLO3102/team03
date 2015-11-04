@@ -5,7 +5,7 @@
         defaults: {
             "wrapperType": '',
             "kind": '',
-            "trackId": 0,
+            "trackId": null,
             "artistName": '',
             "trackName": '',
             "trackCensoredName": '',

@@ -6,7 +6,7 @@ var app = app || {};
         defaults: {
             email: '',
             name: '',
-            id: ''
+            id: null
         },
         parse: function (response) {
             this.email = response.email;
