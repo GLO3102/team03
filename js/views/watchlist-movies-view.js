@@ -3,7 +3,7 @@ var app = app || {};
 (function ($) {
     'use strict';
 
-    var WatchlistMoviesView = Backbone.View.extend({
+     var WatchlistMoviesView = Backbone.View.extend({
 
         el: '.watchlist-movies',
         watchlist: null,
@@ -11,23 +11,22 @@ var app = app || {};
         watchlistMoviesTemplate: _.template($('#watchlist-movies-template').html()),
 
         events: {
-            "click #movieRemove": "removeMovie"
+            "click .movie-remove": "removeMovie"
         },
 
         removeMovie: function (e) {
-            var movieID = $(e.currentTarget).data("movie-id");
-            var movieModel = this.watchlist.movies.get(movieID);
-            movieModel.destroy();
-        },
-
-        initialize: function () {
-            _.bindAll(this, 'render');
             var that = this;
-            if(that.watchlist){
-                that.watchlist.bind("change", function () {
-                    that.render(that.watchlist.id);
-                });
-            }
+            var movieID = $(e.currentTarget).data("movie-id");
+            var movieModel = new app.Movie({id: movieID});
+            movieModel.urlRoot = movieModel.urlRoot.replace(':id', this.watchlist.id);
+            movieModel.destroy({
+                success: function (model, response){
+                    that.render(response.id);
+                },
+                error: function (error){
+                    console.log("Something wrong happened!" + error);
+                }
+            });
         },
 
         render: function (watchlistID) {
@@ -37,7 +36,7 @@ var app = app || {};
             that.watchlist.fetch({
                 success: function (data) {
                     that.$el.html(that.watchlistMoviesTemplate({
-                        watchlist: data
+                        watchlist: data.attributes
                     }));
                 }
             });
@@ -49,9 +48,7 @@ var app = app || {};
             }
 
         }
-
-
     });
-    app.WatchlistMoviesView = new WatchlistMoviesView();
 
+    app.WatchlistMoviesView = new WatchlistMoviesView();
 })(jQuery);
