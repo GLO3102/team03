@@ -7,7 +7,7 @@ var app = app || {};
         url: 'http://umovie.herokuapp.com/unsecure/actors/:id/movies',
         model: app.Movie,
         parse : function (response){
-            return response;
+            return response.results;
         }
     });
 

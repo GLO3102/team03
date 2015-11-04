@@ -27,27 +27,14 @@ var app = app || {};
         render: function (actorID) {
             var that = this;
             that.actor = new app.Actor({id: actorID});
-            that.actorMovies = new app.ActorMovies({id: actorID});
-            console.log(that.actorMovies.id);
+            that.actorMovies = new app.ActorMovies();
             that.actorMovies.url = that.actorMovies.url.replace(':id', actorID);
-
-            //var actorPromise = that.actor.fetch();
-
-
-            /*that.actor.fetch({
-                success: function (data) {
-                    that.$el.html(that.singleActorTemplate({
-                        actor: data
-                    }));
-                }
-            });*/
-
 
             var complete = _.invoke([this.actor, this.actorMovies], 'fetch');
             $.when.apply($, complete).done(function() {
                 that.$el.html(that.singleActorTemplate({
                     actor: that.actor,
-                    movies: that.actorMovies
+                    movies: that.actorMovies.models
                 }));
             });
         },

@@ -98,20 +98,14 @@
 		<div class="span12">
 			<h4>Movies</h4>
 			<% _.each(movies, function (movie) { %>
-			<div class="movie clearfix">
-				<div class="span5">
-					<h5><a href="<%= movie.trackViewUrl %>"><%= movie.trackName %></a></h5>
-
-					<div class="movie-box" style="background-image: url('http://a3.mzstatic.com/us/r30/Video1/v4/a3/e2/f5/a3e2f5ba-a7cd-6967-c9ab-7886ee4dc236/poster227x227.jpeg')"></div>
-					<div class="movie-info">
-						<span class="label">Release date </span>
-						<span class="item">August 14, 2015</span>
-					</div>
+				<div class="movie clearfix">
+					<h5><a href="<%= movie.attributes.trackViewUrl %>"><%= movie.attributes.trackName %></a></h5>
 				</div>
-				<div class="span6">
-					<iframe height="315" src="https://www.youtube.com/embed/oyoew4T74_w" frameborder="0" allowfullscreen></iframe>
+				<div class="movie-box" style="background-image: url('http://a3.mzstatic.com/us/r30/Video1/v4/a3/e2/f5/a3e2f5ba-a7cd-6967-c9ab-7886ee4dc236/poster227x227.jpeg')"></div>
+				<div class="movie-info">
+					<span class="label">Release date </span>
+					<span class="item"><%= movie.attributes.releaseDate %></span>
 				</div>
-			</div>
 			<% }); %>
 		</div>
 	</script>
