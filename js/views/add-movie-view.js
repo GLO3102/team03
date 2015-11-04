@@ -15,11 +15,6 @@ var app = app || {};
             'click .add-movie': 'addMovieToWatchlist'
         },
 
-        initialize: function () {
-            _.bindAll(this, 'render');
-            this.render();
-        },
-
         render: function (watchlistID) {
             var that = this;
             that.currentWatchList = new app.Watchlist({id: watchlistID});
@@ -30,7 +25,6 @@ var app = app || {};
                     }));
                 }
             });
-            that.$el.html(that.addMovieTemplate);
         },
 
         addMovieToWatchlist: function (){

@@ -36,6 +36,7 @@ var app = app || {};
         app.SingleActorView.get({actorID : actorID});
     });
     app.UMovieRouter.on('route:watchlistMovies', function (watchlistID) {
+        clearViews();
         app.WatchlistMoviesView.get({watchlistID: watchlistID});
     });
 
