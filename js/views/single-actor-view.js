@@ -32,6 +32,11 @@ var app = app || {};
 
             var complete = _.invoke([this.actor, this.actorMovies], 'fetch');
             $.when.apply($, complete).done(function() {
+                var myModel;
+                for(var i=0; i<that.actorMovies.length; i++) {
+                    myModel = that.actorMovies.models[i];
+                    myModel.attributes.releaseDate = myModel.attributes.releaseDate.substring(0,10);
+                }
                 that.$el.html(that.singleActorTemplate({
                     actor: that.actor,
                     movies: that.actorMovies.models

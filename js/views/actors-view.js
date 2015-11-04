@@ -12,7 +12,8 @@ var app = app || {};
         actorsTemplate: _.template($('#actors-template').html()),
 
         events:{
-            'click #actor-search-btn':'searchActors'
+            'click #actor-search-btn':'searchActors',
+            'keyup #actor-search-text' : 'keyPressEventHandler'
         },
         initialize: function () {
             _.bindAll(this, 'render');
@@ -40,6 +41,12 @@ var app = app || {};
                 }
             });
             this.render();
+        },
+
+        keyPressEventHandler : function(event){
+            if(event.keyCode == 13){
+                this.$("#actor-search-btn").click();
+            }
         },
 
         get: function () {
