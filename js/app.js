@@ -8,7 +8,7 @@ var app = app || {};
             '': 'home',
             'watchlists': 'watchlists',
             'watchlist/:id/movies': 'watchlistMovies',
-            'watchlist/:id/addMovies': 'watchlistAddMovies'
+            'watchlist/:id/addMovies': 'watchlistAddMovies',
             'actors': 'actors',
             'actors/:id': 'singleActor'
         }

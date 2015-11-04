@@ -9,7 +9,7 @@ var app = app || {};
             artistType: '',
             artistName: '',
             artistLinkUrl: '',
-            artistId: 0,
+            artistId: null,
             amgArtistId: 0,
             primaryGenreName: '',
             primaryGenreId: 0,
