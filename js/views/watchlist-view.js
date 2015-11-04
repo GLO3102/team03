@@ -32,38 +32,34 @@ var app = app || {};
 
         get: function () {
             var that = this;
-           that.collection.fetch({
+            that.collection.fetch({
                 success: function () {
                     that.render();
                 }
             });
         },
 
-        addWatchlist: function (){
+        addWatchlist: function () {
             var that = this;
-            if($('#watchlist-create-name').val().trim()===''){
+            if ($('#watchlist-create-name').val().trim() === '') {
                 alert("Please enter a name for your new Watchlist")
             }
-            else{
-                that.collection.fetch({
-                    type: 'POST',
-                    data: JSON.stringify({name: $('#watchlist-create-name').val()}),
-                    contentType: 'application/json',
-                    success: function () {
-                        that.get();
-                    }
-                })
+            else {
+                var watchlistModel = new app.Watchlist({name: $('#watchlist-create-name').val()});
+                watchlistModel.save().complete(function () {
+                    that.get();
+                });
             }
         },
-        removeWatchlist: function (event){
+        removeWatchlist: function (event) {
             var that = this;
             var watchlistID = $(event.currentTarget).data("watchlist-id");
-            var WatchlistModel = new app.Watchlist({id: watchlistID});
-            WatchlistModel.destroy({
-                success: function (model, response){
+            var watchlistModel = new app.Watchlist({id: watchlistID});
+            watchlistModel.destroy({
+                success: function (model, response) {
                     that.get();
                 },
-                error: function (error){
+                error: function (error) {
                     console.log("Something wrong happened!" + error);
                 }
             });

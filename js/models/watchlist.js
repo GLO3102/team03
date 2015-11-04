@@ -8,7 +8,7 @@ var app = app || {};
             name : '',
             movies: new app.Movies(),
             owner: new app.Owner(),
-            id: ''
+            id: null
         },
         parse: function (response) {
             return response;
