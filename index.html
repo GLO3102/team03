@@ -170,7 +170,7 @@
 				<tbody>
 				<% _.each(watchlists, function (watchlist) { %>
 				<tr>
-					<td><%= watchlist.attributes.name %></td>
+					<td><input class="edit-watchlist-name" type="text" value="<%= watchlist.attributes.name %>" data-watchlist-id="<%= watchlist.attributes.id%>"/></td>
 					<td><%= watchlist.attributes.movies.length %></td>
 					<td>
 						<a href="#/watchlist/<%= watchlist.attributes.id %>/movies">Show movies</a>
