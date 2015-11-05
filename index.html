@@ -21,6 +21,8 @@
 
 	<div class="navbar navbar-static-top"></div>
 	<div class="container">
+		<div class="actors"></div>
+		<div class="single-actor"></div>
 		<div class="watchlist"></div>
 		<div class="watchlist-movies"></div>
 		<div class="watchlist-add-movie"></div>
@@ -49,7 +51,7 @@
 						<li><a href="#">Home</a></li>
 						<li><a href="#">Tv Show</a></li>
 						<li><a href="#/movie/265727087">Movie</a></li>
-						<li><a href="#">Actor</a></li>
+						<li><a href="#actors">Actor</a></li>
 						<li><a href="#/watchlists">Watchlists</a></li>
 					</ul>
 					<ul class="nav pull-right">
@@ -105,6 +107,53 @@
 		</div> 
 	</script> 
 
+	<script type="text/template" id="actors-template">
+		<div class="span12">
+			<h3>Actor search</h3>
+			<div class="input-append">
+				<input class="span3" id="actor-search-text" type="text">
+				<button id="actor-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+			</div>
+			<table class="table striped">
+				<tbody>
+				<% _.each(actors, function (actor) { %>
+				<tr>
+					<td><a href="#/actors/<%= actor.artistId %>"><%= actor.artistName %></a></td>
+				</tr>
+				<% }); %>
+				</tbody>
+			</table>
+		</div>
+	</script>
+
+	<script type="text/template" id="single-actor-template">
+		<div class="movie-total-wrap">
+			<h3><%= actor.artistName %></h3>
+			<a class="itune-badge" href="<%= actor.artistLinkUrl %>" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+			</br>
+			<span class="label">Genre</span>
+			<span class="item"><%= actor.primaryGenreName %></span>
+		</div>
+		<div class="movie-total-wrap">
+			<h4>Movies</h4>
+			<% _.each(movies, function (movie) { %>
+				<div class="movie clearfix">
+					<div class="movie-wrap-5">
+						<h5><a href="<%= movie.attributes.trackViewUrl %>"><%= movie.attributes.trackName %></a></h5>
+						<div class="movie-box" style="background-image: url('<%= movie.attributes.artworkUrl100 %>')"></div>
+						<div class="movie-info">
+							<span class="label">Release date </span>
+							<span class="item"><%= movie.attributes.releaseDate %></span>
+						</div>
+					</div>
+					<div class="movie-wrap-6">
+						<embed src="<%= movie.attributes.previewUrl %>" type="video/mp4" width="450" height="315" controller="true" controls="true" autostart="false"/>
+					</div>
+				</div>
+			<% }); %>
+		</div>
+	</script>
+	
 	<script type="text/template" id="watchlist-template">
 
 		<div class="span12">
@@ -181,10 +230,15 @@
 	<script src="js/collections/movies.js"></script>
 	<script src="js/models/watchlist.js"></script>
 	<script src="js/collections/watchlists.js"></script>
+	<script src="js/models/actor.js"></script>
+	<script src="js/collections/actors.js"></script>
+	<script src="js/collections/actorMovies.js"></script>
 
 	<script src="js/views/watchlist-movies-view.js"></script>
 	<script src="js/views/watchlist-view.js"></script>
 	<script src="js/views/add-movie-view.js"></script>
+	<script src="js/views/actors-view.js"></script>
+	<script src="js/views/single-actor-view.js"></script>
 	<script src="js/views/nav-bar-view.js"></script>
 	<script src="js/views/movie-view.js"></script>
 	<script src="js/app.js"></script>

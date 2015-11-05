@@ -9,11 +9,15 @@ var app = app || {};
             'watchlists': 'watchlists',
             'watchlist/:id/movies': 'watchlistMovies',
             'watchlist/:id/addMovies': 'watchlistAddMovies',
-            'movie/:id': 'movie'
+            'movie/:id': 'movie',
+            'actors': 'actors',
+            'actors/:id': 'singleActor'
         }
     });
 
     function clearViews() {
+        $(".actors").empty();
+        $(".single-actor").empty();
         $(".watchlist").empty();
         $(".watchlist-movies").empty();
         $(".watchlist-add-movie").empty();
@@ -29,7 +33,14 @@ var app = app || {};
         clearViews();
         app.WatchlistView.get();
     });
-
+    app.UMovieRouter.on('route:actors', function () {
+        clearViews();
+        app.ActorsView.get();
+    });
+    app.UMovieRouter.on('route:singleActor', function (actorID) {
+        clearViews();
+        app.SingleActorView.get({actorID : actorID});
+    });
     app.UMovieRouter.on('route:watchlistMovies', function (watchlistID) {
         clearViews();
         app.WatchlistMoviesView.get({watchlistID: watchlistID});
