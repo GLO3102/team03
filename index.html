@@ -26,7 +26,8 @@
 		<div class="watchlist"></div>
 		<div class="watchlist-movies"></div>
 		<div class="watchlist-add-movie"></div>
-		<div class="movie"></div>
+		<div class="movies"></div>
+		<div class="single-movie"></div>
 	</div>
 
 
@@ -50,7 +51,7 @@
 					<ul class="nav pull-left">
 						<li><a href="#">Home</a></li>
 						<li><a href="#">Tv Show</a></li>
-						<li><a href="#/movie/265727087">Movie</a></li>
+						<li><a href="#movie">Movie</a></li>
 						<li><a href="#actors">Actor</a></li>
 						<li><a href="#/watchlists">Watchlists</a></li>
 					</ul>
@@ -70,7 +71,26 @@
 		</div>
 	</script>
 
-	<script type="text/template" id="movie-template"> 
+	<script type="text/template" id="movies-template">
+		<div class="span12">
+			<h3>Movie search</h3>
+			<div class="input-append">
+				<input class="span3" id="movie-search-text" type="text">
+				<button id="movie-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+			</div>
+			<table class="table striped">
+				<tbody>
+				<% _.each(movies, function (movie) { %>
+				<tr>
+					<td><a href="#/movie/<%= movie.trackId %>"><%= movie.trackName %></a></td>
+				</tr>
+				<% }); %>
+				</tbody>
+			</table>
+		</div>
+	</script>
+
+	<script type="text/template" id="single-movie-template"> 
 		<div class="page-header"> 
 			<h3><%= movie.trackName %></h3> 
 		</div>  
@@ -228,8 +248,10 @@
 	<script src="js/models/owner.js"></script>
 	<script src="js/models/movie.js"></script>
 	<script src="js/collections/movies.js"></script>
-	<script src="js/models/watchlist.js"></script>
+	<script src="js/collections/watchlistMovies.js"></script>
 	<script src="js/collections/watchlists.js"></script>
+	<script src="js/models/watchlist.js"></script>
+	<script src="js/models/watchlistMovie.js"></script>
 	<script src="js/models/actor.js"></script>
 	<script src="js/collections/actors.js"></script>
 	<script src="js/collections/actorMovies.js"></script>
@@ -240,7 +262,8 @@
 	<script src="js/views/actors-view.js"></script>
 	<script src="js/views/single-actor-view.js"></script>
 	<script src="js/views/nav-bar-view.js"></script>
-	<script src="js/views/movie-view.js"></script>
+	<script src="js/views/movies-view.js"></script>
+	<script src="js/views/single-movie-view.js"></script>
 	<script src="js/app.js"></script>
 
 

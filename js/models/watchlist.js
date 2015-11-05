@@ -6,7 +6,7 @@ var app = app || {};
         urlRoot: 'http://umovie.herokuapp.com/unsecure/watchlists',
         defaults: {
             name : '',
-            movies: new app.Movies(),
+            movies: new app.WatchlistMovies(),
             owner: new app.Owner(),
             id: null
         },

@@ -3,11 +3,11 @@ var app = app || {};
 (function ($) {
     'use strict';
 
-    var MovieView = Backbone.View.extend({
+    var SingleMovieView = Backbone.View.extend({
 
-        el: '.movie',
+        el: '.single-movie',
         movie: null,
-        movieTemplate: _.template($('#movie-template').html()),
+        singleMovieTemplate: _.template($('#single-movie-template').html()),
 
         initialize: function () {
             _.bindAll(this, 'render');
@@ -22,13 +22,13 @@ var app = app || {};
         render: function (movieID) {
             var that = this;
             that.movie = new app.Movie({id: movieID});
-            that.movie.fetch({
-                success: function (data) {
-                    console.log(data);
-                    that.$el.html(that.movieTemplate({
-                        movie: data.attributes.results[0]
+            var complete = _.invoke([that.movie], 'fetch');
+            $.when.apply($, complete).done(function() {
+                    that.movie.attributes.releaseDate = that.movie.attributes.releaseDate.substring(0,10);
+
+                    that.$el.html(that.singleMovieTemplate({
+                        movie: that.movie.attributes
                     }));
-                }
             });
         },
 
@@ -42,6 +42,6 @@ var app = app || {};
 
 
     });
-    app.MovieView = new MovieView();
+    app.SingleMovieView = new SingleMovieView();
 
 })(jQuery);

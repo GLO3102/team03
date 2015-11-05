@@ -3,17 +3,16 @@ var app = app || {};
 (function ($) {
     'use strict';
 
-    var ActorsView = Backbone.View.extend({
-        //tagName: 'li',
+    var MoviesView = Backbone.View.extend({
 
-        el: '.actors',
+        el: '.movies',
 
-        collection: app.Actors,
-        actorsTemplate: _.template($('#actors-template').html()),
+        collection: app.Movies,
+        moviesTemplate: _.template($('#movies-template').html()),
 
         events:{
-            'click #actor-search-btn':'searchActors',
-            'keyup #actor-search-text' : 'keyPressEventHandler'
+            'click #movie-search-btn':'searchMovies',
+            'keyup #movie-search-text' : 'keyPressEventHandler'
         },
         initialize: function () {
             _.bindAll(this, 'render');
@@ -25,17 +24,17 @@ var app = app || {};
 
         render: function () {
             var that = this;
-            that.$el.html(that.actorsTemplate({
-                actors: that.collection.models
+            that.$el.html(that.moviesTemplate({
+                movies: that.collection.models
             }));
         },
 
-        searchActors: function(){
-            var searchText = $("#actor-search-text").val();
-            app.Actors.fetch({
+        searchMovies: function(){
+            var searchText = $("#movie-search-text").val();
+            app.Movies.fetch({
                 data: $.param({ q: searchText,
-                                limit: 20
-                             }),
+                    limit: 20
+                }),
                 success: function(data){
 
                 }
@@ -45,7 +44,7 @@ var app = app || {};
 
         keyPressEventHandler : function(event){
             if(event.keyCode == 13){
-                this.$("#actor-search-btn").click();
+                this.$("#movie-search-btn").click();
             }
         },
 
@@ -54,5 +53,6 @@ var app = app || {};
         }
 
     });
-    app.ActorsView = new ActorsView();
+    app.MoviesView = new MoviesView();
+
 })(jQuery);

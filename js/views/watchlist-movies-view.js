@@ -17,7 +17,7 @@ var app = app || {};
         removeMovie: function (e) {
             var that = this;
             var movieID = $(e.currentTarget).data("movie-id");
-            var movieModel = new app.Movie({id: movieID});
+            var movieModel = new app.WatchlistMovie({id: movieID});
             movieModel.urlRoot = movieModel.urlRoot.replace(':id', this.watchlist.id);
             movieModel.destroy({
                 success: function (model, response){
