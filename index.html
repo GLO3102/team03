@@ -92,11 +92,10 @@
 		<div class="row">
 
 			<div class="span12">
-				<div class="season-banner">
-					<img class="cover-image" src="<%= tvshow.artworkUrl100 %>">
-				</div>
-
 				<div class="span5">
+					<div class="season-banner">
+						<img class="cover-image" src="<%= tvshow.artworkUrl100.replace('100x100', '350x350') %>">
+					</div>
 					<ul class="tv-show-basic-informations">
 						<li>
 							<iframe class="preview" width="350" height="250" src="https://www.youtube.com/embed/Va1UPrFXHKA" frameborder="0" allowfullscreen></iframe>
