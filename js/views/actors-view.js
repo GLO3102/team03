@@ -12,7 +12,8 @@ var app = app || {};
         actorsTemplate: _.template($('#actors-template').html()),
 
         events:{
-            'click #actor-search-btn':'searchActors'
+            'click #actor-search-btn':'searchActors',
+            'keyup #actor-search-text' : 'keyPressEventHandler'
         },
         initialize: function () {
             _.bindAll(this, 'render');
@@ -35,11 +36,17 @@ var app = app || {};
                 data: $.param({ q: searchText,
                                 limit: 20
                              }),
-                success: function(data){
-
+                error: function (error){
+                    console.log(error.message);
                 }
             });
-            this.render();
+
+        },
+
+        keyPressEventHandler : function(event){
+            if(event.keyCode == 13){
+                this.searchActors();
+            }
         },
 
         get: function () {

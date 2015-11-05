@@ -12,12 +12,14 @@ var app = app || {};
 
         events: {
             'click #create-watchlist': 'addWatchlist',
+            'keypress .edit-watchlist-name': 'updateWatchlistOnEnter',
             'click .delete-watchlist': 'removeWatchlist'
         },
 
         initialize: function () {
             _.bindAll(this, 'render');
             var that = this;
+            this.input = "";
             that.collection.bind("change add remove", function () {
                 that.render();
             });
@@ -51,6 +53,7 @@ var app = app || {};
                 });
             }
         },
+
         removeWatchlist: function (event) {
             var that = this;
             var watchlistID = $(event.currentTarget).data("watchlist-id");
@@ -63,6 +66,27 @@ var app = app || {};
                     console.log("Something wrong happened!" + error);
                 }
             });
+        },
+
+        updateWatchlistOnEnter: function (event) {
+            var that = this;
+            $('.edit-watchlist-name').bind('input', function () {
+                that.input = $(this).val()
+            });
+            if (event.keyCode == 13) {
+                if (that.input.trim() === '') {
+                    alert("Please enter a name for the updated Watchlist")
+                }
+                else {
+
+                    var watchlistID = $(event.currentTarget).data("watchlist-id");
+                    var watchlistModel = that.collection.get(watchlistID);
+                    watchlistModel.set({name: that.input});
+                    watchlistModel.save().complete(function () {
+                        that.get();
+                    });
+                }
+            }
         }
     });
 
