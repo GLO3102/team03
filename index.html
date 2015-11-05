@@ -14,6 +14,7 @@
 	<link href="css/index.css" rel="stylesheet">
 	<link href="css/watchlist.css" rel="stylesheet">
 	<link href="css/addMovies.css" rel="stylesheet">
+	<link href="css/movie.css" rel="stylesheet">
 
 </head>
 <body class="animated fadeInDown">
@@ -23,6 +24,7 @@
 		<div class="watchlist"></div>
 		<div class="watchlist-movies"></div>
 		<div class="watchlist-add-movie"></div>
+		<div class="movie"></div>
 	</div>
 
 
@@ -46,7 +48,7 @@
 					<ul class="nav pull-left">
 						<li><a href="#">Home</a></li>
 						<li><a href="#">Tv Show</a></li>
-						<li><a href="#">Movie</a></li>
+						<li><a href="#/movie/265727087">Movie</a></li>
 						<li><a href="#">Actor</a></li>
 						<li><a href="#/watchlists">Watchlists</a></li>
 					</ul>
@@ -65,6 +67,43 @@
 			</div>
 		</div>
 	</script>
+
+	<script type="text/template" id="movie-template"> 
+		<div class="page-header"> 
+			<h3><%= movie.trackName %></h3> 
+		</div>  
+
+		<div class="row"> 
+			<div class="span12"> 
+				<div class="span5"> 
+					<ul class="movie-basic-informations"> 
+						<li> 
+							<iframe width="560" height="315" src="<%= movie.previewUrl %>" frameborder="0" allowfullscreen></iframe> 
+						</li> 
+						<li> 
+							<span class="label">Release date </span> 
+							<span class="item"><%= movie.releaseDate %></span> 
+						</li> 
+						<li> 
+							<span class="label">Genre </span> 
+							<span class="item"><%= movie.primaryGenreName %></span> 
+						</li> 
+						<li> 
+							<span class="label">Rating </span> 
+							<span class="item"><%= movie.contentAdvisoryRating %></span> 
+						</li> 
+						<li> 
+							<a class="itune-badge" href="<%= movie.trackViewUrl %>" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a> 
+						</li> 
+					</ul> 
+				</div> 
+				<div class="span6"> 
+					<img class = "cover-image" src="<%= movie.artworkUrl100 %>"> 
+					<p class="movie-description"><%= movie.longDescription %></p> 
+				</div> 
+			</div> 
+		</div> 
+	</script> 
 
 	<script type="text/template" id="watchlist-template">
 
@@ -147,6 +186,7 @@
 	<script src="js/views/watchlist-view.js"></script>
 	<script src="js/views/add-movie-view.js"></script>
 	<script src="js/views/nav-bar-view.js"></script>
+	<script src="js/views/movie-view.js"></script>
 	<script src="js/app.js"></script>
 
 

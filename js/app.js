@@ -8,7 +8,8 @@ var app = app || {};
             '': 'home',
             'watchlists': 'watchlists',
             'watchlist/:id/movies': 'watchlistMovies',
-            'watchlist/:id/addMovies': 'watchlistAddMovies'
+            'watchlist/:id/addMovies': 'watchlistAddMovies',
+            'movie/:id': 'movie'
         }
     });
 
@@ -16,6 +17,7 @@ var app = app || {};
         $(".watchlist").empty();
         $(".watchlist-movies").empty();
         $(".watchlist-add-movie").empty();
+        $(".movie").empty();
     }
 
     app.UMovieRouter = new UMovieRouter();
@@ -36,6 +38,11 @@ var app = app || {};
     app.UMovieRouter.on('route:watchlistAddMovies', function (watchlistID) {
         clearViews();
         app.AddMovieView.render(watchlistID);
+    });
+
+    app.UMovieRouter.on('route:movie', function (movieID) {
+        clearViews();
+        app.MovieView.get({movieID : movieID});
     });
 
     Backbone.history.start();
