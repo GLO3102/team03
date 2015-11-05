@@ -71,6 +71,7 @@
 	<script type="text/template" id="actors-template">
 		<div class="span12">
 			<h3>Actor search</h3>
+
 			<div class="input-append">
 				<input class="span3" id="actor-search-text" type="text">
 				<button id="actor-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
@@ -98,19 +99,20 @@
 		<div class="movie-total-wrap">
 			<h4>Movies</h4>
 			<% _.each(movies, function (movie) { %>
-				<div class="movie clearfix">
-					<div class="movie-wrap-5">
-						<h5><a href="<%= movie.attributes.trackViewUrl %>"><%= movie.attributes.trackName %></a></h5>
-						<div class="movie-box" style="background-image: url('<%= movie.attributes.artworkUrl100 %>')"></div>
-						<div class="movie-info">
-							<span class="label">Release date </span>
-							<span class="item"><%= movie.attributes.releaseDate %></span>
-						</div>
-					</div>
-					<div class="movie-wrap-6">
-						<embed src="<%= movie.attributes.previewUrl %>" type="video/mp4" width="450" height="315" controller="true" controls="true" autostart="false"/>
+			<div class="movie clearfix">
+				<div class="movie-wrap-5">
+					<h5><a href="<%= movie.attributes.trackViewUrl %>"><%= movie.attributes.trackName %></a></h5>
+
+					<div class="movie-box" style="background-image: url('<%= movie.attributes.artworkUrl100 %>')"></div>
+					<div class="movie-info">
+						<span class="label">Release date </span>
+						<span class="item"><%= movie.attributes.releaseDate %></span>
 					</div>
 				</div>
+				<div class="movie-wrap-6">
+					<embed src="<%= movie.attributes.previewUrl %>" type="video/mp4" width="450" height="315" controller="true" controls="true" autostart="false"/>
+				</div>
+			</div>
 			<% }); %>
 		</div>
 	</script>
@@ -149,7 +151,8 @@
 	<script type="text/template" id="watchlist-movies-template">
 		<div class="span12">
 			<h2><%= watchlist.name %></h2>
-			<a href="#/watchlist/<%= watchlist.id %>/addMovies" role="button" class="add-movie btn btn-success">Add movies to this watchlist</a>
+			<a href="#/watchlist/<%= watchlist.id %>/addMovies" role="button" class="add-movie btn btn-success">Add
+				movies to this watchlist</a>
 			<ul class="thumbnails">
 				<% _.each(watchlist.movies, function (movie) { %>
 				<li class="span2">
@@ -172,39 +175,64 @@
 
 	<script type="text/template" id="add-movie-template">
 		<div class="span12">
-			<h2>Add movies to <%= watchlist.name %></h2>
-			<div class="span6">
+			<h2>Add movies to </h2>
+			<h3><%= watchlist.name %></h3>
+			<div id="successAddMovieNotif" class="alert alert-success fade in" hidden="hidden" tabindex="-1">
+				<a href="#" class="close" aria-label="close">&times;</a>
+				<strong>Success!</strong> The movie has been successfully added to the watchlist.
+			</div>
+			<div id="errorAddMovieNotif" class="alert alert-danger fade in" hidden="hidden" tabindex="-1">
+				<a href="#" class="close" aria-label="close">&times;</a>
+				<strong>Oups!</strong> Something went wrong while adding the movie.
+			</div>
+			<a href="#/watchlist/<%= watchlist.id %>/movies">Return to watchlist</a>
+			<div class="span12">
 				<div class="input-append">
+					<label for="movie-search-text">Search a movie</label>
 					<input class="span3" id="movie-search-text" type="text">
-					<button id="movie-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+					<button id="movie-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i>
+					</button>
 				</div>
-				<div class="accordion" id="accordion2">
+				<% if (movies.length > 0) {%>
+				<div class="accordion" id="moviesSearchAccordion">
+					<% _.each(movies, function (movie) { %>
 					<div class="accordion-group">
 						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-								Collapsible Group Item #1 <button class="btn btn-mini btn-danger pull-right"><i class="icon-trash icon-white"></i></button>
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#moviesSearchAccordion" href="#<%= movie.attributes.trackId%>">
+								<%= movie.attributes.trackName%>
+								<button class="accordion-movie-add btn btn-mini btn-success pull-right" data-movie-id="<%= movie.attributes.trackId%>">
+									Add this movie to watchlist
+								</button>
 							</a>
 						</div>
-						<div id="collapseOne" class="accordion-body collapse in">
+						<div id="<%= movie.attributes.trackId%>" class="accordion-body collapse">
 							<div class="accordion-inner">
-								Anim pariatur cliche...
+								<ul class="movie-basic-informations">
+									<li>
+										<span class="label">Release date </span>
+										<span class="item"><%= movie.attributes.releaseDate.substring(0, movie.attributes.releaseDate.indexOf('T')) %></span>
+									</li>
+									<li>
+										<span class="label">Genre </span>
+										<span class="item"><%= movie.attributes.primaryGenreName%></span>
+									</li>
+									<li>
+										<span class="label">Artist </span>
+										<span class="item"><%= movie.attributes.artistName%></span>
+									</li>
+									<li>
+										<span class="label">Description</span>
+										<p align="justify"><%= movie.attributes.longDescription%></p>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-								Collapsible Group Item #2 <button class="accordion-movie-add btn btn-mini btn-success pull-right">Add movie to watchlist
-								<i class="icon-film icon-white"></i>
-							</button></a>
-						</div>
-						<div id="collapseTwo" class="accordion-body collapse">
-							<div class="accordion-inner">
-								Anim pariatur cliche...
-							</div>
-						</div>
-					</div>
+					<% }); %>
 				</div>
+				<% } else { %>
+				<p>No movies found...</p>
+				<% } %>
 			</div>
 		</div>
 	</script>
@@ -223,6 +251,7 @@
 	<script src="js/collections/movies.js"></script>
 	<script src="js/models/watchlist.js"></script>
 	<script src="js/collections/watchlists.js"></script>
+	<script src="js/collections/moviesSearch.js"></script>
 	<script src="js/models/actor.js"></script>
 	<script src="js/collections/actors.js"></script>
 	<script src="js/collections/actorMovies.js"></script>

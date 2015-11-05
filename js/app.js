@@ -46,7 +46,7 @@ var app = app || {};
 
     app.UMovieRouter.on('route:watchlistAddMovies', function (watchlistID) {
         clearViews();
-        app.AddMovieView.render(watchlistID);
+        app.AddMovieView.fetchWatchlist(watchlistID);
     });
 
     Backbone.history.start();
