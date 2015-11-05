@@ -9,6 +9,7 @@ var app = app || {};
             'watchlists': 'watchlists',
             'watchlist/:id/movies': 'watchlistMovies',
             'watchlist/:id/addMovies': 'watchlistAddMovies',
+            'movie/:id': 'movie',
             'actors': 'actors',
             'actors/:id': 'singleActor'
         }
@@ -20,6 +21,7 @@ var app = app || {};
         $(".watchlist").empty();
         $(".watchlist-movies").empty();
         $(".watchlist-add-movie").empty();
+        $(".movie").empty();
     }
 
     app.UMovieRouter = new UMovieRouter();
@@ -47,6 +49,11 @@ var app = app || {};
     app.UMovieRouter.on('route:watchlistAddMovies', function (watchlistID) {
         clearViews();
         app.AddMovieView.fetchWatchlist(watchlistID);
+    });
+
+    app.UMovieRouter.on('route:movie', function (movieID) {
+        clearViews();
+        app.MovieView.get({movieID : movieID});
     });
 
     Backbone.history.start();
