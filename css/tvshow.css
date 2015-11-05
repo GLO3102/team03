@@ -10,6 +10,10 @@
     border-radius: 4px;
 }
 
+.season-banner {
+    margin: 0 35px;
+}
+
 .tv-show-basic-informations {
     list-style: none;
     margin: 15px;
@@ -39,16 +43,35 @@
 
 .tv-show-description {
     text-align: justify;
-    max-width: 75%;
+}
+
+.cover-image {
+    margin: 10px;
+    min-height: 100px;
+    min-width: 100px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.preview {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.episode-cover {
+    margin: 10px;
+    min-height: 100px;
+    min-width: 200px;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 @media (max-width: 1200px) and (min-width: 980px) {
     .navbar-title {
         float: left;
-        margin-right: 15px;
-        margin-top: 0;
-        margin-bottom: 0;
-        margin-left: 0;
+        margin: 0 15px 0 0;
     }
 
 }
@@ -61,36 +84,12 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
-
 }
 
 @media (max-width: 768px) {
-
-    .span2{
+    .span2 {
         display: list-item;
     }
-}
-.cover-image {
-    margin: 10px;
-    min-height: 100px;
-    min-width: 200px;
-    max-height: 100%;
-    max-width: 100%;
-}
-
-.preview {
-    margin-bottom: 10px;
-    margin-top: 10px;
-    max-height: 100%;
-    max-width: 100%;
-}
-
-.episode-cover{
-    margin: 10px;
-    min-height: 100px;
-    min-width: 200px;
-    max-height: 100%;
-    max-width: 100%;
 }
 
 

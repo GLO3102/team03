@@ -9,12 +9,16 @@ var app = app || {};
             'watchlists': 'watchlists',
             'watchlist/:id/movies': 'watchlistMovies',
             'watchlist/:id/addMovies': 'watchlistAddMovies',
+            'tvshows': 'tvshows',
+            'tvshows/:id': 'tvshow',
             'actors': 'actors',
             'actors/:id': 'singleActor'
         }
     });
 
     function clearViews() {
+        $(".tvshows").empty();
+        $(".tvshow").empty();
         $(".actors").empty();
         $(".single-actor").empty();
         $(".watchlist").empty();
@@ -26,6 +30,14 @@ var app = app || {};
 
     app.UMovieRouter.on('route:home', function () {
         app.NavBarView.render();
+    });
+    app.UMovieRouter.on('route:tvshows', function () {
+        clearViews();
+        app.TvShowsView.get();
+    });
+    app.UMovieRouter.on('route:tvshow', function (tvShowID) {
+        clearViews();
+        app.TvShowView.get({tvShowID: tvShowID});
     });
     app.UMovieRouter.on('route:watchlists', function () {
         clearViews();
