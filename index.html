@@ -12,6 +12,7 @@
 	<link href="lib/css/font-awesome.css" rel="stylesheet">
 	<link href="lib/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/index.css" rel="stylesheet">
+	<link href="css/tvshow.css" rel="stylesheet">
 	<link href="css/watchlist.css" rel="stylesheet">
 	<link href="css/addMovies.css" rel="stylesheet">
 	<link href="css/movie.css" rel="stylesheet">
@@ -21,6 +22,8 @@
 
 	<div class="navbar navbar-static-top"></div>
 	<div class="container">
+		<div class="tvshows"></div>
+		<div class="tvshow"></div>
 		<div class="actors"></div>
 		<div class="single-actor"></div>
 		<div class="watchlist"></div>
@@ -28,7 +31,6 @@
 		<div class="watchlist-add-movie"></div>
 		<div class="movie"></div>
 	</div>
-
 
 	<script type="text/template" id="navbar-template">
 		<div class="navbar-inner">
@@ -43,7 +45,7 @@
 				<div class="nav-collapse collapse">
 					<ul class="nav pull-left">
 						<li><a href="#">Home</a></li>
-						<li><a href="#">Tv Show</a></li>
+						<li><a href="#tvshows">Tv Show</a></li>
 						<li><a href="#/movie/265727087">Movie</a></li>
 						<li><a href="#actors">Actor</a></li>
 						<li><a href="#/watchlists">Watchlists</a></li>
@@ -59,6 +61,66 @@
 							</ul>
 						</li>
 					</ul>
+				</div>
+			</div>
+		</div>
+	</script>
+
+	<script type="text/template" id="tvshows-template">
+		<div class="span12">
+			<h3>Tv Show search</h3>
+			<div class="input-append">
+				<input class="span3" id="tvshow-search-text" type="text">
+				<button id="tvshow-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+			</div>
+			<table class="table striped">
+				<tbody>
+				<% _.each(tvshows, function (tvshow) { %>
+					<tr>
+						<td><a href="#/tvshows/<%= tvshow.attributes.collectionId %>"><%= tvshow.attributes.collectionName %></a></td>
+					</tr>
+				<% }); %>
+				</tbody>
+			</table>
+		</div>
+	</script>
+
+	<script type="text/template" id="tvshow-template">
+		<div class="page-header">
+			<h3><%= tvshow.collectionName %></h3>
+		</div>
+		<div class="row">
+
+			<div class="span12">
+				<div class="span5">
+					<div class="season-banner">
+						<img class="cover-image" src="<%= tvshow.artworkUrl100.replace('100x100', '350x350') %>">
+					</div>
+					<ul class="tv-show-basic-informations">
+						<li>
+							<iframe class="preview" width="350" height="250" src="https://www.youtube.com/embed/Va1UPrFXHKA" frameborder="0" allowfullscreen></iframe>
+						</li>
+						<li>
+							<span class="label">Release date </span>
+							<span class="item"><% print(tvshow.releaseDate.substring(0, 10)) %></span>
+						</li>
+						<li>
+							<span class="label">Genre </span>
+							<span class="item"><%= tvshow.primaryGenreName %></span>
+						</li>
+						<li>
+							<a class="itune-badge" href="<%= tvshow.collectionViewUrl %>" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+						</li>
+					</ul>
+				</div>
+				<div class="span5">
+					<p class="tv-show-description"><%= tvshow.longDescription %></p>
+					<h4>Episodes</h4>
+					<ol class="tv-show-episodes">
+						<% _.each(episodes, function (episode) { %>
+							<li><%= episode.attributes.trackName %></a></li>
+						<% }); %>
+					</ol>
 				</div>
 			</div>
 		</div>
@@ -279,16 +341,23 @@
 	<script src="lib/js/backbone-min.js"></script>
 	<script src="js/UI/menuBehavior.js"></script>
 
+	<script src="js/models/tvshow.js"></script>
+	<script src="js/models/tvshowEpisode.js"></script>
 	<script src="js/models/owner.js"></script>
 	<script src="js/models/movie.js"></script>
-	<script src="js/collections/movies.js"></script>
 	<script src="js/models/watchlist.js"></script>
+	<script src="js/models/actor.js"></script>
+
+	<script src="js/collections/tvshows.js"></script>
+	<script src="js/collections/tvshowEpisodes.js"></script>
+	<script src="js/collections/movies.js"></script>
+	<script src="js/collections/actorMovies.js"></script>
+	<script src="js/collections/actors.js"></script>
 	<script src="js/collections/watchlists.js"></script>
 	<script src="js/collections/moviesSearch.js"></script>
-	<script src="js/models/actor.js"></script>
-	<script src="js/collections/actors.js"></script>
-	<script src="js/collections/actorMovies.js"></script>
 
+	<script src="js/views/tvshows-view.js"></script>
+	<script src="js/views/tvshow-view.js"></script>
 	<script src="js/views/watchlist-movies-view.js"></script>
 	<script src="js/views/watchlist-view.js"></script>
 	<script src="js/views/add-movie-view.js"></script>

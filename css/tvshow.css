@@ -1,4 +1,4 @@
-.span12 {
+.tvshow .span12 {
     position: relative;
     min-height: 650px;
     margin: 15px 0;
@@ -8,6 +8,10 @@
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+}
+
+.season-banner {
+    margin-left: 5px;
 }
 
 .tv-show-basic-informations {
@@ -34,58 +38,29 @@
 
 .tv-show-episodes {
     list-style: Decimal;
-
 }
 
 .tv-show-description {
     text-align: justify;
-    max-width: 75%;
+    margin: 10px 0 30px;
 }
 
-@media (max-width: 1200px) and (min-width: 980px) {
-    .navbar-title {
-        float: left;
-        margin-right: 15px;
-        margin-top: 0;
-        margin-bottom: 0;
-        margin-left: 0;
-    }
-
-}
-
-@media (max-width: 980px) and (min-width: 768px) {
-    .span6 {
-        display: block;
-        max-width: 100%;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-}
-
-@media (max-width: 768px) {
-
-    .span2{
-        display: list-item;
-    }
-}
-.cover-image {
+.tvshow .cover-image {
     margin: 10px;
     min-height: 100px;
-    min-width: 200px;
+    min-width: 100px;
     max-height: 100%;
     max-width: 100%;
 }
 
-.preview {
+.tvshow .preview {
     margin-bottom: 10px;
     margin-top: 10px;
     max-height: 100%;
     max-width: 100%;
 }
 
-.episode-cover{
+.episode-cover {
     margin: 10px;
     min-height: 100px;
     min-width: 200px;
@@ -93,6 +68,25 @@
     max-width: 100%;
 }
 
+@media (max-width: 1200px) and (min-width: 980px) {
+    .navbar-title {
+        float: left;
+        margin: 0 15px 0 0;
+    }
+}
 
+@media (max-width: 980px) and (min-width: 768px) {
+    .tvshow .span6 {
+        display: block;
+        max-width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+}
 
-
+@media (max-width: 768px) {
+    .tvshow .span2 {
+        display: list-item;
+    }
+}
