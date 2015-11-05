@@ -12,7 +12,8 @@ var app = app || {};
         addMovieTemplate: _.template($('#add-movie-template').html()),
 
         events: {
-            'click .add-movie': 'addMovieToWatchlist'
+            'click .accordion-movie-add': 'addMovieToWatchlist',
+            'click #movie-search-btn' : 'searchMovie'
         },
 
         render: function (watchlistID) {
@@ -27,8 +28,15 @@ var app = app || {};
             });
         },
 
-        addMovieToWatchlist: function (){
+        searchMovie: function () {
+            var searchText = $("#movie-search-text").val();
+
+        },
+
+        addMovieToWatchlist: function (e){
+            e.preventDefault();
            console.log('Voilà !');
+            return false;
         }
     });
 

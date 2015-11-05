@@ -99,7 +99,7 @@
 
 	<script type="text/template" id="watchlist-movies-template">
 		<div class="span12">
-			<h1><%= watchlist.name %></h1>
+			<h2><%= watchlist.name %></h2>
 			<a href="#/watchlist/<%= watchlist.id %>/addMovies" role="button" class="add-movie btn btn-success">Add movies to this watchlist</a>
 			<ul class="thumbnails">
 				<% _.each(watchlist.movies, function (movie) { %>
@@ -123,8 +123,40 @@
 
 	<script type="text/template" id="add-movie-template">
 		<div class="span12">
-			<h1>Add movies to <%= watchlist.name %></h1>
-			<button class="add-movie btn btn-success">Add movie to watchlist</button>
+			<h2>Add movies to <%= watchlist.name %></h2>
+			<div class="span6">
+				<div class="input-append">
+					<input class="span3" id="movie-search-text" type="text">
+					<button id="movie-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+				</div>
+				<div class="accordion" id="accordion2">
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+								Collapsible Group Item #1 <button class="btn btn-mini btn-danger pull-right"><i class="icon-trash icon-white"></i></button>
+							</a>
+						</div>
+						<div id="collapseOne" class="accordion-body collapse in">
+							<div class="accordion-inner">
+								Anim pariatur cliche...
+							</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+								Collapsible Group Item #2 <button class="accordion-movie-add btn btn-mini btn-success pull-right">Add movie to watchlist
+								<i class="icon-film icon-white"></i>
+							</button></a>
+						</div>
+						<div id="collapseTwo" class="accordion-body collapse">
+							<div class="accordion-inner">
+								Anim pariatur cliche...
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</script>
 
