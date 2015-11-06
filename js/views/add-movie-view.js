@@ -58,8 +58,9 @@ var app = app || {};
             that.resetNotification();
             var movieID = $(e.currentTarget).data("movie-id");
             var movie = _.find(that.movies, function (obj) {return obj.attributes.trackId === movieID});
-            movie.urlRoot = movie.urlRoot.replace(':id', that.currentWatchList.id);
-            movie.save({},{
+            var movieData = new app.Movie();
+            movieData.urlRoot = movie.urlRoot.replace(':id', that.currentWatchList.id);
+            movieData.save(movie.attributes, {
                 success: function (){
                     that.$el.find('#successAddMovieNotif').show();
                 },
