@@ -36,16 +36,16 @@ var app = app || {};
                 data: $.param({ q: searchText,
                                 limit: 20
                              }),
-                success: function(data){
-
+                error: function (error){
+                    console.log(error.message);
                 }
             });
-            this.render();
+
         },
 
         keyPressEventHandler : function(event){
             if(event.keyCode == 13){
-                this.$("#actor-search-btn").click();
+                this.searchActors();
             }
         },
 

@@ -1,5 +1,5 @@
-$(document).on('click','.navbar-collapse.in',function(e) {
-    if( $(e.target).is('a') ) {
-        $(this).collapse('hide');
-    }
+$(document).ready(function(){
+    $('.nav.pull-left a').on('click', function(){
+        $('.btn-navbar').click();
+    });
 });
