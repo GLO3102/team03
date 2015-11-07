@@ -178,7 +178,7 @@
 				<div class="span6"> 
 					<img class = "cover-image" src="<%= movie.artworkUrl100 %>"> 
 					<p class="movie-description"><%= movie.longDescription %></p> 
-					<button id="add-to-watchlist" class="btn btn-success" type="button">Add this movie to a watchlist</button>
+					<a href="#/movies/addToWatchlist/<%= movie.trackId %>">Add this movie to a watchlist</a>
 				</div> 
 			</div> 
 		</div> 
