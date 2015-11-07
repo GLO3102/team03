@@ -4,7 +4,7 @@ var app = app || {};
     'use strict';
 
     var MoviesSearch = Backbone.Collection.extend({
-        model: app.Movie,
+        model: app.WatchlistMovie,
         url: 'http://umovie.herokuapp.com/unsecure/search/movies',
         parse: function(response){
             return response.results;
