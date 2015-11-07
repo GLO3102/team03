@@ -58,7 +58,7 @@ var app = app || {};
             that.resetNotification();
             var movieID = $(e.currentTarget).data("movie-id");
             var movie = _.find(that.movies, function (obj) {return obj.attributes.trackId === movieID});
-            var movieData = new app.Movie();
+            var movieData = new app.WatchlistMovie();
             movieData.urlRoot = movie.urlRoot.replace(':id', that.currentWatchList.id);
             movieData.save(movie.attributes, {
                 success: function (){

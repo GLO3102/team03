@@ -193,7 +193,7 @@
 				<% _.each(watchlists, function (watchlist) { %>
 				<tr>
 					<td><%= watchlist.attributes.name %></td>
-					<td><a>Add to this watchlist</a></td>
+					<td><button class="accordion-movie-add btn-mini btn-success pull-right" data-watchlist-id="<%= watchlist.attributes.id %>">Add to this watchlist</button></td>
 				</tr>
 				<% }); %>
 				</tbody>
