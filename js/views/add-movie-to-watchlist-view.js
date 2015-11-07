@@ -7,20 +7,30 @@ var app = app || {};
 
         el: '.movie-add-watchlist',
         movie: null,
-        addMovieTemplate: _.template($('#add-movie-to-watchlist-template').html()),
+        collection: new app.Watchlists(),
+        addMovieToWatchlistTemplate: _.template($('#add-movie-to-watchlist-template').html()),
 
 
-        render: function () {
-            this.$el.html(this.addMovieTemplate({
-                watchlist: this.currentWatchList.attributes,
-                movies: this.movies
-            }));
+        render: function (movieID) {
+            var that = this;
+            that.movie = new app.Movie({id: movieID});
+            var complete = _.invoke([that.movie], 'fetch');
+            that.collection.fetch({
+                success: function () {
+                    that.$el.html(that.addMovieToWatchlistTemplate({
+                        watchlists: that.collection.models,
+                        movie: that.movie
+                    }));
+                }
+            });
         },
 
-        keyPressEventHandler : function(event){
-            if(event.keyCode == 13){
-                this.searchMovie();
+        get: function (options) {
+            var that = this;
+            if (options.movieID) {
+                that.render(options.movieID);
             }
+
         }
 
     });
