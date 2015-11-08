@@ -37,14 +37,14 @@
     margin: 10px 0 30px;
 }
 
-.movie-basic-informations .cover-image {
+.movie-basic-informations .img {
     margin: 10px;
     min-height: 100px;
     min-width: 100px;
     max-height: 100%;
     max-width: 100%;
-    float: left;
-    display: block;
+    float: right;
+    display: inline-block;
 }
 
 .movie .preview {

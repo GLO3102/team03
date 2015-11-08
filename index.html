@@ -155,6 +155,9 @@
 		<div class="row"> 
 			<div class="span12"> 
 				<div class="span5"> 
+					<div class="season-banner">
+						<img class="cover-image" src="<%= movie.artworkUrl100.replace('100x100', '350x350') %>">
+					</div>
 					<ul class="movie-basic-informations"> 
 						<li> 
 							<iframe width="450" height="300" src="https://www.youtube.com/embed/<%= youtubeID %>" frameborder="0" allowfullscreen></iframe>
@@ -177,7 +180,6 @@
 					</ul> 
 				</div> 
 				<div class="span5"> 
-					<img class="cover-image" src="<%= movie.artworkUrl100.replace('100x100', '350x350') %>">
 					<p class="movie-description"><%= movie.longDescription %></p> 
 					<a href="#/movie/addToWatchlist/<%= movie.trackId %>">Add this movie to a watchlist</a>
 				</div> 
