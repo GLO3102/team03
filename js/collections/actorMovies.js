@@ -6,7 +6,19 @@ var app = app || {};
     app.ActorMovies = Backbone.Collection.extend({
         url: 'http://umovie.herokuapp.com/unsecure/actors/:id/movies',
         model: app.Movie,
-        parse : function (response){
+        sortByReleaseDateDesc: function () {
+            this.comparator = function (model) {
+                var releaseDate = model.get("releaseDate");
+                releaseDate = releaseDate.toLowerCase();
+                releaseDate = releaseDate.split("");
+                releaseDate = _.map(releaseDate, function(letter) {
+                    return String.fromCharCode(-(letter.charCodeAt(0)));
+                });
+                return releaseDate;
+            };
+            this.sort();
+        },
+        parse: function (response) {
             return response.results;
         }
     });
