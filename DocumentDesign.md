@@ -17,7 +17,14 @@ Page Movie
 ----------
 
 **Urls:**
-**Explication:**
+
+ - team03/index.html#movie
+ - team03/index.html#movie/:id
+ - team03/index.html#movie/addToWatchlist/:id
+
+**Explication:** L'onglet Movie redirige vers la recherche d'un film. Il suffit alors d'entrer dans la recherche les mots clé concernant le titre du film recherché et d'appuyer soit sur la loupe ou sur "Enter".
+                 Lorsque la liste des films trouvés est affichée, il suffit de cliquer sur celui qui nous intéresse. La page de recherche est alors remplacée par celle qui permet de voir les informations du film ainsi qu'une option pour ajouter le présent film à une watchlist existante.
+                 En cliquant sur le lien pour afficher une watchlist, on arrive sur une page ou toutes les watchlists sont affichées et ou on a qu'a cliquer sur le boutton associé à la watchlist voulue pour ajouter le film dans celle-ci.
 
 Page TvShow
 -----------
