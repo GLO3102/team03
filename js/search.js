@@ -12,6 +12,7 @@ function youtubeApiLoadCallback() {
 function youtubeSearch(query) {
     var request = gapi.client.youtube.search.list({
         part: 'id',
+        maxResults: 1,
         q: query
     });
 
