@@ -1,5 +1,6 @@
-.span12_movie {
+.movie .span12 {
     position: relative;
+    min-height: 650px;
     margin: 15px 0;
     padding: 39px 19px 14px;
     background-color: #fff;
@@ -9,30 +10,10 @@
     border-radius: 4px;
 }
 
-@media (max-width: 979px) and (min-width: 768px) {
-    .span6_movie {
-        display: block;
-        width: 95%;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        image-rendering: auto;
-    }
-}
-
-@media (max-width: 1200px) and (min-width: 980px) {
-    .navbar-title {
-        float: left;
-        margin-right: 15px;
-        margin-top: 0;
-        margin-bottom: 0;
-        margin-left: 0;
-    }
-}
-
 .movie-basic-informations {
     list-style: none;
-    margin-left: 0;
+    margin: 15px;
+    float: left;
 }
 
 .movie-basic-informations .divider {
@@ -44,22 +25,29 @@
 }
 
 .movie-basic-informations li iframe {
-    width: 100%;
+    min-width: 100%;
 }
 
-.movie-basic-informations li .itune-badge {
+.movie-basic-informationsli .itune-badge {
     margin-top: 20px;
 }
 
-.movie-description {
+.movie-basic-informations {
     text-align: justify;
+    margin: 10px 0 30px;
 }
 
-.cover-image{
-    float: left;
+.movie-basic-informations .cover-image {
     margin: 10px;
     min-height: 100px;
     min-width: 100px;
-    max-height: 30%;
-    max-width: 30%;
+    max-height: 100%;
+    max-width: 100%;
+    float: left;
+    display: block;
+}
+
+.movie .preview {
+    max-height: 100%;
+    max-width: 100%;
 }

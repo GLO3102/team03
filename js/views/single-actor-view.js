@@ -8,6 +8,7 @@ var app = app || {};
         el: '.single-actor',
         actor: null,
         actorMovies: null,
+        currentPreviewUrl: "",
 
         singleActorTemplate: _.template($('#single-actor-template').html()),
 
@@ -37,11 +38,19 @@ var app = app || {};
                     myModel = that.actorMovies.models[i];
                     myModel.attributes.releaseDate = myModel.attributes.releaseDate.substring(0,10);
                     myModel.attributes.artworkUrl100 = myModel.attributes.artworkUrl100.replace("100","300").replace("100","300");
+
+                    var renderWithYoutubeVideo = function (youtubeID) {
+                        that.currentPreviewUrl = youtubeID;
+                    }
+
+                    youtubeSearch(myModel.attributes.trackName + ' trailer', renderWithYoutubeVideo);
+                    myModel.attributes.previewUrl = that.currentPreviewUrl;
                 }
                 that.$el.html(that.singleActorTemplate({
                     actor: that.actor,
                     movies: that.actorMovies.models
                 }));
+
             });
         },
         get: function (options) {

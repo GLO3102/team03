@@ -12,10 +12,10 @@
 	<link href="lib/css/font-awesome.css" rel="stylesheet">
 	<link href="lib/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/index.css" rel="stylesheet">
+	<link href="css/movie.css" rel="stylesheet">
 	<link href="css/tvshow.css" rel="stylesheet">
 	<link href="css/watchlist.css" rel="stylesheet">
 	<link href="css/addMovies.css" rel="stylesheet">
-	<link href="css/movie.css" rel="stylesheet">
 
 </head>
 <body class="animated fadeInDown">
@@ -157,7 +157,7 @@
 				<div class="span5"> 
 					<ul class="movie-basic-informations"> 
 						<li> 
-							<iframe width="560" height="315" src="<%= movie.previewUrl %>" frameborder="0" allowfullscreen></iframe> 
+							<iframe width="450" height="300" src="https://www.youtube.com/embed/<%= youtubeID %>" frameborder="0" allowfullscreen></iframe>
 						</li> 
 						<li> 
 							<span class="label">Release date </span> 
@@ -176,8 +176,8 @@
 						</li> 
 					</ul> 
 				</div> 
-				<div class="span6"> 
-					<div class="cover-box" style="background-image: url('<%= movie.artworkUrl100.replace('100x100','350x350') %>')"></div>
+				<div class="span5"> 
+					<img class="cover-image" src="<%= movie.artworkUrl100.replace('100x100', '350x350') %>">
 					<p class="movie-description"><%= movie.longDescription %></p> 
 					<a href="#/movie/addToWatchlist/<%= movie.trackId %>">Add this movie to a watchlist</a>
 				</div> 
@@ -251,7 +251,7 @@
 					</div>
 				</div>
 				<div class="movie-wrap-6">
-					<embed src="<%= movie.attributes.previewUrl %>" type="video/mp4" width="450" height="315" controller="true" controls="true" autostart="false"/>
+					<iframe width="450" height="315" src="https://www.youtube.com/embed/<%= movie.attributes.previewUrl %>" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
 			<% }); %>
