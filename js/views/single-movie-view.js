@@ -24,11 +24,16 @@ var app = app || {};
             that.movie = new app.Movie({id: movieID});
             var complete = _.invoke([that.movie], 'fetch');
             $.when.apply($, complete).done(function() {
-                    that.movie.attributes.results[0].releaseDate = that.movie.attributes.results[0].releaseDate.substring(0,10);
-
+                var renderWithYoutubeVideo = function (youtubeID) {
+                    that.movie.attributes.results[0].releaseDate = that.movie.attributes.results[0].releaseDate.substring(0, 10);
                     that.$el.html(that.singleMovieTemplate({
-                        movie: that.movie.attributes.results[0]
+                        movie: that.movie.attributes.results[0],
+                        youtubeID: youtubeID
                     }));
+
+                }
+
+                youtubeSearch(that.movie.attributes.results[0].trackName + ' trailer', renderWithYoutubeVideo);
             });
         },
 
