@@ -24,10 +24,10 @@ var app = app || {};
             that.movie = new app.Movie({id: movieID});
             var complete = _.invoke([that.movie], 'fetch');
             $.when.apply($, complete).done(function() {
-                    that.movie.attributes.releaseDate = that.movie.attributes.releaseDate.substring(0,10);
+                    that.movie.attributes.results[0].releaseDate = that.movie.attributes.results[0].releaseDate.substring(0,10);
 
                     that.$el.html(that.singleMovieTemplate({
-                        movie: that.movie.attributes
+                        movie: that.movie.attributes.results[0]
                     }));
             });
         },

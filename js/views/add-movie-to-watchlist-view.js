@@ -11,7 +11,7 @@ var app = app || {};
         addMovieToWatchlistTemplate: _.template($('#add-movie-to-watchlist-template').html()),
 
         events:{
-            'click .':'searchMovies'
+            'click .movie-add-watchlist':'addMovieToWatchlist'
         },
 
 
@@ -23,7 +23,7 @@ var app = app || {};
                 success: function () {
                     that.$el.html(that.addMovieToWatchlistTemplate({
                         watchlists: that.collection.models,
-                        movie: that.movie
+                        movie: that.movie.attributes.results[0]
                     }));
                 }
             });
@@ -39,12 +39,11 @@ var app = app || {};
 
         addMovieToWatchlist: function (e){
             var that = this;
-            that.resetNotification();
+            var currentMovie = that.movie.attributes.results[0];
             var watchlistID = $(e.currentTarget).data("watchlist-id");
-            var watchlist = _.find(that.collection.models, function (obj) {return obj.attributes.id === watchlistID});
-            var watchlistData = new app.Watchlist();
-            watchlistData.urlRoot = watchlist.urlRoot.replace(':id', that.currentWatchList.id);
-            movieData.save(movie.attributes, {
+            var watchlistData = new app.WatchlistMovie();
+            watchlistData.urlRoot = watchlistData.urlRoot.replace(':id', watchlistID);
+            watchlistData.save(currentMovie, {
                 success: function (){
                     that.$el.find('#successAddMovieNotif').show();
                 },
@@ -55,6 +54,15 @@ var app = app || {};
             e.preventDefault();
             return false; //Permet de ne pas agir sur le collapse de l'accordion
         },
+
+        resetNotification: function () {
+            this.$el.find('#successAddMovieNotif').hide();
+            this.$el.find('#errorAddMovieNotif').hide();
+        },
+
+        closeNotification : function (e) {
+            $(e.currentTarget.parentElement).hide();
+        }
 
     });
 

@@ -139,7 +139,7 @@
 				<tbody>
 				<% _.each(movies, function (movie) { %>
 				<tr>
-					<td><a href="#/movie/<%= movie.trackId %>"><%= movie.trackName %></a></td>
+					<td><a href="#/movie/<%= movie.attributes.trackId %>"><%= movie.attributes.trackName %></a></td>
 				</tr>
 				<% }); %>
 				</tbody>
@@ -188,12 +188,20 @@
 	<script type="text/template" id="add-movie-to-watchlist-template">
 		<div class="span12">
 			<h3>Add the movie "<%= movie.trackName %>" to a watchlist :</h3>
+			<div id="successAddMovieNotif" class="alert alert-success fade in" hidden="hidden" tabindex="-1">
+				<a href="#" class="close" aria-label="close">&times;</a>
+				<strong>Success!</strong> The movie has been successfully added to the watchlist.
+			</div>
+			<div id="errorAddMovieNotif" class="alert alert-danger fade in" hidden="hidden" tabindex="-1">
+				<a href="#" class="close" aria-label="close">&times;</a>
+				<strong>Oups!</strong> Something went wrong while adding the movie.
+			</div>
 			<table class="table striped">
 				<tbody>
 				<% _.each(watchlists, function (watchlist) { %>
 				<tr>
 					<td><%= watchlist.attributes.name %></td>
-					<td><button class="accordion-movie-add btn-mini btn-success pull-right" data-watchlist-id="<%= watchlist.attributes.id %>">Add to this watchlist</button></td>
+					<td><button class="movie-add-watchlist btn-mini btn-success pull-right" data-watchlist-id="<%= watchlist.id %>">Add to this watchlist</button></td>
 				</tr>
 				<% }); %>
 				</tbody>
