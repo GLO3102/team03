@@ -16,9 +16,9 @@ function youtubeSearch(query) {
         q: query
     });
 
-    request.execute(youtubeSearchResponse);
+    request.execute(youtubeGetFirstResultID);
 }
 
-function youtubeSearchResponse(response) {
-    console.log(response);
+function youtubeGetFirstResultID(response) {
+    return response.result.items[0].id.videoId;
 }

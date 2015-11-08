@@ -30,6 +30,7 @@ var app = app || {};
             $.when.apply($, complete).done(function () {
                 that.$el.html(that.tvShowTemplate({
                     tvshow: that.tvshow.toJSON(),
+                    //youtubeID: ,
                     episodes: that.episodes.models.sort(function (a, b) {
                         return a.get('trackNumber') - b.get('trackNumber');
                     })
