@@ -26,15 +26,19 @@ var app = app || {};
             that.episodes = new app.TvShowEpisodes();
             that.episodes.url = that.episodes.url.replace(':id', tvShowID);
 
-            var complete = _.invoke([this.tvshow, this.episodes], 'fetch');
-            $.when.apply($, complete).done(function () {
-                that.$el.html(that.tvShowTemplate({
-                    tvshow: that.tvshow.toJSON(),
-                    //youtubeID: ,
-                    episodes: that.episodes.models.sort(function (a, b) {
-                        return a.get('trackNumber') - b.get('trackNumber');
-                    })
-                }));
+            var fetchShow = _.invoke([this.tvshow, this.episodes], 'fetch');
+            $.when.apply($, fetchShow).done(function () {
+                var renderWithYoutubeVideo = function (youtubeID) {
+                    that.$el.html(that.tvShowTemplate({
+                        tvshow: that.tvshow.toJSON(),
+                        youtubeID: youtubeID,
+                        episodes: that.episodes.models.sort(function (a, b) {
+                            return a.get('trackNumber') - b.get('trackNumber');
+                        })
+                    }));
+                };
+
+                youtubeSearch(that.tvshow.get('collectionName') + ' trailer', renderWithYoutubeVideo);
             });
         },
 
