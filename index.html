@@ -22,6 +22,7 @@
 
 	<div class="navbar navbar-static-top"></div>
 	<div class="container">
+		<div class="single-movie"></div>
 		<div class="tvshows"></div>
 		<div class="tvshow"></div>
 		<div class="actors"></div>
@@ -30,7 +31,6 @@
 		<div class="watchlist-movies"></div>
 		<div class="watchlist-add-movie"></div>
 		<div class="movies"></div>
-		<div class="single-movie"></div>
 		<div class="movie-add-watchlist"></div>
 	</div>
 
@@ -148,20 +148,14 @@
 	</script>
 
 	<script type="text/template" id="single-movie-template"> 
-		<div class="page-header"> 
-			<h3><%= movie.trackName %></h3> 
-		</div>  
 
 		<div class="row"> 
 			<div class="span12"> 
 				<div class="span5"> 
-					<div class="season-banner">
+					<div>
 						<img class="cover-image" src="<%= movie.artworkUrl100.replace('100x100', '350x350') %>">
 					</div>
 					<ul class="movie-basic-informations"> 
-						<li> 
-							<iframe width="450" height="300" src="https://www.youtube.com/embed/<%= youtubeID %>" frameborder="0" allowfullscreen></iframe>
-						</li> 
 						<li> 
 							<span class="label">Release date </span> 
 							<span class="item"><%= movie.releaseDate %></span> 
@@ -179,7 +173,10 @@
 						</li> 
 					</ul> 
 				</div> 
-				<div class="span5"> 
+				<div class="movie-box-info"> 
+					<h3><%= movie.trackName %></h3> 
+					<iframe width="450" height="300" src="https://www.youtube.com/embed/<%= youtubeID %>" frameborder="0" allowfullscreen></iframe>
+					<h5>Plot Summary : </h5>
 					<p class="movie-description"><%= movie.longDescription %></p> 
 					<a href="#/movie/addToWatchlist/<%= movie.trackId %>">Add this movie to a watchlist</a>
 				</div> 
