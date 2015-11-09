@@ -1,5 +1,6 @@
 **Team 03**
 =======
+Lancer l'application à partir de index.html
 
 Page Actor
 ----------
