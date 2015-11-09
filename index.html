@@ -88,20 +88,14 @@
 	</script>
 
 	<script type="text/template" id="tvshow-template">
-		<div class="page-header">
-			<h3><%= tvshow.collectionName %></h3>
-		</div>
 		<div class="row">
 
 			<div class="span12">
 				<div class="span5">
-					<div class="season-banner">
+					<div>
 						<img class="cover-image" src="<%= tvshow.artworkUrl100.replace('100x100', '350x350') %>">
 					</div>
-					<ul class="tv-show-basic-informations">
-						<li>
-							<iframe class="preview" width="350" height="250" src="https://www.youtube.com/embed/<%= youtubeID %>" frameborder="0" allowfullscreen></iframe>
-						</li>
+					<ul class="tvshow-basic-informations">
 						<li>
 							<span class="label">Release date </span>
 							<span class="item"><% print(tvshow.releaseDate.substring(0, 10)) %></span>
@@ -115,7 +109,10 @@
 						</li>
 					</ul>
 				</div>
-				<div class="span5">
+				<div class="tvshow-box-info">
+					<h3><%= tvshow.collectionName %></h3>
+					<iframe class="preview" width="350" height="250" src="https://www.youtube.com/embed/<%= youtubeID %>" frameborder="0" allowfullscreen></iframe>
+					<h5>Plot Summary : </h5>
 					<p class="tv-show-description"><%= tvshow.longDescription %></p>
 					<h4>Episodes</h4>
 					<ol class="tv-show-episodes">
