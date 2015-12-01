@@ -8,7 +8,6 @@ var app = app || {};
         navBarTemplate: _.template($('#navbar-template').html()),
 
         initialize: function () {
-            _.bindAll(this, 'render');
             this.render();
         },
 
