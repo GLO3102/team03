@@ -8,7 +8,10 @@ var app = app || {};
         navBarTemplate: _.template($('#navbar-template').html()),
 
         render: function () {
-            this.$el.html(this.navBarTemplate)
+            var userName = $.cookie('userName');
+            this.$el.html(this.navBarTemplate({
+                currentUserName: userName
+            }));
         }
     });
 

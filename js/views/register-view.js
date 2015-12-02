@@ -24,7 +24,6 @@ var app = app || {};
 
         render: function () {
             this.$el.html(this.registerTemplate);
-            this.renderNotifications();
         },
 
         renderNotifications: function () {
@@ -65,6 +64,8 @@ var app = app || {};
                     that.errors.push('A user is already registered with this email. Please try to log in or use another email address.');
                     that.renderNotifications();
                 });
+            }else{
+                that.renderNotifications();
             }
         },
 
