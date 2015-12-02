@@ -7,10 +7,6 @@ var app = app || {};
         el: '.navbar',
         navBarTemplate: _.template($('#navbar-template').html()),
 
-        initialize: function () {
-            this.render();
-        },
-
         render: function () {
             this.$el.html(this.navBarTemplate)
         }

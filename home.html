@@ -20,6 +20,7 @@
 	<div class="container">
 		<div class="page-header">
 			<h1>Welcome to UMovie</h1>
+
 			<p>Welcome on UMovie, your personal portal to a world of movies and series.</p>
 		</div>
 	</div>
@@ -37,11 +38,12 @@
 
 	<script type="text/template" id="login-template">
 		<div class="form-home form-signin">
+			<div class="loginNotifications"></div>
 			<h2 class="form-home-heading">Login</h2>
 			<fieldset>
-				<input name="username" id="username" type="text" class="input-block-level" placeholder="Email address">
+				<input name="userEmail" id="userEmail" type="text" class="input-block-level" placeholder="Email address">
 				<input type="password" class="input-block-level" placeholder="Password" name="password" id="password">
-				<button name="send" value="Submit" class="btn btn-medium btn-primary" type="submit">
+				<button id="login" class="btn btn-medium btn-primary">
 					<i class="icon-arrow-right"></i> Login
 				</button>
 			</fieldset>
@@ -50,14 +52,34 @@
 
 	<script type="text/template" id="register-template">
 		<div class="form-home">
+			<div class="registerNotifications"></div>
 			<h2 class="form-home-heading">Register</h2>
-			<input type="text" class="input-block-level" placeholder="Your name">
-			<input type="password" class="input-block-level" placeholder="Email address">
-			<input type="password" class="input-block-level" placeholder="Password">
-			<input type="password" class="input-block-level" placeholder="Confirm Password">
-			<button name="send" value="Submit" class="btn btn-medium btn-primary" type="submit">
+			<input id="registerName" type="text" class="input-block-level" placeholder="Your name">
+			<input id="registerEmail" type="text" class="input-block-level" placeholder="Email address">
+			<input id="registerPassword" type="password" class="input-block-level" placeholder="Password">
+			<input id="registerConfirmPassword" type="password" class="input-block-level" placeholder="Confirm Password">
+			<button id="register" class="btn btn-medium btn-primary">
 				<i class="icon-arrow-right"></i> Register
 			</button>
+		</div>
+	</script>
+
+	<script type="text/template" id="notification-template">
+		<div class="alert alert-danger" role="alert">
+			<ul class="list-group unstyled">
+				<% _.each(errors, function (error) { %>
+				<li class="list-group-item list-group-item-danger"><%= error %></li>
+				<% }); %>
+			</ul>
+		</div>
+	</script>
+
+	<script type="text/template" id="register-success-template">
+		<div class="form-home">
+			<div class="alert alert-success">
+				<strong>Success!</strong> Your account has been created successfully! <br>
+				Please login to enter UMovie world !
+			</div>
 		</div>
 	</script>
 
