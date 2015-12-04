@@ -2,7 +2,6 @@ var app = app || {};
 
 (function () {
     'use strict';
-
     var UMovieRouter = Backbone.Router.extend({
         routes: {
             '': 'home',
@@ -92,12 +91,11 @@ var app = app || {};
         clearViews();
         app.CurrentUserView.get({userId:$.cookie('userId')});
     });
-
+    
     app.UMovieRouter.on('route:user', function (userId) {
         clearViews();
         app.CurrentUserView.get({userId : userId});
     });
-
 
     Backbone.history.start();
 })();
