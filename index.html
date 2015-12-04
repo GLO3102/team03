@@ -405,16 +405,18 @@
 		<div class="span12"> 
 			<div class="current-user-box-info"> 
 				<img class="cover-image" src="https://www.parsemarket.com/assets/avatar_missing-4145fb044f59fb1c0a94b2f2e9bb3e7a.png">
+
 				<h3><%= user.name %></h3>
 				 <h5><%= user.email %></h5>
+				<button id="follow-user-btn" class="btn btn-success" data-following-id="<%= user.id%>"  style="<% if (user.id === $.cookie('userId'))%> display: none<%;%>" >
+					Follow This User
+				</button>
 			</div>
 			 
 
 			<div class="user-following">
-				<h5>My Following</h5>
-				<button class="find-following btn btn-success">
-					Find a User
-				</button>
+				<h5>User Following</h5>
+
 				<table class="table striped">
 					<thead>
 					<tr>
@@ -429,6 +431,9 @@
 						<td><%= following.name %></td>
 						<td><%= following.email %></td>
 						<td>
+							<button class="follow-user btn btn-success" data-following-id="<%= following.id%>">
+								Follow
+							</button>
 							<button class="remove-following btn btn-danger" data-following-id="<%= following.id%>">
 								Stop Following
 							</button>
@@ -440,8 +445,34 @@
 			</div>
 			 
 		</div>
-		 
 	</div> 
+	<div class="row"> 
+		<div class="span12"> 
+			<h5>User Watchlist</h5>
+			<table class="table striped">
+				<thead>
+				<tr>
+					<th>Name</th>
+					<th>Number of movies</th>
+					<th>Action</th>
+				</tr>
+				</thead>
+				<tbody>
+				<% _.each(watchlists, function (watchlist) { %>
+				<tr>
+					<td><%= watchlist.attributes.name %></td>
+					<td><%= watchlist.attributes.movies.length %></td>
+					<td>
+						<a href="#/watchlist/<%= watchlist.attributes.id %>/movies">Show movies</a>
+					</td>
+				</tr>
+				<% }); %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
 	</script>
 	 
 

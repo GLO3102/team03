@@ -47,6 +47,7 @@
 
 .current-user-box-info {
     display: inline-block;
+    margin: 10px;
     float: left;
     max-width: 70%;
     text-align: justify;
