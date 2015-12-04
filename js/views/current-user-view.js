@@ -27,9 +27,8 @@ var app = app || {};
             that.user = new app.User({id: userId});
             that.user.fetch({
                 success: function () {
-                    console.log(that.user.email);
                     that.$el.html(that.currentUserTemplate({
-                        user: that.user
+                        user: that.user.attributes
                     }));
                 }
             });

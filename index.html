@@ -16,6 +16,7 @@
 	<link href="css/tvshow.css" rel="stylesheet">
 	<link href="css/watchlist.css" rel="stylesheet">
 	<link href="css/addMovies.css" rel="stylesheet">
+	<link href="css/currentuser.css" rel="stylesheet">
 
 </head>
 <body class="animated fadeInDown">
@@ -194,7 +195,6 @@
 		 
 	</div> 
 	</script>
-	 
 
 	<script type="text/template" id="add-movie-to-watchlist-template">
 		<div class="span12">
@@ -401,13 +401,47 @@
 	</script>
 
 	<script type="text/template" id="current-user-template"> 
-		<div class="row"> 
-			<div class="span12"> 
-				<div class="movie-box-info"> 
-					<h3><%= user.name %></h3> 
-				</div>
+	<div class="row"> 
+		<div class="span12"> 
+			<div class="current-user-box-info"> 
+				<img class="cover-image" src="https://www.parsemarket.com/assets/avatar_missing-4145fb044f59fb1c0a94b2f2e9bb3e7a.png">
+				<h3><%= user.name %></h3>
+				 <h5><%= user.email %></h5>
 			</div>
-		</div> 
+			 
+
+			<div class="user-following">
+				<h5>My Following</h5>
+				<button class="find-following btn btn-success">
+					Find a User
+				</button>
+				<table class="table striped">
+					<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Action</th>
+					</tr>
+					</thead>
+					<tbody>
+					<% _.each(user.following, function (following) { %>
+					<tr>
+						<td><%= following.name %></td>
+						<td><%= following.email %></td>
+						<td>
+							<button class="remove-following btn btn-danger" data-following-id="<%= following.id%>">
+								Stop Following
+							</button>
+						</td>
+					</tr>
+					<% }); %>
+					</tbody>
+				</table>
+			</div>
+			 
+		</div>
+		 
+	</div> 
 	</script>
 	 
 
