@@ -53,6 +53,7 @@ var app = app || {};
                 }).done(function (data){
                     $.cookie('userToken', data.token);
                     $.cookie('userName', data.name);
+                    $.cookie('userId',data.id);
                     window.location.href = './index.html';
                 }).fail(function (jqXHR, textStatus){
                     that.errors.push('Invalid user email or password');

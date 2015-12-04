@@ -32,6 +32,7 @@
 		<div class="watchlist-add-movie"></div>
 		<div class="movies"></div>
 		<div class="movie-add-watchlist"></div>
+		<div class="current-user"></div>
 	</div>
 
 	<script type="text/template" id="navbar-template">
@@ -46,7 +47,6 @@
 
 				<div class="nav-collapse collapse">
 					<ul class="nav pull-left">
-						<li><a href="#">Home</a></li>
 						<li><a href="#tvshows">Tv Show</a></li>
 						<li><a href="#movie">Movie</a></li>
 						<li><a href="#actors">Actor</a></li>
@@ -59,7 +59,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="home.html">Disconnect</a></li>
 								<li class="divider"></li>
-								<li><a href="settings.html">Settings</a></li>
+								<li><a href="#myprofile">MyProfile</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -71,16 +71,19 @@
 	<script type="text/template" id="tvshows-template">
 		<div class="span12">
 			<h3>Tv Show search</h3>
+
 			<div class="input-append">
 				<input class="span3" id="tvshow-search-text" type="text">
-				<button id="tvshow-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+				<button id="tvshow-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i>
+				</button>
 			</div>
 			<table class="table striped">
 				<tbody>
 				<% _.each(tvshows, function (tvshow) { %>
-					<tr>
-						<td><a href="#/tvshows/<%= tvshow.attributes.collectionId %>"><%= tvshow.attributes.collectionName %></a></td>
-					</tr>
+				<tr>
+					<td><a href="#/tvshows/<%= tvshow.attributes.collectionId %>"><%= tvshow.attributes.collectionName
+						%></a></td>
+				</tr>
 				<% }); %>
 				</tbody>
 			</table>
@@ -113,11 +116,12 @@
 					<h3><%= tvshow.collectionName %></h3>
 					<iframe class="preview" width="350" height="250" src="https://www.youtube.com/embed/<%= youtubeID %>" frameborder="0" allowfullscreen></iframe>
 					<h5>Plot Summary : </h5>
+
 					<p class="tv-show-description"><%= tvshow.longDescription %></p>
 					<h4>Episodes</h4>
 					<ol class="tv-show-episodes">
 						<% _.each(episodes, function (episode) { %>
-							<li><%= episode.attributes.trackName %></a></li>
+						<li><%= episode.attributes.trackName %></a></li>
 						<% }); %>
 					</ol>
 				</div>
@@ -128,6 +132,7 @@
 	<script type="text/template" id="movies-template">
 		<div class="span12">
 			<h3>Movie search</h3>
+
 			<div class="input-append">
 				<input class="span3" id="movie-search-text" type="text">
 				<button id="movie-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
@@ -146,44 +151,55 @@
 
 	<script type="text/template" id="single-movie-template"> 
 
-		<div class="row"> 
-			<div class="span12"> 
-				<div class="span5"> 
-					<div>
-						<img class="cover-image" src="<%= movie.artworkUrl100.replace('100x100', '350x350') %>">
-					</div>
-					<ul class="movie-basic-informations"> 
-						<li> 
-							<span class="label">Release date </span> 
-							<span class="item"><%= movie.releaseDate %></span> 
-						</li> 
-						<li> 
-							<span class="label">Genre </span> 
-							<span class="item"><%= movie.primaryGenreName %></span> 
-						</li> 
-						<li> 
-							<span class="label">Rating </span> 
-							<span class="item"><%= movie.contentAdvisoryRating %></span> 
-						</li> 
-						<li> 
-							<a class="itune-badge" href="<%= movie.trackViewUrl %>" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a> 
-						</li> 
-					</ul> 
-				</div> 
-				<div class="movie-box-info"> 
-					<h3><%= movie.trackName %></h3> 
-					<iframe width="450" height="300" src="https://www.youtube.com/embed/<%= youtubeID %>" frameborder="0" allowfullscreen></iframe>
-					<h5>Plot Summary : </h5>
-					<p class="movie-description"><%= movie.longDescription %></p> 
-					<a href="#/movie/addToWatchlist/<%= movie.trackId %>">Add this movie to a watchlist</a>
-				</div> 
-			</div> 
-		</div> 
-	</script> 
+	<div class="row"> 
+		<div class="span12"> 
+			<div class="span5"> 
+				<div>
+					<img class="cover-image" src="<%= movie.artworkUrl100.replace('100x100', '350x350') %>">
+				</div>
+				<ul class="movie-basic-informations"> 
+					<li> 
+						<span class="label">Release date </span> 
+						<span class="item"><%= movie.releaseDate %></span> 
+					</li>
+					 
+					<li> 
+						<span class="label">Genre </span> 
+						<span class="item"><%= movie.primaryGenreName %></span> 
+					</li>
+					 
+					<li> 
+						<span class="label">Rating </span> 
+						<span class="item"><%= movie.contentAdvisoryRating %></span> 
+					</li>
+					 
+					<li> 
+						<a class="itune-badge" href="<%= movie.trackViewUrl %>" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a> 
+					</li>
+					 
+				</ul>
+				 
+			</div>
+			 
+			<div class="movie-box-info"> 
+				<h3><%= movie.trackName %></h3> 
+				<iframe width="450" height="300" src="https://www.youtube.com/embed/<%= youtubeID %>" frameborder="0" allowfullscreen></iframe>
+				<h5>Plot Summary : </h5>
+
+				<p class="movie-description"><%= movie.longDescription %></p> 
+				<a href="#/movie/addToWatchlist/<%= movie.trackId %>">Add this movie to a watchlist</a>
+			</div>
+			 
+		</div>
+		 
+	</div> 
+	</script>
+	 
 
 	<script type="text/template" id="add-movie-to-watchlist-template">
 		<div class="span12">
 			<h3>Add the movie "<%= movie.trackName %>" to a watchlist :</h3>
+
 			<div id="successAddMovieNotif" class="alert alert-success fade in" hidden="hidden" tabindex="-1">
 				<a href="#" class="close" aria-label="close">&times;</a>
 				<strong>Success!</strong> The movie has been successfully added to the watchlist.
@@ -197,7 +213,11 @@
 				<% _.each(watchlists, function (watchlist) { %>
 				<tr>
 					<td><%= watchlist.attributes.name %></td>
-					<td><button class="movie-add-watchlist btn-mini btn-success pull-right" data-watchlist-id="<%= watchlist.id %>">Add to this watchlist</button></td>
+					<td>
+						<button class="movie-add-watchlist btn-mini btn-success pull-right" data-watchlist-id="<%= watchlist.id %>">
+							Add to this watchlist
+						</button>
+					</td>
 				</tr>
 				<% }); %>
 				</tbody>
@@ -270,7 +290,9 @@
 				<tbody>
 				<% _.each(watchlists, function (watchlist) { %>
 				<tr>
-					<td><input class="edit-watchlist-name" type="text" value="<%= watchlist.attributes.name %>" data-watchlist-id="<%= watchlist.attributes.id%>"/></td>
+					<td>
+						<input class="edit-watchlist-name" type="text" value="<%= watchlist.attributes.name %>" data-watchlist-id="<%= watchlist.attributes.id%>"/>
+					</td>
 					<td><%= watchlist.attributes.movies.length %></td>
 					<td>
 						<a href="#/watchlist/<%= watchlist.attributes.id %>/movies">Show movies</a>
@@ -313,7 +335,9 @@
 	<script type="text/template" id="add-movie-template">
 		<div class="span12">
 			<h2>Add movies to </h2>
+
 			<h3><%= watchlist.name %></h3>
+
 			<div id="successAddMovieNotif" class="alert alert-success fade in" hidden="hidden" tabindex="-1">
 				<a href="#" class="close" aria-label="close">&times;</a>
 				<strong>Success!</strong> The movie has been successfully added to the watchlist.
@@ -323,6 +347,7 @@
 				<strong>Oups!</strong> Something went wrong while adding the movie.
 			</div>
 			<a href="#/watchlist/<%= watchlist.id %>/movies">Return to watchlist</a>
+
 			<div class="span12">
 				<div class="input-append">
 					<label for="movie-search-text">Search a movie</label>
@@ -359,6 +384,7 @@
 									</li>
 									<li>
 										<span class="label">Description</span>
+
 										<p align="justify"><%= movie.attributes.longDescription%></p>
 									</li>
 								</ul>
@@ -373,6 +399,17 @@
 			</div>
 		</div>
 	</script>
+
+	<script type="text/template" id="current-user-template"> 
+		<div class="row"> 
+			<div class="span12"> 
+				<div class="movie-box-info"> 
+					<h3><%= user.name %></h3> 
+				</div>
+			</div>
+		</div> 
+	</script>
+	 
 
 
 	<script src="lib/js/jquery.js"></script>
@@ -397,6 +434,8 @@
 	<script src="js/models/watchlist.js"></script>
 	<script src="js/models/watchlistMovie.js"></script>
 	<script src="js/models/actor.js"></script>
+	<script src="js/models/user.js"></script>
+	<script src="js/collections/users.js"></script>
 
 	<script src="js/collections/tvshows.js"></script>
 	<script src="js/collections/tvshowEpisodes.js"></script>
@@ -416,6 +455,8 @@
 	<script src="js/views/movies-view.js"></script>
 	<script src="js/views/add-movie-to-watchlist-view.js"></script>
 	<script src="js/views/single-movie-view.js"></script>
+	<script src="js/views/current-user-view.js"></script>
+
 	<script src="js/app.js"></script>
 
 </body>
