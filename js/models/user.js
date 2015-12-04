@@ -6,7 +6,7 @@ var app = app || {};
 (function () {
     'use strict';
     app.User = Backbone.Model.extend({
-        urlRoot: 'http://umovie.herokuapp.com/unsecure/users',
+        urlRoot: 'http://umovie.herokuapp.com/users',
         defaults: {
             email : '',
             name : '',

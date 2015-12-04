@@ -2,7 +2,18 @@ body {
     padding-bottom: 40px;
     background-image: url("https://nottingham.ac.uk/news/pressreleases/2011/october/filmreel.jpg");
     -ms-filter:"progi<d:DXImageTransform.Microsoft.Alpha(Opacity=100,FinishOpacity=78,Style=2)";
-    filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100,FinishOpacity=78,Style=2);}
+    filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100,FinishOpacity=78,Style=2);
+}
+
+@media (max-width: 767px) {
+    body{
+        background: url("https://nottingham.ac.uk/news/pressreleases/2011/october/filmreel.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+}
 
 .form-home {
     height: 350px;

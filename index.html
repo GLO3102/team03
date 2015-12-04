@@ -58,7 +58,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= currentUserName %>
 								<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="home.html">Disconnect</a></li>
+								<li><a id="logOut" href="#">Disconnect</a></li>
 								<li class="divider"></li>
 								<li><a href="#myprofile">MyProfile</a></li>
 							</ul>
@@ -489,6 +489,8 @@
 	<script src="js/UI/menuBehavior.js"></script>
 	<script src="js/search.js"></script>
 	<script src="https://apis.google.com/js/client.js?onload=gAPIOnLoadCallback"></script>
+
+	<script src="js/backboneSync.js"></script>
 
 	<script src="js/models/tvshow.js"></script>
 	<script src="js/models/tvshowEpisode.js"></script>

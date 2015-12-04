@@ -55,13 +55,20 @@ var app = app || {};
                     $.cookie('userName', data.name);
                     $.cookie('userId',data.id);
                     window.location.href = './index.html';
-                }).fail(function (jqXHR, textStatus){
-                    that.errors.push('Invalid user email or password');
+                }).fail(function (jqXHR, ajaxOptions, thrownErrors){
+                    if(jqXHR.status == 401){
+                        that.errors.push('Invalid user email or password.');
+                    }else if (jqXHR.status == 503){
+                        that.errors.push('Server is not available for the moment. Please try again later.')
+                    }else{
+                        that.errors.push('Something wrong is going on !')
+                    }
                     that.renderNotifications();
                 });
             }else{
                 this.renderNotifications();
             }
+            return false; //Need this in order to cancel the event on button. If not, jqXHR status will be always --> 0.
         },
 
         formIsValid: function (email, password){

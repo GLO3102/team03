@@ -5,7 +5,7 @@ var app = app || {};
 
     app.Users = Backbone.Collection.extend({
         model: app.User,
-        url: 'http://umovie.herokuapp.com/unsecure/users'
+        url: 'http://umovie.herokuapp.com/users'
     });
 
 })();

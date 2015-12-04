@@ -78,7 +78,6 @@ var app = app || {};
                     alert("Please enter a name for the updated Watchlist")
                 }
                 else {
-
                     var watchlistID = $(event.currentTarget).data("watchlist-id");
                     var watchlistModel = that.collection.get(watchlistID);
                     watchlistModel.set({name: that.input});

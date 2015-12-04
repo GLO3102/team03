@@ -38,9 +38,10 @@ var app = app || {};
     }
 
     app.UMovieRouter = new UMovieRouter();
+    app.NavBarView.render();
 
     app.UMovieRouter.on('route:home', function () {
-        app.NavBarView.render();
+        clearViews();
     });
     app.UMovieRouter.on('route:tvshows', function () {
         clearViews();

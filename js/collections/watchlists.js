@@ -5,7 +5,7 @@ var app = app || {};
 
     app.Watchlists = Backbone.Collection.extend({
         model: app.Watchlist,
-        url: 'http://umovie.herokuapp.com/unsecure/watchlists'
+        url: 'http://umovie.herokuapp.com/watchlists'
     });
 
 })();

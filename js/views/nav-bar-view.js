@@ -7,11 +7,24 @@ var app = app || {};
         el: '.navbar',
         navBarTemplate: _.template($('#navbar-template').html()),
 
+        events: {
+           'click #logOut': 'logOutUser'
+        },
+
         render: function () {
             var userName = $.cookie('userName');
             this.$el.html(this.navBarTemplate({
                 currentUserName: userName
             }));
+        },
+
+        logOutUser: function () {
+            $.ajax({
+                url: 'http://umovie.herokuapp.com/logout',
+                type: 'GET'
+            }).done(function (){
+                window.location.href = './home.html';
+            });
         }
     });
 

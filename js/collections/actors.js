@@ -5,7 +5,7 @@ var app = app || {};
 
     var Actors = Backbone.Collection.extend({
         model: app.Actor,
-        url: 'http://umovie.herokuapp.com/unsecure/search/actors',
+        url: 'http://umovie.herokuapp.com/search/actors',
         parse: function(response){
             return response.results;
         }
