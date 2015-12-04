@@ -3,7 +3,7 @@ var app = app || {};
 (function () {
     'use strict';
     app.Actor = Backbone.Model.extend({
-        urlRoot: 'http://umovie.herokuapp.com/unsecure/actors',
+        urlRoot: 'http://umovie.herokuapp.com/actors',
         defaults: {
             wrapperType: '',
             artistType: '',

@@ -4,7 +4,7 @@ var app = app || {};
     'use strict';
 
     app.ActorMovies = Backbone.Collection.extend({
-        url: 'http://umovie.herokuapp.com/unsecure/actors/:id/movies',
+        url: 'http://umovie.herokuapp.com/actors/:id/movies',
         model: app.Movie,
         sortByReleaseDateDesc: function () {
             this.comparator = function (model) {

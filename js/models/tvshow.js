@@ -4,7 +4,7 @@ var app = app || {};
     'use strict';
 
     app.TvShow = Backbone.Model.extend({
-        urlRoot: 'http://umovie.herokuapp.com/unsecure/tvshows/season',
+        urlRoot: 'http://umovie.herokuapp.com/tvshows/season',
         defaults: {
             wrapperType: '',
             collectionType: '',

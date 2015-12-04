@@ -5,7 +5,7 @@ var app = app || {};
 
     var TvShows = Backbone.Collection.extend({
         model: app.TvShow,
-        url: 'http://umovie.herokuapp.com/unsecure/search/tvshows/seasons',
+        url: 'http://umovie.herokuapp.com/search/tvshows/seasons',
         parse: function (response) {
             return response.results;
         }
