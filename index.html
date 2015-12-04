@@ -428,9 +428,7 @@
 					<tbody>
 					<% _.each(user.following, function (following) { %>
 					<tr>
-						<td>
-							<a href="#users/<%= following.id %>"><%= following.name %></a>
-						</td>
+						<td><%= following.name %></td>
 						<td><%= following.email %></td>
 						<td>
 							<button class="follow-user btn btn-success" data-following-id="<%= following.id%>">
