@@ -16,7 +16,10 @@ var app = app || {};
             'tvshows/:id': 'tvshow',
             'actors': 'actors',
             'actors/:id': 'singleActor',
-            'myprofile' : 'currentUser'
+            'myprofile' : 'currentUser',
+            'users/:id' : 'user'
+
+
         }
     });
 
@@ -84,9 +87,14 @@ var app = app || {};
         app.AddToWatchlistView.get({movieID: movieID});
     });
 
-    app.UMovieRouter.on('route:currentUser', function (movieID) {
+    app.UMovieRouter.on('route:currentUser', function () {
         clearViews();
         app.CurrentUserView.get({userId:$.cookie('userId')});
+    });
+
+    app.UMovieRouter.on('route:user', function (userId) {
+        clearViews();
+        app.CurrentUserView.get({userId : userId});
     });
 
 

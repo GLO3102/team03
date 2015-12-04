@@ -6,10 +6,11 @@ var app = app || {};
     var CurrentUserView = Backbone.View.extend({
 
         el: '.current-user',
-
+        collection : new app.Watchlists(),
         currentUserTemplate: _.template($('#current-user-template').html()),
         user: null,
         events: {
+            'click #follow-user': 'followUser'
         },
 
         initialize: function () {
@@ -22,28 +23,42 @@ var app = app || {};
             }
         },
 
-        render: function (userId) {
+        render: function (userId,globalWatchlists) {
             var that = this;
             that.user = new app.User({id: userId});
             that.user.fetch({
                 success: function () {
                     that.$el.html(that.currentUserTemplate({
-                        user: that.user.attributes
+                        user: that.user.attributes,
+                        watchlists: getWatchlistByUserId(that.user.attributes.id,globalWatchlists)
                     }));
                 }
             });
-
+            var getWatchlistByUserId = function (id,globalWatchlists){
+                var userWatchlist= [];
+                globalWatchlists.forEach(function(watchlist){
+                    if (watchlist.attributes.owner.id === id){
+                        userWatchlist.push(watchlist);
+                    }
+                });
+                return userWatchlist;
+            }
         },
 
         get: function (options) {
             var that = this;
-            if (options.userId) {
-                that.render(options.userId);
-            }
+            that.collection.fetch({
+                success: function () {
+                    if (options.userId) {
+                        that.render(options.userId, that.collection.models);
+                    }
+                }
+            });
+        },
+
+        followUser: function() {
 
         }
-
-
 
     });
     app.CurrentUserView = new CurrentUserView();
