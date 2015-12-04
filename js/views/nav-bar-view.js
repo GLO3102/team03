@@ -19,6 +19,9 @@ var app = app || {};
         },
 
         logOutUser: function () {
+            $.removeCookie('userToken');
+            $.removeCookie('userName');
+            $.removeCookie('userId');
             $.ajax({
                 url: 'http://umovie.herokuapp.com/logout',
                 type: 'GET'
