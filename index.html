@@ -405,6 +405,16 @@
 	<script type="text/template" id="user-profile-template"> 
 	<div class="row"> 
 		<div class="span12"> 
+
+			<div id="successFollowNotif" class="alert alert-success fade in" hidden="hidden" tabindex="-1">
+				<a href="#" class="close" aria-label="close">&times;</a>
+				<strong>Success!</strong> You are now following this user!.
+			</div>
+			<div id="errorAddFollowNotif" class="alert alert-danger fade in" hidden="hidden" tabindex="-1">
+				<a href="#" class="close" aria-label="close">&times;</a>
+				<strong>Oups!</strong> You are already following this user.
+			</div>
+
 			<div class="current-user-box-info"> 
 				<img class="cover-image" src="https://www.parsemarket.com/assets/avatar_missing-4145fb044f59fb1c0a94b2f2e9bb3e7a.png">
 
@@ -413,9 +423,6 @@
 					 <h5><%= user.email %></h5>
 					<button id="follow-user-btn" class="btn btn-success" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId'))%> display: none<%;%>">
 						Follow
-					</button>
-					<button id="remove-following" class="btn btn-danger" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId'))%> display: none<%;%>">
-						Stop Following
 					</button>
 				</div>
 
@@ -485,7 +492,7 @@
 						<tr>
 							<th>Name</th>
 							<th>Email</th>
-							<th>Action</th>
+							<th style="<% if (user.id !== $.cookie('userId'))%> display: none<%;%>" >Action</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -493,8 +500,8 @@
 						<tr>
 							<td><%= following.name %></td>
 							<td><%= following.email %></td>
-							<td>
-								<button class="remove-following btn btn-danger" data-following-id="<%= following.id%>" style="<% if (user.id !== $.cookie('userId'))%> display: none<%;%>">
+							<td style="<% if (user.id !== $.cookie('userId'))%> display: none<%;%>">
+								<button class="remove-following btn btn-danger" data-following-id="<%= following.id%>" >
 									UnFollow
 								</button>
 							</td>
@@ -527,6 +534,7 @@
 				<input class="span3" id="user-search-text" type="text">
 				<button id="user-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
 			</div>
+			<% if (users.length > 0) {%>
 			<table class="table striped">
 				<tbody>
 				<% _.each(users, function (user) { %>
@@ -536,6 +544,9 @@
 				<% }); %>
 				</tbody>
 			</table>
+			<% } else { %>
+			<p>No user found...</p>
+			<% } %>
 		</div>
 	</div>
 	</script>

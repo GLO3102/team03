@@ -100,16 +100,19 @@ var app = app || {};
     });
 
     app.UMovieRouter.on('route:userWatchlists', function (userId) {
+        clearViews();
         app.UserProfileView.get({userId : userId});
         app.UserWatchlistView.get({userId : userId});
     });
 
     app.UMovieRouter.on('route:userFollowing', function (userId) {
+        clearViews();
         app.UserProfileView.get({userId : userId});
         app.UserFollowingView.get({userId : userId});
     });
 
     app.UMovieRouter.on('route:userSearch', function (userId) {
+        clearViews();
         app.UserProfileView.get({userId : userId});
         app.UserSearchView.get({userId : userId});
     });

@@ -8,6 +8,7 @@ var app = app || {};
         el: '.user-actions',
 
         collection: app.Users,
+        users:[],
         userId:'',
         userSearchTemplate: _.template($('#user-search-template').html()),
 
@@ -26,19 +27,23 @@ var app = app || {};
         render: function (userId) {
             var that = this;
             that.$el.html(that.userSearchTemplate({
-                users: that.collection.models,
+                users: that.users,
                 userId: userId
             }));
         },
 
         searchUsers: function(){
             var searchText = $("#user-search-text").val();
-            var encodedSearch =encodeURI(searchText);
+            var encodedSearch = encodeURI(searchText);
             var that=this;
             app.Users.fetch({
                 data: $.param({ q: encodedSearch}),
                 success: function(data){
+                    that.users = data.models;
                     that.render(that.userId);
+                },
+                error: function (error){
+                    console.log('Something went wrong!' + error.message);
                 }
             });
         },
