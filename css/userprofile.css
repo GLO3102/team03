@@ -8,6 +8,11 @@
     display: inline-block;
 }
 
+.user-profile #user-navbar{
+    float: left;
+    max-width: 100%;
+}
+
 .user-profile .span5 {
     display: inline-block;
     min-width: 25%;
@@ -97,3 +102,8 @@
         display: block;
     }
 }
+
+.user-profile .nav{
+    min-width: 100%;
+}
+

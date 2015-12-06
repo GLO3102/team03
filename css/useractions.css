@@ -8,6 +8,6 @@
     min-width: 100%;
 }
 
-.user-actions .nav{
-    min-width: 100%;
+.user-actions .input-append{
+    margin-top: 5px;
 }
