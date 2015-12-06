@@ -15,8 +15,12 @@ var app = app || {};
             'tvshows/:id': 'tvshow',
             'actors': 'actors',
             'actors/:id': 'singleActor',
-            'myprofile' : 'currentUser',
-            'users/:id' : 'user'
+            'users/:id' : 'user',
+            'users/:id/watchlists' : 'userWatchlists',
+            'users/:id/following' : 'userFollowing',
+            'users/:id/search' : 'userSearch'
+
+
 
 
         }
@@ -33,7 +37,9 @@ var app = app || {};
         $(".movies").empty();
         $(".movie-add-watchlist").empty();
         $(".single-movie").empty();
-        $(".current-user").empty();
+        $(".user-profile").empty();
+        $(".user-actions").empty();
+
     }
 
     app.UMovieRouter = new UMovieRouter();
@@ -87,14 +93,25 @@ var app = app || {};
         app.AddToWatchlistView.get({movieID: movieID});
     });
 
-    app.UMovieRouter.on('route:currentUser', function () {
-        clearViews();
-        app.CurrentUserView.get({userId:$.cookie('userId')});
-    });
-    
     app.UMovieRouter.on('route:user', function (userId) {
         clearViews();
-        app.CurrentUserView.get({userId : userId});
+        app.UserProfileView.get({userId : userId});
+        app.UserWatchlistView.get({userId : userId});
+    });
+
+    app.UMovieRouter.on('route:userWatchlists', function (userId) {
+        app.UserProfileView.get({userId : userId});
+        app.UserWatchlistView.get({userId : userId});
+    });
+
+    app.UMovieRouter.on('route:userFollowing', function (userId) {
+        app.UserProfileView.get({userId : userId});
+        app.UserFollowingView.get({userId : userId});
+    });
+
+    app.UMovieRouter.on('route:userSearch', function (userId) {
+        app.UserProfileView.get({userId : userId});
+        app.UserSearchView.get({userId : userId});
     });
 
     Backbone.history.start();

@@ -3,9 +3,13 @@ var app = app || {};
 (function () {
     'use strict';
 
-    app.Users = Backbone.Collection.extend({
+    var Users = Backbone.Collection.extend({
         model: app.User,
-        url: 'http://umovie.herokuapp.com/users'
+        url: 'http://umovie.herokuapp.com/search/users',
+        parse: function (response){
+            return response.results;
+        }
     });
 
+    app.Users = new Users()
 })();

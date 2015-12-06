@@ -16,7 +16,8 @@
 	<link href="css/tvshow.css" rel="stylesheet">
 	<link href="css/watchlist.css" rel="stylesheet">
 	<link href="css/addMovies.css" rel="stylesheet">
-	<link href="css/currentuser.css" rel="stylesheet">
+	<link href="css/userprofile.css" rel="stylesheet">
+	<link href="css/useractions.css" rel="stylesheet">
 
 </head>
 <body class="animated fadeInDown">
@@ -33,7 +34,8 @@
 		<div class="watchlist-add-movie"></div>
 		<div class="movies"></div>
 		<div class="movie-add-watchlist"></div>
-		<div class="current-user"></div>
+		<div class="user-profile"></div>
+		<div class="user-actions"></div>
 	</div>
 
 	<script type="text/template" id="navbar-template">
@@ -58,7 +60,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= currentUserName %>
 								<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="#myprofile">MyProfile</a></li>
+								<li><a href="#users/<%= $.cookie('userId') %>">MyProfile</a></li>
 								<li class="divider"></li>
 								<li><a id="logOut" href="#">Log Out</a></li>
 							</ul>
@@ -400,55 +402,44 @@
 		</div>
 	</script>
 
-	<script type="text/template" id="current-user-template"> 
+	<script type="text/template" id="user-profile-template"> 
 	<div class="row"> 
 		<div class="span12"> 
 			<div class="current-user-box-info"> 
 				<img class="cover-image" src="https://www.parsemarket.com/assets/avatar_missing-4145fb044f59fb1c0a94b2f2e9bb3e7a.png">
 
-				<h3><%= user.name %></h3>
-				 <h5><%= user.email %></h5>
-				<button id="follow-user-btn" class="btn btn-success" data-following-id="<%= user.id%>"  style="<% if (user.id === $.cookie('userId'))%> display: none<%;%>" >
-					Follow This User
-				</button>
-			</div>
-			 
+				<div class="user-info">
+					<h3><%= user.name %></h3>
+					 <h5><%= user.email %></h5>
+					<button id="follow-user-btn" class="btn btn-success" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId'))%> display: none<%;%>">
+						Follow
+					</button>
+					<button id="remove-following" class="btn btn-danger" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId'))%> display: none<%;%>">
+						Stop Following
+					</button>
+				</div>
 
-			<div class="user-following">
-				<h5>User Following</h5>
-
-				<table class="table striped">
-					<thead>
-					<tr>
-						<th>Name</th>
-						<th>Email</th>
-						<th>Action</th>
-					</tr>
-					</thead>
-					<tbody>
-					<% _.each(user.following, function (following) { %>
-					<tr>
-						<td><%= following.name %></td>
-						<td><%= following.email %></td>
-						<td>
-							<button class="follow-user btn btn-success" data-following-id="<%= following.id%>">
-								Follow
-							</button>
-							<button class="remove-following btn btn-danger" data-following-id="<%= following.id%>">
-								Stop Following
-							</button>
-						</td>
-					</tr>
-					<% }); %>
-					</tbody>
-				</table>
 			</div>
 			 
 		</div>
 	</div> 
-	<div class="row"> 
+
+	</script>
+
+	<script type="text/template" id="user-watchlist-template"> 
+	<div class="row">
 		<div class="span12"> 
-			<h5>User Watchlist</h5>
+			<div class="navbar navbar-static-top">
+				<div class="navbar-inner">
+					<div class="container">
+						<ul class="nav pull-left">
+							<li><a href="#users/<%= userId%>/watchlists">Watchlists</a></li>
+							<li><a href="#users/<%= userId%>/following">Friends</a></li>
+							<li><a href="#users/<%= userId%>/search">Find users</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 			<table class="table striped">
 				<thead>
 				<tr>
@@ -472,10 +463,82 @@
 		</div>
 	</div>
 
+	</script>
+
+	<script type="text/template" id="user-following-template">
+		<div class="user-following">
+			<div class="row">
+				<div class="span12"> 
+					<div class="navbar navbar-static-top">
+						<div class="navbar-inner">
+							<div class="container">
+								<ul class="nav pull-left">
+									<li><a href="#users/<%= user.id %>/watchlists">Watchlists</a></li>
+									<li><a href="#users/<%= user.id %>/following">Friends</a></li>
+									<li><a href="#users/<%= user.id %>/search">Find users</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<table class="table striped">
+						<thead>
+						<tr>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Action</th>
+						</tr>
+						</thead>
+						<tbody>
+						<% _.each(user.following, function (following) { %>
+						<tr>
+							<td><%= following.name %></td>
+							<td><%= following.email %></td>
+							<td>
+								<button class="remove-following btn btn-danger" data-following-id="<%= following.id%>" style="<% if (user.id !== $.cookie('userId'))%> display: none<%;%>">
+									UnFollow
+								</button>
+							</td>
+						</tr>
+						<% }); %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
 
 	</script>
 	 
-
+	<script type="text/template" id="user-search-template"> 
+	<div class="row">
+		<div class="span12"> 
+			<div class="navbar navbar-static-top">
+				<div class="navbar-inner">
+					<div class="container">
+						<ul class="nav pull-left">
+							<li><a href="#users/<%= userId%>/watchlists">Watchlists</a></li>
+							<li><a href="#users/<%= userId%>/following">Friends</a></li>
+							<li><a href="#users/<%= userId%>/search">Find users</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="input-append">
+				<input class="span3" id="user-search-text" type="text">
+				<button id="user-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+			</div>
+			<table class="table striped">
+				<tbody>
+				<% _.each(users, function (user) { %>
+				<tr>
+					<td><a href="#/users/<%= user.attributes.id %>"><%= user.attributes.name %></a></td>
+				</tr>
+				<% }); %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</script>
 
 	<script src="lib/js/jquery.js"></script>
 	<script src="lib/js/bootstrap.js"></script>
@@ -523,7 +586,10 @@
 	<script src="js/views/movies-view.js"></script>
 	<script src="js/views/add-movie-to-watchlist-view.js"></script>
 	<script src="js/views/single-movie-view.js"></script>
-	<script src="js/views/current-user-view.js"></script>
+	<script src="js/views/user-profile-view.js"></script>
+	<script src="js/views/user-watchlists-view.js"></script>
+	<script src="js/views/user-following-view.js"></script>
+	<script src="js/views/users-search-view.js"></script>
 
 	<script src="js/app.js"></script>
 
