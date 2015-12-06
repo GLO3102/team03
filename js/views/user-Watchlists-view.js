@@ -55,7 +55,7 @@ var app = app || {};
             var watchlistID = $(event.currentTarget).data("watchlist-id");
             var watchlistModel = new app.Watchlist({id: watchlistID});
             watchlistModel.destroy({
-                success: function (model, response) {
+                success: function () {
                     that.get({userId : that.userId});
                 },
                 error: function (error) {

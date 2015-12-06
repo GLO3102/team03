@@ -65,7 +65,7 @@ var app = app || {};
             if (options.userId) {
                 that.userId = options.userId;
                 that.render(options.userId);
-            }options
+            }
         }
 
     });

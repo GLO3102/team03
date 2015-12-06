@@ -48,7 +48,7 @@ var app = app || {};
             var followingId = $(event.currentTarget).data("following-id");
             var followingModel = new app.Following({_id: followingId});
             followingModel.destroy({
-                success: function (model, response) {
+                success: function () {
                     that.render(that.user.attributes.id);
                 },
                 error: function (error) {
