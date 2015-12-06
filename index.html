@@ -20,7 +20,7 @@
 	<link href="css/useractions.css" rel="stylesheet">
 
 </head>
-<body class="animated fadeInDown">
+< class="animated fadeInDown">
 
 	<div class="navbar navbar-static-top"></div>
 	<div class="container">
@@ -421,8 +421,11 @@
 				<div class="user-info">
 					<h3><%= user.name %></h3>
 					 <h5><%= user.email %></h5>
-					<button id="follow-user-btn" class="btn btn-success" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId'))%> display: none<%;%>">
+					<button id="follow-user-btn" class="btn btn-success" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId' ) || isFollowing)%> display: none<%;%>">
 						Follow
+					</button>
+					<button id="remove-following" class="btn btn-danger" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId') || !isFollowing)%> display: none<%;%>">
+						UnFollow
 					</button>
 				</div>
 
@@ -462,6 +465,9 @@
 					<td><%= watchlist.attributes.movies.length %></td>
 					<td>
 						<a href="#/watchlist/<%= watchlist.attributes.id %>/movies">Show movies</a>
+						<button class="delete-watchlist btn btn-danger" data-watchlist-id="<%= watchlist.attributes.id%>" style="<% if (userId !== $.cookie('userId'))%> display: none<%;%>">
+							Delete Watchlist
+						</button>
 					</td>
 				</tr>
 				<% }); %>
@@ -501,7 +507,7 @@
 							<td><%= following.name %></td>
 							<td><%= following.email %></td>
 							<td style="<% if (user.id !== $.cookie('userId'))%> display: none<%;%>">
-								<button class="remove-following btn btn-danger" data-following-id="<%= following.id%>" >
+								<button class="remove-following btn btn-danger" data-following-id="<%= following._id%>" >
 									UnFollow
 								</button>
 							</td>
@@ -540,6 +546,7 @@
 				<% _.each(users, function (user) { %>
 				<tr>
 					<td><a href="#/users/<%= user.attributes.id %>"><%= user.attributes.name %></a></td>
+					<td><%= user.attributes.email %></a></td>
 				</tr>
 				<% }); %>
 				</tbody>
@@ -578,6 +585,7 @@
 	<script src="js/models/actor.js"></script>
 	<script src="js/models/user.js"></script>
 	<script src="js/collections/users.js"></script>
+	<script src="js/models/following.js"></script>
 
 	<script src="js/collections/tvshows.js"></script>
 	<script src="js/collections/tvshowEpisodes.js"></script>

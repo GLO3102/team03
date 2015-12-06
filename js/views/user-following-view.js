@@ -9,7 +9,7 @@ var app = app || {};
         currentUserTemplate: _.template($('#user-following-template').html()),
         user: null,
         events: {
-            'click #follow-user': 'followUser'
+            'click .remove-following': 'removeFollowing'
         },
 
         initialize: function () {
@@ -43,8 +43,18 @@ var app = app || {};
 
         },
 
-        followUser: function () {
-
+        removeFollowing: function (event) {
+            var that = this;
+            var followingId = $(event.currentTarget).data("following-id");
+            var followingModel = new app.Following({id: followingId});
+            followingModel.destroy({
+                success: function (model, response) {
+                    that.render(that.user.attributes.id);
+                },
+                error: function (error) {
+                    console.log("Something wrong happened!" + error);
+                }
+            });
         }
 
     });

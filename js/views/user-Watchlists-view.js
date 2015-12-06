@@ -9,7 +9,9 @@ var app = app || {};
         userId:'',
         collection: new app.Watchlists(),
         currentUserTemplate: _.template($('#user-watchlist-template').html()),
-        events: {},
+        events: {
+            'click .delete-watchlist': 'removeWatchlist'
+        },
 
         initialize: function () {
             _.bindAll(this, 'render');
@@ -41,15 +43,25 @@ var app = app || {};
             that.collection.fetch({
                 success: function () {
                     if (options.userId) {
-                        that.userId= options.userID
+                        that.userId= options.userId;
                         that.render(options.userId, that.collection.models);
                     }
                 }
             });
         },
 
-        followUser: function () {
-
+        removeWatchlist: function (event) {
+            var that = this;
+            var watchlistID = $(event.currentTarget).data("watchlist-id");
+            var watchlistModel = new app.Watchlist({id: watchlistID});
+            watchlistModel.destroy({
+                success: function (model, response) {
+                    that.get({userId : that.userId});
+                },
+                error: function (error) {
+                    console.log("Something wrong happened!" + error);
+                }
+            });
         }
 
     });
