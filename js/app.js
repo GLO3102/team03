@@ -100,20 +100,17 @@ var app = app || {};
     });
 
     app.UMovieRouter.on('route:userWatchlists', function (userId) {
-        clearViews();
-        app.UserProfileView.get({userId : userId});
+        $(".user-actions").empty();
         app.UserWatchlistView.get({userId : userId});
     });
 
     app.UMovieRouter.on('route:userFollowing', function (userId) {
-        clearViews();
-        app.UserProfileView.get({userId : userId});
+        $(".user-actions").empty();
         app.UserFollowingView.get({userId : userId});
     });
 
     app.UMovieRouter.on('route:userSearch', function (userId) {
-        clearViews();
-        app.UserProfileView.get({userId : userId});
+        $(".user-actions").empty();
         app.UserSearchView.get({userId : userId});
     });
 

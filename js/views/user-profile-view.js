@@ -11,8 +11,8 @@ var app = app || {};
         activeUser: null,
         followingId:'',
         events: {
-            'click #follow-user': 'followUser',
-            'click #remove-following': 'removeFollowing'
+            'click #follow-user-btn': 'followUser',
+            'click #remove-following-btn': 'removeFollowing'
         },
 
         initialize: function () {
@@ -58,11 +58,11 @@ var app = app || {};
 
         },
 
-        removeFollowing: function (event) {
+        removeFollowing: function () {
             var that = this;
-            var followingModel = new app.Following({id: that.followingId});
+            var followingModel = new app.Following({_id: that.followingId});
             followingModel.destroy({
-                success: function (model, response) {
+                success: function () {
                     that.get({userId:that.user.attributes.id});
                 },
                 error: function (error) {
@@ -72,7 +72,11 @@ var app = app || {};
         },
 
         followUser: function () {
-
+            var that = this;
+            var followingModel = new app.Following({id: that.user.attributes.id});
+            followingModel.save().complete(function () {
+                that.get({userId:that.user.attributes.id});
+            });
         }
 
     });

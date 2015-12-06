@@ -20,7 +20,7 @@
 	<link href="css/useractions.css" rel="stylesheet">
 
 </head>
-< class="animated fadeInDown">
+<body class="animated fadeInDown">
 
 	<div class="navbar navbar-static-top"></div>
 	<div class="container">
@@ -424,7 +424,7 @@
 					<button id="follow-user-btn" class="btn btn-success" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId' ) || isFollowing)%> display: none<%;%>">
 						Follow
 					</button>
-					<button id="remove-following" class="btn btn-danger" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId') || !isFollowing)%> display: none<%;%>">
+					<button id="remove-following-btn" class="btn btn-danger" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId') || !isFollowing)%> display: none<%;%>">
 						UnFollow
 					</button>
 				</div>

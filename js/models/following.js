@@ -4,8 +4,9 @@ var app = app || {};
     'use strict';
     app.Following = Backbone.Model.extend({
         urlRoot: 'http://umovie.herokuapp.com/follow',
+        idAttribute: "_id",
         defaults: {
-            "id": null,
+            "_id": null,
             "name": "",
             "email": ""
         },
