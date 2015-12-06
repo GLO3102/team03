@@ -31,13 +31,17 @@ var app = app || {};
 
         searchActors: function() {
             var searchText = $("#actor-search-text").val();
-            app.Actors.fetch({
-                data: $.param({
-                    q: searchText,
-                    limit: 20
-                }),
+            var that = this;
+            var oldURL =  that.collection.url;
+            that.collection.url = that.collection.url + "?q=" +encodeURIComponent(searchText);
+            that.collection.fetch({
+                success:function(){
+                    that.collection.url = oldURL;
+                },
                 error: function (error) {
                     console.log(error.message);
+                    that.collection.url = oldURL;
+
                 }
             });
         },

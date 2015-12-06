@@ -37,18 +37,17 @@ var app = app || {};
         searchMovie: function () {
             var that = this;
             var searchText = $("#movie-search-text").val();
-            that.sss = searchText;
+            var oldURL =  app.MoviesSearch.url;
+            app.MoviesSearch.url = app.MoviesSearch.url + "?q=" +encodeURIComponent(searchText);
             app.MoviesSearch.fetch({
-                data: $.param({
-                    q: searchText,
-                    limit: 30
-                }),
                 success: function (data) {
                     that.movies = data.models;
                     that.render();
+                    app.MoviesSearch.url = oldURL;
                 },
                 error: function (error){
                     console.log('Something went wrong!' + error.message);
+                    app.MoviesSearch.url = oldURL;
                 }
             })
         },

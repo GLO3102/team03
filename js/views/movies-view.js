@@ -31,15 +31,18 @@ var app = app || {};
 
         searchMovies: function(){
             var searchText = $("#movie-search-text").val();
+            var oldURL =  app.Movies.url;
+            var that = this;
+            app.Movies.url = app.Movies.url + "?q=" +encodeURIComponent(searchText);
             app.Movies.fetch({
-                data: $.param({ q: searchText,
-                    limit: 20
-                }),
                 success: function(data){
-
+                    app.Movies.url = oldURL;
+                    that.render();
+                },
+                error: function () {
+                    app.Movies.url = oldURL;
                 }
             });
-            this.render();
         },
 
         keyPressEventHandler : function(event){

@@ -34,16 +34,18 @@ var app = app || {};
 
         searchUsers: function(){
             var searchText = $("#user-search-text").val();
-            var encodedSearch = encodeURI(searchText);
             var that=this;
-            app.Users.fetch({
-                data: $.param({ q: encodedSearch}),
+            var oldURL =  that.collection.url;
+            that.collection.url = that.collection.url + "?q=" +encodeURIComponent(searchText);
+            that.collection.fetch({
                 success: function(data){
                     that.users = data.models;
                     that.render(that.userId);
+                    that.collection.url = oldURL;
                 },
                 error: function (error){
                     console.log('Something went wrong!' + error.message);
+                    that.collection.url = oldURL;
                 }
             });
         },

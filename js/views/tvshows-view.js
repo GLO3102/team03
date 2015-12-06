@@ -34,12 +34,18 @@ var app = app || {};
 
         searchTvShows: function() {
             var searchText = $("#tvshow-search-text").val();
+            var oldURL =  app.TvShows.url;
+            var that = this;
+            app.TvShows.url = app.TvShows.url + "?q=" +encodeURIComponent(searchText);
             app.TvShows.fetch({
-                data: $.param({
-                    q: searchText
-                })
+                success: function(data){
+                    app.TvShows.url = oldURL;
+                    that.render();
+                },
+                error: function () {
+                    app.TvShows.url = oldURL;
+                }
             });
-            this.render();
         },
 
         keyPressEventHandler: function (event) {
