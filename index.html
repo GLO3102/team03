@@ -37,6 +37,7 @@
 		<div class="user-profile"></div>
 		<div class="user-actions"></div>
 	</div>
+	<div class="modal fade bs-example-modal-lg" id="episodeModal" tabindex="-1" role="dialog" aria-labelledby="episodeModalLabel"></div>
 
 	<script type="text/template" id="navbar-template">
 		<div class="navbar-inner">
@@ -77,8 +78,7 @@
 
 			<div class="input-append">
 				<input class="span3" id="tvshow-search-text" type="text">
-				<button id="tvshow-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i>
-				</button>
+				<button id="tvshow-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
 			</div>
 			<table class="table striped">
 				<tbody>
@@ -95,7 +95,6 @@
 
 	<script type="text/template" id="tvshow-template">
 		<div class="row">
-
 			<div class="span12">
 				<div class="span5">
 					<div>
@@ -121,12 +120,60 @@
 					<h5>Plot Summary : </h5>
 
 					<p class="tv-show-description"><%= tvshow.longDescription %></p>
-					<h4>Episodes</h4>
-					<ol class="tv-show-episodes">
-						<% _.each(episodes, function (episode) { %>
-						<li><%= episode.attributes.trackName %></a></li>
-						<% }); %>
-					</ol>
+					<div class="episodes"></div>
+				</div>
+			</div>
+		</div>
+	</script>
+
+	<script type="text/template" id="episodes-template">
+		<h4>Episodes</h4>
+		<input class="span3" id="episodes-search-text" type="text">
+		<button id="episodes-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+		<ol class="tv-show-episodes">
+			<% _.each(episodes, function (episode) { %>
+			<li>
+				<a class="show-episode" href="#" data-episode-id="<%= episode.attributes.trackId%>"><%=
+					episode.attributes.trackName %></a>
+			</li>
+			<% }); %>
+		</ol>
+	</script>
+
+	<script type="text/template" id="episode-modal-template">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="episodeModalLabel"><%= episode.trackName %></h4>
+				</div>
+				<div class="modal-body">
+					<div>
+						<div class="span5"> 
+							<div>
+								<img class="cover-image" src="<%= episode.artworkUrl100.replace('100x100', '500x350') %>">
+							</div>
+							<ul class="movie-basic-informations"> 
+								<li> 
+									<span class="label">Season </span> 
+									<span class="item"><%= episode.collectionName %></span> 
+								</li>
+								 
+								<li> 
+									<span class="label">Length </span> 
+									<span class="item"><%= episode.readableLength %></span> 
+								</li>
+							</ul>
+						</div>
+
+						<div class="movie-box-info"> 
+							<h5>Description </h5>
+							<p class="movie-description"><%= episode.longDescription %></p> 
+							<iframe width="450" height="300" src="https://www.youtube.com/embed/<%= youtubeID %>" frameborder="0" allowfullscreen></iframe>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="closeModal" type="button" class="btn btn-default">Close</button>
 				</div>
 			</div>
 		</div>
@@ -492,7 +539,7 @@
 						<tr>
 							<th>Name</th>
 							<th>Email</th>
-							<th style="<% if (user.id !== $.cookie('userId'))%> display: none<%;%>" >Action</th>
+							<th style="<% if (user.id !== $.cookie('userId'))%> display: none<%;%>">Action</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -501,7 +548,7 @@
 							<td><%= following.name %></td>
 							<td><%= following.email %></td>
 							<td style="<% if (user.id !== $.cookie('userId'))%> display: none<%;%>">
-								<button class="remove-following btn btn-danger" data-following-id="<%= following.id%>" >
+								<button class="remove-following btn btn-danger" data-following-id="<%= following.id%>">
 									UnFollow
 								</button>
 							</td>
@@ -551,6 +598,7 @@
 	</div>
 	</script>
 
+
 	<script src="lib/js/jquery.js"></script>
 	<script src="lib/js/bootstrap.js"></script>
 	<script src="lib/js/jquery.jkit.1.1.10.js"></script>
@@ -586,6 +634,7 @@
 	<script src="js/collections/watchlists.js"></script>
 	<script src="js/collections/moviesSearch.js"></script>
 
+	<script src="js/views/episode-modal-view.js"></script>
 	<script src="js/views/tvshows-view.js"></script>
 	<script src="js/views/tvshow-view.js"></script>
 	<script src="js/views/watchlist-movies-view.js"></script>

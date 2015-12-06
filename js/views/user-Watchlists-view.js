@@ -41,7 +41,7 @@ var app = app || {};
             that.collection.fetch({
                 success: function () {
                     if (options.userId) {
-                        that.userId= options.userID
+                        that.userId= options.userID;
                         that.render(options.userId, that.collection.models);
                     }
                 }

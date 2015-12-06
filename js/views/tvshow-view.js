@@ -9,6 +9,20 @@ var app = app || {};
         tvshow: null,
         episodes: null,
         tvShowTemplate: _.template($('#tvshow-template').html()),
+        episodeModal: app.EpisodeModalView,
+
+        events: {
+            'click .show-episode': 'showEpisode'
+        },
+
+        showEpisode: function (e) {
+            var that = this;
+            var episodeID = $(e.currentTarget).data("episode-id");
+            var episode = _.find(that.episodes.models, function (obj) {return obj.attributes.trackId === episodeID});
+            this.episodeModal.show(episode);
+            e.preventDefault();
+            return false;
+        },
 
         initialize: function () {
             _.bindAll(this, 'render');

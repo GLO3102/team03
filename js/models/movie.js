@@ -3,7 +3,7 @@ var app = app || {};
 (function () {
     'use strict';
     app.Movie = Backbone.Model.extend({
-        urlRoot: 'http://umovie.herokuapp.com/movies',
+        urlRoot: 'http://localhost:3000/movies',
         defaults: {
             "wrapperType": '',
             "kind": '',
