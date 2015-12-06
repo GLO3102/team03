@@ -10,7 +10,7 @@
 
 .user-profile #user-navbar{
     float: left;
-    max-width: 100%;
+    width: 100%;
 }
 
 .user-profile .span5 {

@@ -43,14 +43,25 @@ var app = app || {};
 
         addWatchlist: function () {
             var that = this;
-            if ($('#watchlist-create-name').val().trim() === '') {
+            var watchlistName = $('#watchlist-create-name').val().trim();
+            if (watchlistName === '') {
                 alert("Please enter a name for your new Watchlist")
             }
             else {
-                var watchlistModel = new app.Watchlist({name: $('#watchlist-create-name').val()});
-                watchlistModel.save().complete(function () {
-                    that.get();
+                var exist = false;
+                that.collection.models.forEach(function(watchlist){
+                    if(watchlist.attributes.name === watchlistName){
+                        exist = true;
+                        alert("This name is already taken for a watchlist")
+                    }
                 });
+                if (!exist){
+                    var watchlistModel = new app.Watchlist({name: watchlistName});
+                    watchlistModel.save().complete(function () {
+                        that.get();
+                    });
+                }
+
             }
         },
 
@@ -78,12 +89,21 @@ var app = app || {};
                     alert("Please enter a name for the updated Watchlist")
                 }
                 else {
-                    var watchlistID = $(event.currentTarget).data("watchlist-id");
-                    var watchlistModel = that.collection.get(watchlistID);
-                    watchlistModel.set({name: that.input});
-                    watchlistModel.save().complete(function () {
-                        that.get();
+                    var exist = false;
+                    that.collection.models.forEach(function(watchlist){
+                        if(watchlist.attributes.name === that.input){
+                            exist = true
+                            alert("This name is already taken for a watchlist")
+                        }
                     });
+                    if (!exist){
+                        var watchlistID = $(event.currentTarget).data("watchlist-id");
+                        var watchlistModel = that.collection.get(watchlistID);
+                        watchlistModel.set({name: that.input});
+                        watchlistModel.save().complete(function () {
+                            that.get();
+                        });
+                    }
                 }
             }
         }
