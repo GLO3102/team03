@@ -19,10 +19,6 @@ var app = app || {};
             'users/:id/watchlists' : 'userWatchlists',
             'users/:id/following' : 'userFollowing',
             'users/:id/search' : 'userSearch'
-
-
-
-
         }
     });
 

@@ -9,6 +9,21 @@ var app = app || {};
         tvshow: null,
         episodes: null,
         tvShowTemplate: _.template($('#tvshow-template').html()),
+        episodeModal: app.EpisodeModalView,
+        episodesView : app.EpisodesView,
+
+        events: {
+            'click .show-episode': 'showEpisode'
+        },
+
+        showEpisode: function (e) {
+            var that = this;
+            var episodeID = $(e.currentTarget).data("episode-id");
+            var episode = _.find(that.episodes.models, function (obj) {return obj.attributes.trackId === episodeID});
+            this.episodeModal.show(episode);
+            e.preventDefault();
+            return false;
+        },
 
         initialize: function () {
             _.bindAll(this, 'render');
@@ -31,10 +46,12 @@ var app = app || {};
                 var renderWithYoutubeVideo = function (youtubeID) {
                     that.$el.html(that.tvShowTemplate({
                         tvshow: that.tvshow.toJSON(),
-                        youtubeID: youtubeID,
-                        episodes: that.episodes.models.sort(function (a, b) {
-                            return a.get('trackNumber') - b.get('trackNumber');
-                        })
+                        youtubeID: youtubeID
+                    }));
+
+                    that.episodesView.$el = $('#episodes');
+                    that.episodesView.render(that.episodes.models.sort(function (a, b) {
+                        return a.get('trackNumber') - b.get('trackNumber');
                     }));
                 };
 

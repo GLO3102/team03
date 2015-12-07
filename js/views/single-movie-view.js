@@ -31,8 +31,7 @@ var app = app || {};
                         youtubeID: youtubeID
                     }));
 
-                }
-
+                };
                 youtubeSearch(that.movie.attributes.results[0].trackName + ' trailer', renderWithYoutubeVideo);
             });
         },
