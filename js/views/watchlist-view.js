@@ -9,7 +9,7 @@ var app = app || {};
 
         collection: new app.Watchlists(),
         watchlistTemplate: _.template($('#watchlist-template').html()),
-
+        userWatchlists : [],
         events: {
             'click #create-watchlist': 'addWatchlist',
             'keypress .edit-watchlist-name': 'updateWatchlistOnEnter',
@@ -27,8 +27,14 @@ var app = app || {};
 
         render: function () {
             var that = this;
+            that.userWatchlists = [];
+            that.collection.models.forEach(function (watchlist) {
+                if (watchlist.attributes.owner.id === $.cookie('userId')) {
+                    that.userWatchlists.push(watchlist);
+                }
+            });
             that.$el.html(that.watchlistTemplate({
-                watchlists: that.collection.models
+                watchlists:that.userWatchlists
             }));
         },
 
@@ -49,7 +55,7 @@ var app = app || {};
             }
             else {
                 var exist = false;
-                that.collection.models.forEach(function(watchlist){
+                that.userWatchlists.forEach(function(watchlist){
                     if(watchlist.attributes.name === watchlistName){
                         exist = true;
                         alert("This name is already taken for a watchlist")
