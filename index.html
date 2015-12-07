@@ -537,7 +537,7 @@
 							<td><%= following.name %></td>
 							<td><%= following.email %></td>
 							<td style="<% if (user.id !== $.cookie('userId'))%> display: none<%;%>">
-								<button class="remove-following btn btn-danger" data-following-id="<%= following.id%>">
+								<button class="remove-following btn btn-danger" data-following-id="<%= following._id%>">
 									UnFollow
 								</button>
 							</td>
