@@ -120,7 +120,7 @@
 					<h5>Plot Summary : </h5>
 
 					<p class="tv-show-description"><%= tvshow.longDescription %></p>
-					<div class="episodes"></div>
+					<div id="episodes"></div>
 				</div>
 			</div>
 		</div>
@@ -129,7 +129,8 @@
 	<script type="text/template" id="episodes-template">
 		<h4>Episodes</h4>
 		<input class="span3" id="episodes-search-text" type="text">
-		<button id="episodes-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+		<button id="episodes-search-btn" class="btn btn-primary episode-search" type="button"><i class="icon-search"></i></button>
+		<% if (episodes.length > 0) {%>
 		<ol class="tv-show-episodes">
 			<% _.each(episodes, function (episode) { %>
 			<li>
@@ -138,6 +139,9 @@
 			</li>
 			<% }); %>
 		</ol>
+		<% } else { %>
+		<p>No episodes found for this request...</p>
+		<% } %>
 	</script>
 
 	<script type="text/template" id="episode-modal-template">
@@ -148,7 +152,7 @@
 				</div>
 				<div class="modal-body">
 					<div>
-						<div class="span5"> 
+						<div class="span5 episode-info"> 
 							<div>
 								<img class="cover-image" src="<%= episode.artworkUrl100.replace('100x100', '500x350') %>">
 							</div>
@@ -634,6 +638,7 @@
 	<script src="js/collections/watchlists.js"></script>
 	<script src="js/collections/moviesSearch.js"></script>
 
+	<script src="js/views/episodes-view.js"></script>
 	<script src="js/views/episode-modal-view.js"></script>
 	<script src="js/views/tvshows-view.js"></script>
 	<script src="js/views/tvshow-view.js"></script>

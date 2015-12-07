@@ -10,6 +10,7 @@ var app = app || {};
         episodes: null,
         tvShowTemplate: _.template($('#tvshow-template').html()),
         episodeModal: app.EpisodeModalView,
+        episodesView : app.EpisodesView,
 
         events: {
             'click .show-episode': 'showEpisode'
@@ -45,10 +46,12 @@ var app = app || {};
                 var renderWithYoutubeVideo = function (youtubeID) {
                     that.$el.html(that.tvShowTemplate({
                         tvshow: that.tvshow.toJSON(),
-                        youtubeID: youtubeID,
-                        episodes: that.episodes.models.sort(function (a, b) {
-                            return a.get('trackNumber') - b.get('trackNumber');
-                        })
+                        youtubeID: youtubeID
+                    }));
+
+                    that.episodesView.$el = $('#episodes');
+                    that.episodesView.render(that.episodes.models.sort(function (a, b) {
+                        return a.get('trackNumber') - b.get('trackNumber');
                     }));
                 };
 
