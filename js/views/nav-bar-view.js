@@ -23,7 +23,7 @@ var app = app || {};
             $.removeCookie('userName');
             $.removeCookie('userId');
             $.ajax({
-                url: 'http://localhost:3000/logout',
+                url: 'http://umovie.herokuapp.com/logout',
                 type: 'GET'
             }).done(function (){
                 window.location.href = './home.html';

@@ -54,7 +54,7 @@ var app = app || {};
 
             if (this.formIsValid(name, email, password, passwordConfirmation)) {
                 $.ajax({
-                    url: 'http://localhost:3000/signup',
+                    url: 'http://umovie.herokuapp.com/signup',
                     type: 'POST',
                     data: new Register(name, email, password),
                     contentType: 'application/x-www-form-urlencoded'

@@ -2,7 +2,7 @@
 var userToken = $.cookie('userToken');
 if(userToken){
     $.ajax({
-        url: 'http://localhost:3000/tokenInfo',
+        url: 'http://umovie.herokuapp.com/tokenInfo',
         type: 'GET',
         beforeSend: function (request){
             request.setRequestHeader('Authorization', userToken);

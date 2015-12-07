@@ -46,7 +46,7 @@ var app = app || {};
 
             if(this.formIsValid(email, password)){
                 $.ajax({
-                    url: 'http://localhost:3000/login',
+                    url: 'http://umovie.herokuapp.com/login',
                     type: 'POST',
                     data: new Login(email, password),
                     contentType: 'application/x-www-form-urlencoded'
