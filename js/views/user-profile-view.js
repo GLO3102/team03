@@ -34,7 +34,7 @@ var app = app || {};
                     that.activeUser.attributes.following.forEach(function (follow){
                        if  (follow.email === that.user.attributes.email){
                            isFollowing = true;
-                           that.followingId = follow._id;
+                           that.followingId = follow.id;
                        }
                     });
                     that.$el.html(that.currentUserTemplate({
