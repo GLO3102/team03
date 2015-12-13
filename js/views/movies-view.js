@@ -7,7 +7,7 @@ var app = app || {};
 
         el: '.movies',
 
-        awesomplete: null,
+        autocomplete: null,
         collection: app.Movies,
         moviesTemplate: _.template($('#movies-template').html()),
 
@@ -17,7 +17,6 @@ var app = app || {};
         },
         initialize: function () {
             _.bindAll(this, 'render');
-            var input = document.getElementById("movie-search-text");
         },
 
         render: function () {
@@ -25,9 +24,10 @@ var app = app || {};
             that.$el.html(that.moviesTemplate({
                 movies: that.collection.models
             }));
-            var input = document.getElementById("movie-search-text");
-            this.awesomplete = new Awesomplete(input);
-            this.updateAutoCompleteData();
+
+            var searchTextField = document.getElementById("movie-search-text");
+            this.autocomplete = new Awesomplete(searchTextField);
+
         },
 
         searchMovies: function(){
@@ -36,7 +36,7 @@ var app = app || {};
             var that = this;
             app.Movies.url = app.Movies.url + "?q=" +encodeURIComponent(searchText);
             app.Movies.fetch({
-                success: function(data){
+                success: function(){
                     app.Movies.url = oldURL;
                     that.render();
                 },
@@ -50,54 +50,33 @@ var app = app || {};
             if(event.keyCode == 13){
                 this.$("#movie-search-btn").click();
             }
-        /*
+
             else
             {
                 var searchText = $("#movie-search-text").val();
-                if(searchText.length > 3) {
-                    var oldURL = app.Movies.url;
-                    var that = this;
-                    app.Movies.url = app.Movies.url + "?q=" + encodeURIComponent(searchText);
-                    app.Movies.fetch({
-                        success: function () {
-                            that.updateAutoCompleteData()
-                        },
-                        error: function () {
-                        }
-                    });
-
-                    app.Movies.url = oldURL;
-                }
-            }*/
+                if(searchText.length > 2 && searchText.length < 5)
+                    this.updateAutoCompleteData(searchText)
+            }
         },
 
-        updateAutoCompleteData : function()
+        updateAutoCompleteData : function(searchText)
         {
-            //http://umovie.herokuapp.com/search/movies?q=war&limit=0
-
-            var oldURL = app.Movies.url;
             var that = this;
-            app.Movies.url = "http://umovie.herokuapp.com/search/movies?q=war&limit=0";
+            app.Movies.url = "http://umovie.herokuapp.com/search/movies?q=" + searchText + "&limit=0";
             app.Movies.fetch({
                 success: function () {
-                    console.log("JE SUIS CHARLES");
                     var namesArray = new Array();
-
                     for(var i=0; i< app.Movies.length; i++)
                     {
                         namesArray.push(app.Movies.models[i].attributes.trackName);
                     }
-                    that.awesomplete.list = namesArray;
+
+                    that.autocomplete.list = namesArray;
                 }
             });
-            /*var namesArray = new Array();
 
-            for(var i=0; i< app.Movies.length; i++)
-            {
-                namesArray.push(app.Movies.models[i].attributes.trackName);
-            }
-
-            this.awesomplete.list = namesArray;*/
+            app.Movies.url = "http://umovie.herokuapp.com/search/movies";
+            app.Movies.reset();
 
         },
 

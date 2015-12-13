@@ -6,6 +6,7 @@ var app = app || {};
     var ActorsView = Backbone.View.extend({
 
         el: '.actors',
+        autocomplete: null,
         collection: app.Actors,
         actorsTemplate: _.template($('#actors-template').html()),
 
@@ -16,10 +17,7 @@ var app = app || {};
 
         initialize: function () {
             _.bindAll(this, 'render');
-            var that = this;
-            /*that.collection.bind("change add remove", function () {
-                that.render();
-            });*/
+
         },
 
         render: function () {
@@ -27,6 +25,9 @@ var app = app || {};
             that.$el.html(that.actorsTemplate({
                 actors: that.collection.models
             }));
+
+            var searchTextField = document.getElementById("actor-search-text");
+            this.autocomplete = new Awesomplete(searchTextField);
         },
 
         searchActors: function() {
@@ -50,6 +51,34 @@ var app = app || {};
             if (event.keyCode == 13) {
                 this.searchActors();
             }
+
+            else
+            {
+                var searchText = $("#actor-search-text").val();
+                if(searchText.length > 2 && searchText.length < 5)
+                    this.updateAutoCompleteData(searchText)
+            }
+        },
+
+        updateAutoCompleteData : function(searchText)
+        {
+            var that = this;
+            app.Actors.url = "http://umovie.herokuapp.com/search/actors?q=" + searchText + "&limit=0";
+            app.Actors.fetch({
+                success: function () {
+                    var namesArray = new Array();
+                    for(var i=0; i< app.Actors.length; i++)
+                    {
+                        namesArray.push(app.Actors.models[i].attributes.artistName);
+                    }
+
+                    that.autocomplete.list = namesArray;
+                }
+            });
+
+            app.Actors.url = "http://umovie.herokuapp.com/search/actors";
+            app.Actors.reset();
+
         },
 
         get: function () {

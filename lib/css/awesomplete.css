@@ -16,6 +16,7 @@ div.awesomplete > input {
 
 div.awesomplete > ul {
 	position: absolute;
+    color: black;
 	left: 0;
 	z-index: 1;
 	min-width: 100%;
@@ -80,7 +81,7 @@ div.awesomplete > ul:empty {
 	
 	div.awesomplete > ul > li[aria-selected="true"] {
 		background: hsl(205, 40%, 40%);
-		color: white;
+		color: black;
 	}
 	
 		div.awesomplete mark {
