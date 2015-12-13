@@ -7,6 +7,7 @@ var app = app || {};
 
         el: '.movies',
 
+        awesomplete: null,
         collection: app.Movies,
         moviesTemplate: _.template($('#movies-template').html()),
 
@@ -16,10 +17,8 @@ var app = app || {};
         },
         initialize: function () {
             _.bindAll(this, 'render');
-            var that = this;
-            that.collection.bind("change add remove", function () {
-                that.render();
-            });
+            var input = document.getElementById("movie-search-text");
+            this.awesomplete = new Awesomplete(input);
         },
 
         render: function () {
@@ -49,6 +48,38 @@ var app = app || {};
             if(event.keyCode == 13){
                 this.$("#movie-search-btn").click();
             }
+
+            else
+            {
+                var searchText = $("#movie-search-text").val();
+                if(searchText.length > 3) {
+                    var oldURL = app.Movies.url;
+                    var that = this;
+                    app.Movies.url = app.Movies.url + "?q=" + encodeURIComponent(searchText);
+                    app.Movies.fetch({
+                        success: function () {
+                            that.updateAutoCompleteData()
+                        },
+                        error: function () {
+                        }
+                    });
+
+                    app.Movies.url = oldURL;
+                }
+            }
+        },
+
+        updateAutoCompleteData : function()
+        {
+            var namesArray = new Array();
+
+            for(var i=0; i< app.Movies.length; i++)
+            {
+                namesArray.push(app.Movies.models[i].attributes.trackName);
+            }
+
+            this.awesomplete.list = namesArray;
+
         },
 
         get: function () {
