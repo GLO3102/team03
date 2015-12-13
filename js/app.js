@@ -22,9 +22,11 @@ var app = app || {};
         }
     });
 
-    function clearViews() {
+    app.clearViews = function(){
+    //function clearViews() {
         $(".tvshows").empty();
         $(".tvshow").empty();
+        $(".global-search").empty();
         $(".actors").empty();
         $(".single-actor").empty();
         $(".watchlist").empty();
@@ -36,61 +38,61 @@ var app = app || {};
         $(".user-profile").empty();
         $(".user-actions").empty();
 
-    }
+    };
 
     app.UMovieRouter = new UMovieRouter();
     app.NavBarView.render();
 
     app.UMovieRouter.on('route:home', function () {
-        clearViews();
+        app.clearViews();
     });
     app.UMovieRouter.on('route:tvshows', function () {
-        clearViews();
+        app.clearViews();
         app.TvShowsView.get();
     });
     app.UMovieRouter.on('route:tvshow', function (tvShowID) {
-        clearViews();
+        app.clearViews();
         app.TvShowView.get({tvShowID: tvShowID});
     });
     app.UMovieRouter.on('route:watchlists', function () {
-        clearViews();
+        app.clearViews();
         app.WatchlistView.get();
     });
     app.UMovieRouter.on('route:actors', function () {
-        clearViews();
+        app.clearViews();
         app.ActorsView.get();
     });
     app.UMovieRouter.on('route:singleActor', function (actorID) {
-        clearViews();
+        app.clearViews();
         app.SingleActorView.get({actorID : actorID});
     });
     app.UMovieRouter.on('route:watchlistMovies', function (watchlistID) {
-        clearViews();
+        app.clearViews();
         app.WatchlistMoviesView.get({watchlistID: watchlistID});
     });
 
     app.UMovieRouter.on('route:watchlistAddMovies', function (watchlistID) {
-        clearViews();
+        app.clearViews();
         app.AddMovieView.fetchWatchlist(watchlistID);
     });
 
     app.UMovieRouter.on('route:singleMovie', function (movieID) {
-        clearViews();
+        app.clearViews();
         app.SingleMovieView.get({movieID : movieID});
     });
 
     app.UMovieRouter.on('route:movies', function () {
-        clearViews();
+        app.clearViews();
         app.MoviesView.get();
     });
 
     app.UMovieRouter.on('route:addToWatchlist', function (movieID) {
-        clearViews();
+        app.clearViews();
         app.AddToWatchlistView.get({movieID: movieID});
     });
 
     app.UMovieRouter.on('route:user', function (userId) {
-        clearViews();
+        app.clearViews();
         app.UserProfileView.get({userId : userId});
         app.UserWatchlistView.get({userId : userId});
     });

@@ -29,6 +29,7 @@
 		<div class="tvshows"></div>
 		<div class="tvshow"></div>
 		<div class="actors"></div>
+		<div class="global-search"></div>
 		<div class="single-actor"></div>
 		<div class="watchlist"></div>
 		<div class="watchlist-movies"></div>
@@ -49,7 +50,10 @@
 					<span class="icon-bar"></span>
 				</a>
 				<a href="#/"><h1 class="navbar-title">UMovie</h1></a>
-
+				<div class="input-append">
+					<input class="span3" id="global-search-text" type="text">
+					<button id="global-search-btn" class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+				</div>
 				<div class="nav-collapse collapse">
 					<ul class="nav pull-left">
 						<li><a href="#tvshows">Tv Show</a></li>
@@ -298,6 +302,80 @@
 				<% }); %>
 				</tbody>
 			</table>
+		</div>
+	</script>
+
+	<script type="text/template" id="global-search-template">
+		<div class="span12">
+			<h3>Actors</h3>
+			<% if (actors.length > 0) {%>
+			<table class="table striped">
+				<tbody>
+				<% _.each(actors, function (actor) { %>
+				<tr>
+					<td><a href="#/actors/<%= actor.artistId %>"><%= actor.artistName %></a></td>
+				</tr>
+				<% }); %>
+				</tbody>
+			</table>
+			<% } else { %>
+			<p>No actor found...</p>
+			<% } %>
+
+			<h3>Movie search</h3>
+			<% if (movies.length > 0) {%>
+			<table class="table striped">
+				<tbody>
+				<% _.each(movies, function (movie) { %>
+				<tr>
+					<td><a href="#/movie/<%= movie.attributes.trackId %>"><%= movie.attributes.trackName %></a></td>
+					<td><a href="#/movie/addToWatchlist/<%= movie.trackId %>">Add this movie to a watchlist</a></td>
+				</tr>
+				<% }); %>
+				</tbody>
+			</table>
+			<% } else { %>
+			<p>No movie found...</p>
+			<% } %>
+
+			<h3>User search</h3>
+			<% if (users.length > 0) {%>
+			<table class="table striped">
+				<tbody>
+				<% _.each(users, function (user) { %>
+				<tr>
+					<td><a href="#/users/<%= user.attributes.id %>"><%= user.attributes.name %></a></td>
+					<td><%= user.attributes.email %></a></td>
+					<td><button data-user-id="<%= user.attributes.id %>" class="btn btn-success follow-user-btn" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId' ) || user.isFollowing)%> display: none<%;%>">
+						Follow
+					</button>
+					<button data-user-id="<%= user.attributes.id %>" class="btn btn-danger remove-following-btn" data-following-id="<%= user.id%>" style="<% if (user.id === $.cookie('userId') || !user.isFollowing)%> display: none<%;%>">
+						UnFollow
+					</button>
+					</td>
+				</tr>
+				<% }); %>
+				</tbody>
+			</table>
+			<% } else { %>
+			<p>No user found...</p>
+			<% } %>
+
+			<h3>Tv Show search</h3>
+			<% if (tvshows.length > 0) {%>
+			<table class="table striped">
+				<tbody>
+				<% _.each(tvshows, function (tvshow) { %>
+				<tr>
+					<td><a href="#/tvshows/<%= tvshow.attributes.collectionId %>"><%= tvshow.attributes.collectionName
+						%></a></td>
+				</tr>
+				<% }); %>
+				</tbody>
+			</table>
+			<% } else { %>
+			<p>No tv show found...</p>
+			<% } %>
 		</div>
 	</script>
 
@@ -627,6 +705,7 @@
 	<script src="js/views/add-movie-view.js"></script>
 	<script src="js/views/actors-view.js"></script>
 	<script src="js/views/single-actor-view.js"></script>
+	<script src="js/views/global-search-view.js"></script>
 	<script src="js/views/nav-bar-view.js"></script>
 	<script src="js/views/movies-view.js"></script>
 	<script src="js/views/add-movie-to-watchlist-view.js"></script>
