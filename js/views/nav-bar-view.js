@@ -8,7 +8,9 @@ var app = app || {};
         navBarTemplate: _.template($('#navbar-template').html()),
 
         events: {
-           'click #logOut': 'logOutUser'
+            'click #logOut': 'logOutUser',
+            'click #global-search-btn': 'globalSearchOfDooooom',
+            'keyup #global-search-text': 'keyPressEventHandler'
         },
 
         render: function () {
@@ -28,6 +30,16 @@ var app = app || {};
             }).done(function (){
                 window.location.href = './home.html';
             });
+        },
+
+        keyPressEventHandler : function(event) {
+            if (event.keyCode == 13) {
+                this.globalSearchOfDooooom();
+            }
+        },
+        globalSearchOfDooooom: function () {
+            var searchText = $("#global-search-text").val();
+            app.GlobalSearchView.render(searchText);
         }
     });
 

@@ -17,9 +17,9 @@ var app = app || {};
         initialize: function () {
             _.bindAll(this, 'render');
             var that = this;
-            that.collection.bind("change add remove", function () {
+            /*that.collection.bind("change add remove", function () {
                 that.render();
-            });
+            });*/
         },
 
         render: function () {
@@ -37,11 +37,11 @@ var app = app || {};
             that.collection.fetch({
                 success:function(){
                     that.collection.url = oldURL;
+                    that.render();
                 },
                 error: function (error) {
                     console.log(error.message);
                     that.collection.url = oldURL;
-
                 }
             });
         },

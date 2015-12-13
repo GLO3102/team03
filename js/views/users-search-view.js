@@ -19,9 +19,9 @@ var app = app || {};
         initialize: function () {
             _.bindAll(this, 'render');
             var that = this;
-            that.collection.bind("change add remove", function () {
+            /*that.collection.bind("change add remove", function () {
                 that.render();
-            });
+            });*/
         },
 
         render: function (userId) {
