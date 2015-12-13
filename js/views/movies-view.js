@@ -18,7 +18,6 @@ var app = app || {};
         initialize: function () {
             _.bindAll(this, 'render');
             var input = document.getElementById("movie-search-text");
-            this.awesomplete = new Awesomplete(input);
         },
 
         render: function () {
@@ -26,6 +25,9 @@ var app = app || {};
             that.$el.html(that.moviesTemplate({
                 movies: that.collection.models
             }));
+            var input = document.getElementById("movie-search-text");
+            this.awesomplete = new Awesomplete(input);
+            this.updateAutoCompleteData();
         },
 
         searchMovies: function(){
@@ -48,7 +50,7 @@ var app = app || {};
             if(event.keyCode == 13){
                 this.$("#movie-search-btn").click();
             }
-
+        /*
             else
             {
                 var searchText = $("#movie-search-text").val();
@@ -66,19 +68,36 @@ var app = app || {};
 
                     app.Movies.url = oldURL;
                 }
-            }
+            }*/
         },
 
         updateAutoCompleteData : function()
         {
-            var namesArray = new Array();
+            //http://umovie.herokuapp.com/search/movies?q=war&limit=0
+
+            var oldURL = app.Movies.url;
+            var that = this;
+            app.Movies.url = "http://umovie.herokuapp.com/search/movies?q=war&limit=0";
+            app.Movies.fetch({
+                success: function () {
+                    console.log("JE SUIS CHARLES");
+                    var namesArray = new Array();
+
+                    for(var i=0; i< app.Movies.length; i++)
+                    {
+                        namesArray.push(app.Movies.models[i].attributes.trackName);
+                    }
+                    that.awesomplete.list = namesArray;
+                }
+            });
+            /*var namesArray = new Array();
 
             for(var i=0; i< app.Movies.length; i++)
             {
                 namesArray.push(app.Movies.models[i].attributes.trackName);
             }
 
-            this.awesomplete.list = namesArray;
+            this.awesomplete.list = namesArray;*/
 
         },
 
