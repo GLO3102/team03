@@ -69,10 +69,10 @@ Page User/My Profile
  - team03/index.html#/users/:id/following
  - team03/index.html#/users/:id/search
 
-**Explications:** Lorsque l'on clique sur le nom de l'utilisateur en haut � droite, nous avons la posibilit� de s�lectionner My Profile. Cette action nous redirige vers le profile de l'utilsateur courant de l'application.
-                  La liste des watchlist de l'utilisateur est automatiquement affich�e. En cliquant sur delete, la watchlist correspondante est supprim�e seulement lorsque l'utilisateur est sur son propre profile.
-                  Il est toujours possible de revenir � cet liste en cliquant sur Watchlists (en dessou des informations du profil).
-                  En cliquant sur Firends, l'ustilisateur a acc�s � sa liste d'amis. Lorsque l'utilisateur est sur son propre profile, il a  la possibilit� de supprimer des amis de sa liste.
+**Explications:** Lorsque l'on clique sur le nom de l'utilisateur en haut � droite, nous avons la posibilit� de s�lectionner My Profile. Cette action nous redirige vers le profile de l'utilisateur courant de l'application.
+                  La liste des watchlists de l'utilisateur est automatiquement affich�e. En cliquant sur delete, la watchlist correspondante est supprim�e seulement lorsque l'utilisateur est sur son propre profile.
+                  Il est toujours possible de revenir � cet liste en cliquant sur Watchlists (en dessous des informations du profil).
+                  En cliquant sur Friends, l'utilisateur a acc�s � sa liste d'amis. Lorsque l'utilisateur est sur son propre profile, il a  la possibilit� de supprimer des amis de sa liste.
                   L'onglet Find User permet la recherche d'autres utilisateur. Il suffit d'inscrire le nom d'utilisateur recherch�, d'appuyer sur la loupe et s�lectionner un utilisateur.
                   Nous somme alors redirig� vers le profile de l'utilisateur s�lectionn�. M�me si les onglet sont pr�sent, il n'est par contre pas possible de supprimer des watchlists ou des firends de la liste d'un autre utilisateur.
-                  Si l'utilisateur courant n'est pas amis avec l'utilisateur affich� � l'�cran, un bouton Follow lui est offert pour le suivre. Si non, un bouton UnFollow appara�t lorsque c'est un ami pr�sent dans notre liste.
+                  Si l'utilisateur courant n'est pas amis avec l'utilisateur affich� � l'�cran, un bouton Follow lui est offert pour le suivre. Si non, un bouton UnFollow appara�t lorsque c'est un ami pr�sent dans notre liste. ùL'avatar affiché dans la barre de navigation et dans le profile provient de Gravatar.
