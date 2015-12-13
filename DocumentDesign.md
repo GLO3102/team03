@@ -56,3 +56,20 @@ Page Watchlist
                   De retour à la liste des films de la watchlist, il est possible d'appuyer sur "Remove from watchlist" pour enlever un film de la watchlist.
 
 
+Page User/My Profile
+--------------
+
+**Urls:**
+
+ - team03/index.html#/users/:id'
+ - team03/index.html#/users/:id/watchlists
+ - team03/index.html#/users/:id/following
+ - team03/index.html#/users/:id/search
+
+**Explications:** Lorsque l'on clique sur le nom de l'utilisateur en haut à droite, nous avons la posibilité de sélectionner My Profile. Cette action nous redirige vers le profile de l'utilsateur courant de l'application.
+                  La liste des watchlist de l'utilisateur est automatiquement affichée. En cliquant sur delete, la watchlist correspondante est supprimée seulement lorsque l'utilisateur est sur son propre profile.
+                  Il est toujours possible de revenir à cet liste en cliquant sur Watchlists (en dessou des informations du profil).
+                  En cliquant sur Firends, l'ustilisateur a accès à sa liste d'amis. Lorsque l'utilisateur est sur son propre profile, il a  la possibilité de supprimer des amis de sa liste.
+                  L'onglet Find User permet la recherche d'autres utilisateur. Il suffit d'inscrire le nom d'utilisateur recherché, d'appuyer sur la loupe et sélectionner un utilisateur.
+                  Nous somme alors redirigé vers le profile de l'utilisateur sélectionné. Même si les onglet sont présent, il n'est par contre pas possible de supprimer des watchlists ou des firends de la liste d'un autre utilisateur.
+                  Si l'utilisateur courant n'est pas amis avec l'utilisateur affiché à l'écran, un bouton Follow lui est offert pour le suivre. Si non, un bouton UnFollow apparaît lorsque c'est un ami présent dans notre liste.
