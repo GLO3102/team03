@@ -12,10 +12,17 @@ var app = app || {};
         },
 
         render: function () {
+            var that = this;
             var userName = $.cookie('userName');
-            this.$el.html(this.navBarTemplate({
-                currentUserName: userName
-            }));
+            var user = new app.User({id: $.cookie('userId')});
+            user.fetch({
+                success: function () {
+                    that.$el.html(that.navBarTemplate({
+                        currentUserName: userName,
+                        emailHash: md5(user.get('email'))
+                    }));
+                }
+            });
         },
 
         logOutUser: function () {

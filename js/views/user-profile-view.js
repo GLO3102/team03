@@ -39,7 +39,8 @@ var app = app || {};
                     });
                     that.$el.html(that.currentUserTemplate({
                         user: that.user.attributes,
-                        isFollowing: isFollowing
+                        isFollowing: isFollowing,
+                        emailHash: md5(that.user.get('email'))
                     }));
                 }
             });

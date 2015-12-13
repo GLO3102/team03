@@ -12,6 +12,7 @@
 	<link href="lib/css/font-awesome.css" rel="stylesheet">
 	<link href="lib/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/index.css" rel="stylesheet">
+	<link href="css/navbar.css" rel="stylesheet">
 	<link href="css/movie.css" rel="stylesheet">
 	<link href="css/tvshow.css" rel="stylesheet">
 	<link href="css/watchlist.css" rel="stylesheet">
@@ -58,7 +59,9 @@
 					</ul>
 					<ul class="nav pull-right">
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= currentUserName %>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img id="navbar-avatar" src="http://www.gravatar.com/avatar/<%= emailHash %>?s=50" />
+								<%= currentUserName %>
 								<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="#users/<%= $.cookie('userId') %>">MyProfile</a></li>
@@ -458,7 +461,7 @@
 		<div class="span12"> 
 
 			<div class="current-user-box-info"> 
-				<img class="cover-image" src="https://www.parsemarket.com/assets/avatar_missing-4145fb044f59fb1c0a94b2f2e9bb3e7a.png">
+				<img class="cover-image" src="http://www.gravatar.com/avatar/<%= emailHash %>?s=150">
 
 				<div class="user-info">
 					<h3><%= user.name %></h3>
@@ -586,6 +589,7 @@
 	<script src="js/safeEntrance.js"></script>
 	<script src="lib/js/underscore-min.js"></script>
 	<script src="lib/js/backbone-min.js"></script>
+	<script src="lib/js/md5.min.js"></script>
 	<script src="js/UI/menuBehavior.js"></script>
 	<script src="js/search.js"></script>
 	<script src="https://apis.google.com/js/client.js?onload=gAPIOnLoadCallback"></script>
