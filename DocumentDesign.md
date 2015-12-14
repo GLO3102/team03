@@ -76,3 +76,13 @@ Page User/My Profile
                   L'onglet Find User permet la recherche d'autres utilisateur. Il suffit d'inscrire le nom d'utilisateur recherch�, d'appuyer sur la loupe et s�lectionner un utilisateur.
                   Nous somme alors redirig� vers le profile de l'utilisateur s�lectionn�. M�me si les onglet sont pr�sent, il n'est par contre pas possible de supprimer des watchlists ou des firends de la liste d'un autre utilisateur.
                   Si l'utilisateur courant n'est pas amis avec l'utilisateur affich� � l'�cran, un bouton Follow lui est offert pour le suivre. Si non, un bouton UnFollow appara�t lorsque c'est un ami pr�sent dans notre liste. ùL'avatar affiché dans la barre de navigation et dans le profile provient de Gravatar.
+				  
+Fonctionnalité recherche globale
+--------------
+ - Partout
+ 
+**Explications:** Lorsque l'on saisie du texte dans la recherche globale et que l'on clique soit sur la loupe soit sur "enter", les résultats de recherche s'affichent pour chaque catégorie: Movies, Actors, 
+				  Users et TvShows. Il est alors possible de cliquer sur chaque movie, actor, user ou tv-show pour être redirigé vers sa page personnalisée. Il est aussi possible, directement dans la page de 
+				  résultat de la recherche globale, de "follow" et "unfollow" un autre user. De plus, il est possible d'ajouter un movie ou un tvShow à une watchlist.
+				  
+				  
